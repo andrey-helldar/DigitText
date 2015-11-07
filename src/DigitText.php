@@ -1,16 +1,16 @@
 <?php
 
-namespace Helldar;
+namespace Helldar\DigitText;
 
 class DigitText
 {
     public function getText($digit = null)
     {
-        if ( is_null($digit) ) {
+        if(is_null($digit)) {
             return $this->getArray(0);
         }
 
-        if ( $digit > 0 && $digit < 10 ) {
+        if($digit > 0 && $digit < 10) {
             return $this->getArray($digit);
         }
     }

@@ -17,7 +17,7 @@ class DigitTextTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new \Helldar\DigitText;
+        $this->object = new \Helldar\DigitText();
     }
 
     /**
@@ -31,6 +31,7 @@ class DigitTextTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Helldar\DigitText::getText
+     * 
      * @todo   Implement testGetText().
      */
     public function testGetText()
