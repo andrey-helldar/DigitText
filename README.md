@@ -9,6 +9,8 @@
 
 ## Installing
 
+    composer require andrey-helldar\DigitText=dev-master
+
 Into 'providers' in app.php:
 
     Helldar\DigitText::class,
