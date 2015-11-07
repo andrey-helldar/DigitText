@@ -37,7 +37,8 @@ class DigitText
     /**
      * Showing a fractional number in a text equivalent.
      *
-     * @param double $digit
+     * @param float $digit
+     * 
      * @return string
      */
     public function getText($digit = null)
