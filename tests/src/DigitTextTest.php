@@ -31,7 +31,7 @@ class DigitTextTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers Helldar\DigitText::getText
-     * 
+     *
      * @todo   Implement testGetText().
      */
     public function testGetText()
