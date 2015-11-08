@@ -99,12 +99,5 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     public function testDecline()
     {
-        $result0 = $this->object->decline(1, 54);
-        $result1 = $this->object->decline(2, 25);
-        $result3 = $this->object->decline(3, 56);
-
-        $this->assertEquals(' тысячи', $result0);
-        $this->assertEquals(' миллионов', $result1);
-        $this->assertEquals('', $result3);
     }
 }
