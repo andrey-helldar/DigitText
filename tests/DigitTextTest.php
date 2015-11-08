@@ -51,10 +51,8 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
 
         $result10 = $this->object->text(2644383);
         $result11 = $this->object->text(7644383);
-        $result12 = $this->object->text(76443783);
+        $result12 = $this->object->text(70043783);
         $result13 = $this->object->text(786443783);
-        $result14 = $this->object->text(700443200);
-        $result15 = $this->object->text(564.23);
 
         $this->assertEquals('ноль', $result0);
         $this->assertEquals('шестьдесят четыре', $result1);
@@ -70,8 +68,6 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('семь миллионов шестьсот сорок четыре тысячи триста восемьдесят три', $result11);
         $this->assertEquals('семьдесят шесть миллионов четыреста сорок три тысячи семьсот восемьдесят три', $result12);
         $this->assertEquals('семьсот восемьдесят шесть миллионов четыреста сорок три тысячи семьсот восемьдесят три', $result13);
-        $this->assertEquals('семьсот миллионов четыреста сорок три тысячи двести', $result14);
-        $this->assertEquals('пятьсот шестьдесят четыре', $result15);
     }
 
     /**
