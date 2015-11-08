@@ -169,7 +169,7 @@ class DigitText
     }
 
     /**
-     * Sorting digits
+     * Sorting digits.
      *
      * @param string $digit
      *
@@ -193,9 +193,9 @@ class DigitText
     }
 
     /**
-     * Declination of discharges
+     * Declination of discharges.
      *
-     * @param integer $group
+     * @param int    $group
      * @param string $digit
      *
      * @return string
