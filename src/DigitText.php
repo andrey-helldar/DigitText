@@ -27,7 +27,7 @@ namespace Helldar\DigitText;
 
 class DigitText
 {
-    static $texts = [
+    public static $texts = [
         0 => [
             0  => '',
             1  => 'один',
@@ -122,22 +122,22 @@ class DigitText
     /**
      * Showing a fractional number in a text equivalent.
      *
-     * @param integer $digit
-     * @param string  $lang
+     * @param int    $digit
+     * @param string $lang
      *
      * @return string
      */
-    static function text($digit = null, $lang = 'ru')
+    public static function text($digit = null, $lang = 'ru')
     {
         if ($digit == 0) {
             return 'ноль';
         }
 
         $groups = str_split(self::dsort((int) $digit), 3);
-        $result = "";
+        $result = '';
 
         for ($i = count($groups) - 1; $i >= 0; $i--) {
-            $result .= ' ' . trim(self::digits($groups[$i], $i));
+            $result .= ' '.trim(self::digits($groups[$i], $i));
         }
 
 //        print_r($groups);
@@ -145,7 +145,7 @@ class DigitText
         return trim($result);
     }
 
-    static function digits($digit = 0, $id = 0)
+    private static function digits($digit = 0, $id = 0)
     {
         if ($digit == 0) {
             return 'ноль';
@@ -154,17 +154,18 @@ class DigitText
         $digitUnsorted = self::dsort($digit);
 
         if ($digitUnsorted > 0 && $digitUnsorted < 20) {
-            return trim(self::$texts[$id == 1 ? 3 : 0][(int) $digitUnsorted] . self::decline($id, $digitUnsorted));
+            return trim(self::$texts[$id == 1 ? 3 : 0][(int) $digitUnsorted].self::decline($id, $digitUnsorted));
         }
 
-        $array  = str_split((string) $digit, 1);
+        $array = str_split((string) $digit, 1);
+
         $result = '';
 
         for ($i = count($array) - 1; $i >= 0; $i--) {
-            $result .= ' ' . self::$texts[$id == 1 ? $i + 3 : $i][$array[$i]];
+            $result .= ' '.self::$texts[$id == 1 ? $i + 3 : $i][$array[$i]];
         }
 
-        return trim($result) . self::decline($id, $digitUnsorted);
+        return trim($result).self::decline($id, $digitUnsorted);
     }
 
     /**
@@ -174,12 +175,12 @@ class DigitText
      *
      * @return string
      */
-    static function dsort($digit = '0')
+    private static function dsort($digit = '0')
     {
         $digit = (string) $digit;
 
         if ($digit == '0') {
-            return [ 0 => 0];
+            return [0 => 0];
         }
 
         $sortedDigit = '';
@@ -199,10 +200,11 @@ class DigitText
      *
      * @return string
      */
-    static function decline($group = 0, $digit = 0)
+    private static function decline($group = 0, $digit = 0)
     {
-        $text   = (string) ((int) $digit);
-        $text   = (int) $text[strlen($digit) - 1];
+        $text = (string) ((int) $digit);
+        $text = (int) $text[strlen($digit) - 1];
+
         $result = '';
 
         switch ($group) {

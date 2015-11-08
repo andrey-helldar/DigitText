@@ -20,7 +20,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new DigitText;
+        $this->object = new DigitText();
     }
 
     /**
@@ -29,32 +29,33 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-
     }
 
     /**
      * @covers Helldar\DigitText\DigitText::text
+     *
      * @todo   Implement testText().
      */
     public function testText()
     {
-        $result0  = $this->object->text();
-        $result1  = $this->object->text(64);
-        $result2  = $this->object->text(764);
-        $result3  = $this->object->text(2866);
-        $result4  = $this->object->text(10383);
-        $result5  = $this->object->text(14383);
-        $result6  = $this->object->text(20383);
-        $result7  = $this->object->text(72383);
-        $result8  = $this->object->text(764383);
-        $result9  = $this->object->text(700383);
+        $result0 = $this->object->text();
+        $result1 = $this->object->text(64);
+        $result2 = $this->object->text(764);
+        $result3 = $this->object->text(2866);
+        $result4 = $this->object->text(10383);
+        $result5 = $this->object->text(14383);
+        $result6 = $this->object->text(20383);
+        $result7 = $this->object->text(72383);
+        $result8 = $this->object->text(764383);
+        $result9 = $this->object->text(700383);
+
         $result10 = $this->object->text(2644383);
         $result11 = $this->object->text(7644383);
         $result12 = $this->object->text(76443783);
         $result13 = $this->object->text(786443783);
         $result14 = $this->object->text(700443200);
         $result15 = $this->object->text(564.23);
-//
+
         $this->assertEquals('ноль', $result0);
         $this->assertEquals('шестьдесят четыре', $result1);
         $this->assertEquals('семьсот шестьдесят четыре', $result2);
@@ -75,24 +76,25 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers Helldar\DigitText\DigitText::digits
+     *
      * @todo   Implement testDigits().
      */
     public function testDigits()
     {
-
     }
 
     /**
      * @covers Helldar\DigitText\DigitText::dsort
+     *
      * @todo   Implement testDsort().
      */
     public function testDsort()
     {
-
     }
 
     /**
      * @covers Helldar\DigitText\DigitText::decline
+     *
      * @todo   Implement testDecline().
      */
     public function testDecline()
