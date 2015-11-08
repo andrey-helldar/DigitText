@@ -27,11 +27,20 @@ namespace Helldar\DigitText;
 
 require_once 'DigitText.php';
 
-//echo DigitText::getText(64);
-//echo DigitText::getText(764);
-echo DigitText::getText(2866);
-echo DigitText::getText(14383);
-echo DigitText::getText(764383);
-echo DigitText::getText(7644383);
-echo DigitText::getText(76443783);
-echo DigitText::getText(786443783);
+echo DigitText::text();
+echo DigitText::text(0);
+echo DigitText::text(564.23);
+echo DigitText::text(64);
+echo DigitText::text(764);
+echo DigitText::text(2866);
+echo DigitText::text(10383);
+echo DigitText::text(14383);
+echo DigitText::text(20383);
+echo DigitText::text(72383);
+echo DigitText::text(764383);
+echo DigitText::text(700383);
+echo DigitText::text(2644383);
+echo DigitText::text(7644383);
+echo DigitText::text(76443783);
+echo DigitText::text(786443783);
+echo DigitText::text(700443200);

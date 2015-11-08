@@ -51,7 +51,6 @@ class DigitText
             19 => 'девятнадцать',
         ],
         1 => [
-            0 => '',
             2 => 'двадцать',
             3 => 'тридцать',
             4 => 'сорок',
@@ -118,85 +117,6 @@ class DigitText
             8 => 'восемьсот',
             9 => 'девятьсот',
         ],
-        6 => [
-            0  => '',
-            1  => 'один',
-            2  => 'два',
-            3  => 'три',
-            4  => 'четыре',
-            5  => 'пять',
-            6  => 'шесть',
-            7  => 'семь',
-            8  => 'восемь',
-            9  => 'девять',
-            10 => 'десять',
-            11 => 'одиннадцать',
-            12 => 'двенадцать',
-            13 => 'тринадцать',
-            14 => 'четырнадцать',
-            15 => 'пятнадцать',
-            16 => 'шестнадцать',
-            17 => 'семнадцать',
-            18 => 'восемнадцать',
-            19 => 'девятнадцать',
-        ],
-        7 => [
-            0 => '',
-            2 => 'двадцать',
-            3 => 'тридцать',
-            4 => 'сорок',
-            5 => 'пятьдесят',
-            6 => 'шестьдесят',
-            7 => 'семьдесят',
-            8 => 'восемьдесят',
-            9 => 'девяносто',
-        ],
-        8 => [
-            0 => '',
-            1 => 'сто',
-            2 => 'двести',
-            3 => 'триста',
-            4 => 'четыреста',
-            5 => 'пятьсот',
-            6 => 'шестьсот',
-            7 => 'семьсот',
-            8 => 'восемьсот',
-            9 => 'девятьсот',
-        ],
-    ];
-    static $group = [
-        3 => [
-            1  => 'тысяча',
-            2  => 'тысячи',
-            3  => 'тысячи',
-            4  => 'тысячи',
-            5  => 'тысяч',
-            6  => 'тысяч',
-            7  => 'тысяч',
-            8  => 'тысяч',
-            9  => 'тысяч',
-            10 => 'тысяч',
-            11 => 'тысяч',
-            12 => 'тысяч',
-            13 => 'тысяч',
-            14 => 'тысяч',
-            15 => 'тысяч',
-            16 => 'тысяч',
-            17 => 'тысяч',
-            18 => 'тысяч',
-            19 => 'тысяч',
-        ],
-        6 => [
-            1 => 'миллион',
-            2 => 'миллиона',
-            3 => 'миллиона',
-            4 => 'миллиона',
-            5 => 'миллионов',
-            6 => 'миллионов',
-            7 => 'миллионов',
-            8 => 'миллионов',
-            9 => 'миллионов',
-        ]
     ];
 
     /**
@@ -207,74 +127,104 @@ class DigitText
      *
      * @return string
      */
-    static function getText($digit = null, $lang = 'ru')
+    static function text($digit = null, $lang = 'ru')
     {
-        $digit      = (int) $digit;
-        $digitArray = str_split((string) $digit, 1);
-
-        if (is_null($digit) || $digit == 0) {
+        if ($digit == 0) {
             return 'ноль';
         }
 
-        if ($digit > 0 && $digit < 20) {
-            return self::$texts[0][$digit];
-        }
-
+        $groups = str_split(self::dsort((int) $digit), 3);
         $result = "";
 
-        for ($i = 0; $i < count($digitArray); $i++) {
-            $k      = count($digitArray) - $i - 1;
-            $result = self::$texts[$i][$digitArray[$k]] . DigitText::getGroup($i, $digitArray[$k]) . ' ' . $result;
+        for ($i = count($groups) - 1; $i >= 0; $i--) {
+            $result .= ' ' . trim(self::digits($groups[$i], $i));
         }
 
-        echo '<div><span style="display:inline-block; width:120px;">' . number_format($digit) . '</span> ' . trim($result) . '</div>';
+//        print_r($groups);
+//        echo '<div><span style="display:inline-block; width:120px;">' . number_format((int)$digit) . '</span> ' . trim($result) . '</div>';
+        return trim($result);
     }
 
-    private function getGroup($id = null, $digit = null)
-    {
-        if (is_null($id)) {
-            return '';
-        }
-
-        if (array_key_exists($id, self::$group)) {
-            if (array_key_exists($digit, self::$group[$id])) {
-                return ' ' . self::$group[$id][$digit];
-            }
-        }
-
-        return '';
-    }
-
-    static function hundreds($digit = 0)
+    static function digits($digit = 0, $id = 0)
     {
         if ($digit == 0) {
             return 'ноль';
         }
 
-        if ($digit > 0 && $digit < 20) {
-            return self::$texts[0][$digit];
+        $digitUnsorted = self::dsort($digit);
+
+        if ($digitUnsorted > 0 && $digitUnsorted < 20) {
+            return trim(self::$texts[$id == 1 ? 3 : 0][(int) $digitUnsorted] . self::decline($id, $digitUnsorted));
         }
+
+        $array  = str_split((string) $digit, 1);
+        $result = '';
+
+        for ($i = count($array) - 1; $i >= 0; $i--) {
+            $result .= ' ' . self::$texts[$id == 1 ? $i + 3 : $i][$array[$i]];
+        }
+
+        return trim($result) . self::decline($id, $digitUnsorted);
     }
 
-    static function thousands($digit = 0)
+    /**
+     * Sorting digits
+     *
+     * @param string $digit
+     *
+     * @return string
+     */
+    static function dsort($digit = '0')
     {
-        if ($digit == 0) {
-            return 'ноль';
+        $digit = (string) $digit;
+
+        if ($digit == '0') {
+            return [ 0 => 0];
         }
 
-        if ($digit > 0 && $digit < 20) {
-            return self::$texts[0][$digit];
+        $sortedDigit = '';
+
+        for ($i = strlen($digit) - 1; $i >= 0; $i--) {
+            $sortedDigit .= $digit[$i];
         }
+
+        return $sortedDigit;
     }
 
-    static function millions($digit = 0)
+    /**
+     * Declination of discharges
+     *
+     * @param integer $group
+     * @param string $digit
+     *
+     * @return string
+     */
+    static function decline($group = 0, $digit = 0)
     {
-        if ($digit == 0) {
-            return 'ноль';
+        $text   = (string) ((int) $digit);
+        $text   = (int) $text[strlen($digit) - 1];
+        $result = '';
+
+        switch ($group) {
+            case 1:$result = ' тысяч';
+                if ($text == 1) {
+                    $result .= 'а';
+                } elseif ($text >= 2 && $text <= 4) {
+                    $result .= 'и';
+                }
+                break;
+
+            case 2: $result = ' миллион';
+                if ($text >= 2 && $text <= 4) {
+                    $result .= 'а';
+                } elseif (($text >= 5 && $text <= 9) || $text == 0) {
+                    $result .= 'ов';
+                }
+                break;
+
+            default :break;
         }
 
-        if ($digit > 0 && $digit < 20) {
-            return self::$texts[0][$digit];
-        }
+        return $result;
     }
 }
