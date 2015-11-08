@@ -6,15 +6,3 @@
 [![Latest Stable Version](https://poser.pugx.org/andrey-helldar/digittext/v/stable)](https://packagist.org/packages/andrey-helldar/digittext)
 [![Latest Unstable Version](https://poser.pugx.org/andrey-helldar/digittext/v/unstable)](https://packagist.org/packages/andrey-helldar/digittext)
 [![License](https://poser.pugx.org/andrey-helldar/digittext/license)](https://packagist.org/packages/andrey-helldar/digittext)
-
-## Installing
-
-    composer require andrey-helldar\DigitText=dev-master
-
-Into 'providers' in app.php:
-
-    Helldar\DigitText::class,
-
-Into 'aliases' in app.php:
-
-    'DigitText'     => Helldar\DigitText::class,
