@@ -1,5 +1,6 @@
 {
     "name": "andrey-helldar/digittext",
+    "description": "The module allows to translate numbers into a text equivalent",
     "license": "MIT",
     "authors": [
         {
