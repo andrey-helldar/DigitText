@@ -40,7 +40,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
     public function testText()
     {
         $result0 = $this->object->text();
-        $result1 = $this->object->text(64.23);
+        $result1 = $this->object->text(64.23, 'ru', true);
         $result2 = $this->object->text(764);
         $result3 = $this->object->text(2866);
         $result4 = $this->object->text('10,000');
@@ -52,7 +52,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
 
         $result10 = $this->object->text(2644383);
         $result11 = $this->object->text(7644383);
-        $result12 = $this->object->text(70043783.65);
+        $result12 = $this->object->text(70043783.65, 'ru', true);
         $result13 = $this->object->text(786443783);
 
         $this->assertEquals('ноль', $result0);
