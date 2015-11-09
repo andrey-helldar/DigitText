@@ -35,7 +35,7 @@ class DigitText
     private static $lang = 'ru';
 
     /**
-     * Array of numbers
+     * Array of numbers.
      *
      * @var array
      */
@@ -161,6 +161,13 @@ class DigitText
         return trim($result);
     }
 
+    /**
+     * The conversion of numbers in text.
+     *
+     * @param string  $digit
+     * @param int     $id
+     * @return string
+     */
     private static function digits($digit = 0, $id = 0)
     {
         if ($digit == 0) {
