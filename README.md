@@ -54,3 +54,7 @@ You can donate via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&
 ## Copyright and License
 
 DigitText was written by Andrey Helldar for the Laravel framework 5.1 or later, and is released under the MIT License. See the LICENSE file for details.
+
+## Translation
+
+Translations of text and comment by Google translate. Help with translation +1 in karma :)

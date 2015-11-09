@@ -27,6 +27,18 @@ namespace Helldar\DigitText;
 
 class DigitText
 {
+    /**
+     * Home locale
+     *
+     * @var string
+     */
+    private static $lang = 'ru';
+
+    /**
+     * Array of numbers
+     *
+     * @var array
+     */
     private static $texts = [
         0 => [
             0  => '',
@@ -129,6 +141,8 @@ class DigitText
      */
     public static function text($digit = null, $lang = 'ru')
     {
+        self::$lang = $lang;
+
         $digit = (int) str_replace([',', ' '], '', $digit);
 
         if ($digit == 0) {
@@ -144,8 +158,6 @@ class DigitText
             }
         }
 
-//        print_r($groups);
-//        echo '<div><span style="display:inline-block; width:120px;">' . number_format((int)$digit) . '</span> ' . trim($result) . '</div>';
         return trim($result);
     }
 
@@ -231,7 +243,6 @@ class DigitText
             default :break;
         }
 
-//        return $result.' ---- '.$digit.' --'.$text.' ----';
         return $result;
     }
 }
