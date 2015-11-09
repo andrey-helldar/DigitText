@@ -20,7 +20,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new DigitText;
+        $this->object = new DigitText();
     }
 
     /**
@@ -29,11 +29,12 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-
+        // none
     }
 
     /**
      * @covers Helldar\DigitText\DigitText::text
+     *
      * @todo   Implement testText().
      */
     public function testText()

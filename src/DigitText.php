@@ -40,7 +40,7 @@ class DigitText
      * @var array
      */
     private static $locales = [
-        'ru'
+        'ru',
     ];
 
     /**
