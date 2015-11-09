@@ -218,6 +218,8 @@ class DigitText
 
             if (self::$surplus > 0) {
                 $result .= ' '.self::$surplus.' '.self::$texts['currency']['fractal'];
+            } else {
+                $result .= ' 00 '.self::$texts['currency']['fractal'];
             }
         }
 
