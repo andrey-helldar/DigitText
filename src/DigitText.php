@@ -122,7 +122,7 @@ class DigitText
     /**
      * Showing a fractional number in a text equivalent.
      *
-     * @param string $digit
+     * @param int    $digit
      * @param string $lang
      *
      * @return string
