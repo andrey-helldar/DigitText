@@ -65,6 +65,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('семьдесят две тысячи триста восемьдесят три', $result7);
         $this->assertEquals('семьсот шестьдесят четыре тысячи триста восемьдесят три', $result8);
         $this->assertEquals('семьсот тысяч триста восемьдесят три', $result9);
+
         $this->assertEquals('два миллиона шестьсот сорок четыре тысячи триста восемьдесят три', $result10);
         $this->assertEquals('семь миллионов шестьсот сорок четыре тысячи триста восемьдесят три', $result11);
         $this->assertEquals('семьдесят миллионов сорок три тысячи семьсот восемьдесят три руб 65 коп', $result12);

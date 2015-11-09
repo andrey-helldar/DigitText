@@ -207,15 +207,21 @@ class DigitText
             return '---';
         }
 
-        if (self::$surplus == 0) {
-            return trim($content);
-        }
-
         if (self::$texts['currency']['position'] == 'before') {
-            return sprintf('%s %s.%d', self::$texts['currency']['int'], $content, self::$surplus);
+            $result = self::$texts['currency']['int'].' '.$content;
+
+            if (self::$surplus > 0) {
+                $result .= '.'.self::$surplus;
+            }
+        } else {
+            $result = trim($content).' '.self::$texts['currency']['int'];
+
+            if (self::$surplus > 0) {
+                $result .= ' '.self::$surplus.' '.self::$texts['currency']['fractal'];
+            }
         }
 
-        return sprintf('%s %s %d %s', trim($content), self::$texts['currency']['int'], self::$surplus, self::$texts['currency']['fractal']);
+        return $result;
     }
 
     /**
