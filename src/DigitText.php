@@ -28,7 +28,7 @@ namespace Helldar\DigitText;
 class DigitText
 {
     /**
-     * Home locale
+     * Home locale.
      *
      * @var string
      */
@@ -164,8 +164,9 @@ class DigitText
     /**
      * The conversion of numbers in text.
      *
-     * @param string  $digit
-     * @param int     $id
+     * @param string $digit
+     * @param int    $id
+     *
      * @return string
      */
     private static function digits($digit = 0, $id = 0)
