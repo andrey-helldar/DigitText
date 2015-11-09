@@ -53,7 +53,7 @@ class DigitText
     /**
      * Remainder of the division.
      *
-     * @var integer
+     * @var int
      */
     private static $surplus = 0;
 
@@ -212,10 +212,10 @@ class DigitText
         }
 
         if (self::$texts['currency']['position'] == 'before') {
-            return sprintf("%s %s.%d", self::$texts['currency']['int'], $content, self::$surplus);
+            return sprintf('%s %s.%d', self::$texts['currency']['int'], $content, self::$surplus);
         }
 
-        return sprintf("%s %s %d %s", trim($content), self::$texts['currency']['int'], self::$surplus, self::$texts['currency']['fractal']);
+        return sprintf('%s %s %d %s', trim($content), self::$texts['currency']['int'], self::$surplus, self::$texts['currency']['fractal']);
     }
 
     /**
@@ -229,6 +229,7 @@ class DigitText
     {
         if (is_null($digit)) {
             self::$surplus = 0;
+
             return;
         }
 
