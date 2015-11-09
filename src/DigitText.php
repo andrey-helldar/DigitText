@@ -129,6 +129,8 @@ class DigitText
      */
     public static function text($digit = null, $lang = 'ru')
     {
+        $digit = (int) str_replace([',', ' '], '', $digit);
+
         if ($digit == 0) {
             return 'ноль';
         }
@@ -137,7 +139,9 @@ class DigitText
         $result = '';
 
         for ($i = count($groups) - 1; $i >= 0; $i--) {
-            $result .= ' '.trim(self::digits($groups[$i], $i));
+            if ((int) $groups[$i] > 0) {
+                $result .= ' '.trim(self::digits($groups[$i], $i));
+            }
         }
 
 //        print_r($groups);
