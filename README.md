@@ -28,24 +28,26 @@ The module allows to translate numbers into a text equivalent. This is important
 
 To transfer the design using the form:
 
-    DigitText::text($number);
+    DigitText::text($number = 0, $lang = 'ru', $currency = false)
 
 Example:
 
     DigitText::text();
     DigitText::text(64.42);
     DigitText::text(2866);
-    DigitText::text('10,000');
-    DigitText::text(70043783);
-    DigitText::text(786443783);
+
+    DigitText::text(0, 'ru', true);
+    DigitText::text(64.42, 'ru', true);
+    DigitText::text(2866, 'ru', true);
 
     // Result:
     ноль
     шестьдесят четыре
     две тысячи восемьсот шестьдесят шесть
-    десять тысяч
-    семьдесят миллионов сорок три тысячи семьсот восемьдесят три
-    семьсот восемьдесят шесть миллионов четыреста сорок три тысячи семьсот восемьдесят три
+
+    ноль руб
+    шестьдесят четыре руб 42 коп
+    две тысячи восемьсот шестьдесят шесть руб
 
 
 ## Support Library

@@ -51,26 +51,39 @@ class DigitText
     private static $texts;
 
     /**
+     * Remainder of the division.
+     *
+     * @var integer
+     */
+    private static $surplus = 0;
+
+    /**
      * Showing a fractional number in a text equivalent.
      *
-     * @param int    $digit
+     * @param float  $digit
      * @param string $lang
+     * @param bool   $currency
      *
      * @return string
      */
-    public static function text($digit = null, $lang = 'ru')
+    public static function text($digit = 0, $lang = 'ru', $currency = false)
     {
         if (array_key_exists($lang, self::$locales)) {
             self::$lang = $lang;
         }
 
+        // Loading texts from locale page
         self::loadTexts();
-
-        $digit = (int) str_replace([',', ' '], '', $digit);
 
         if ($digit == 0) {
             return self::$texts['zero'];
         }
+
+        // Get the fractional part
+        self::fractal((float) $digit);
+
+        // Get the integer part
+        $digit = (int) str_replace([',', ' '], '', $digit);
 
         $groups = str_split(self::dsort((int) $digit), 3);
         $result = '';
@@ -81,7 +94,11 @@ class DigitText
             }
         }
 
-        return trim($result);
+        if ($currency) {
+            return self::currency($result);
+        } else {
+            return trim($result);
+        }
     }
 
     /**
@@ -95,7 +112,7 @@ class DigitText
     private static function digits($digit = 0, $id = 0)
     {
         if ($digit == 0) {
-            return 'ноль';
+            return self::$texts['zero'];
         }
 
         $digitUnsorted = (int) self::dsort($digit);
@@ -175,6 +192,53 @@ class DigitText
         }
 
         return $result;
+    }
+
+    /**
+     * Form the payment amount.
+     *
+     * @param string $content
+     *
+     * @return string
+     */
+    private static function currency($content = null)
+    {
+        if (is_null($content)) {
+            return '---';
+        }
+
+        if (self::$surplus == 0) {
+            return trim($content);
+        }
+
+        if (self::$texts['currency']['position'] == 'before') {
+            return sprintf("%s %s.%d", self::$texts['currency']['int'], $content, self::$surplus);
+        }
+
+        return sprintf("%s %s %d %s", trim($content), self::$texts['currency']['int'], self::$surplus, self::$texts['currency']['fractal']);
+    }
+
+    /**
+     * Get the fractional part.
+     *
+     * @param float $digit
+     *
+     * @return type
+     */
+    private static function fractal($digit = null)
+    {
+        if (is_null($digit)) {
+            self::$surplus = 0;
+            return;
+        }
+
+        $pos = strripos((string) $digit, '.');
+
+        if ($pos === false) {
+            self::$surplus = 0;
+        } else {
+            self::$surplus = mb_substr((string) $digit, $pos + 1);
+        }
     }
 
     /**
