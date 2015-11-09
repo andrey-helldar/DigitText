@@ -1,6 +1,6 @@
-/bootstrap/compiled.php
+bootstrap/compiled.php
 .env.*.php
 .env.php
 .env
-/nbproject
-/vendor
+nbproject/
+vendor/

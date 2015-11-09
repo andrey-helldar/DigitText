@@ -151,7 +151,7 @@ class DigitText
             return 'ноль';
         }
 
-        $digitUnsorted = self::dsort($digit);
+        $digitUnsorted = (int) self::dsort($digit);
 
         if ($digitUnsorted > 0 && $digitUnsorted < 20) {
             return trim(self::$texts[$id == 1 ? 3 : 0][(int) $digitUnsorted].self::decline($id, $digitUnsorted));
@@ -227,6 +227,7 @@ class DigitText
             default :break;
         }
 
+//        return $result.' ---- '.$digit.' --'.$text.' ----';
         return $result;
     }
 }
