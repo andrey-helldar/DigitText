@@ -37,7 +37,7 @@ class DigitServiceProvider extends ServiceProvider
     protected $defer = true;
 
     /**
-     * Base function
+     * Base function.
      */
     public function boot()
     {
