@@ -35,101 +35,20 @@ class DigitText
     private static $lang = 'ru';
 
     /**
+     * The list of available locales.
+     *
+     * @var array
+     */
+    private static $locales = [
+        'ru'
+    ];
+
+    /**
      * Array of numbers.
      *
      * @var array
      */
-    private static $texts = [
-        0 => [
-            0  => '',
-            1  => 'один',
-            2  => 'два',
-            3  => 'три',
-            4  => 'четыре',
-            5  => 'пять',
-            6  => 'шесть',
-            7  => 'семь',
-            8  => 'восемь',
-            9  => 'девять',
-            10 => 'десять',
-            11 => 'одиннадцать',
-            12 => 'двенадцать',
-            13 => 'тринадцать',
-            14 => 'четырнадцать',
-            15 => 'пятнадцать',
-            16 => 'шестнадцать',
-            17 => 'семнадцать',
-            18 => 'восемнадцать',
-            19 => 'девятнадцать',
-        ],
-        1 => [
-            2 => 'двадцать',
-            3 => 'тридцать',
-            4 => 'сорок',
-            5 => 'пятьдесят',
-            6 => 'шестьдесят',
-            7 => 'семьдесят',
-            8 => 'восемьдесят',
-            9 => 'девяносто',
-        ],
-        2 => [
-            0 => '',
-            1 => 'сто',
-            2 => 'двести',
-            3 => 'триста',
-            4 => 'четыреста',
-            5 => 'пятьсот',
-            6 => 'шестьсот',
-            7 => 'семьсот',
-            8 => 'восемьсот',
-            9 => 'девятьсот',
-        ],
-        3 => [
-            0  => '',
-            1  => 'одна',
-            2  => 'две',
-            3  => 'три',
-            4  => 'четыре',
-            5  => 'пять',
-            6  => 'шесть',
-            7  => 'семь',
-            8  => 'восемь',
-            9  => 'девять',
-            10 => 'десять',
-            11 => 'одиннадцать',
-            12 => 'двенадцать',
-            13 => 'тринадцать',
-            14 => 'четырнадцать',
-            15 => 'пятнадцать',
-            16 => 'шестнадцать',
-            17 => 'семнадцать',
-            18 => 'восемнадцать',
-            19 => 'девятнадцать',
-        ],
-        4 => [
-            0 => '',
-            2 => 'двадцать',
-            3 => 'тридцать',
-            4 => 'сорок',
-            5 => 'пятьдесят',
-            6 => 'шестьдесят',
-            7 => 'семьдесят',
-            8 => 'восемьдесят',
-            9 => 'девяносто',
-        ],
-        5 => [
-            0 => '',
-            1 => 'сто',
-            2 => 'двести',
-            3 => 'триста',
-            4 => 'четыреста',
-            5 => 'пятьсот',
-            6 => 'шестьсот',
-            7 => 'семьсот',
-            8 => 'восемьсот',
-            9 => 'девятьсот',
-        ],
-    ];
+    private static $texts;
 
     /**
      * Showing a fractional number in a text equivalent.
@@ -141,12 +60,16 @@ class DigitText
      */
     public static function text($digit = null, $lang = 'ru')
     {
-        self::$lang = $lang;
+        if (array_key_exists($lang, self::$locales)) {
+            self::$lang = $lang;
+        }
+
+        self::loadTexts();
 
         $digit = (int) str_replace([',', ' '], '', $digit);
 
         if ($digit == 0) {
-            return 'ноль';
+            return self::$texts['zero'];
         }
 
         $groups = str_split(self::dsort((int) $digit), 3);
@@ -232,19 +155,19 @@ class DigitText
         $result = '';
 
         switch ($group) {
-            case 1:$result = ' тысяч';
+            case 1:$result = ' '.self::$texts['thousands'][0];
                 if ($text == 1) {
-                    $result .= 'а';
+                    $result = ' '.self::$texts['thousands'][1];
                 } elseif ($text >= 2 && $text <= 4) {
-                    $result .= 'и';
+                    $result = ' '.self::$texts['thousands'][2];
                 }
                 break;
 
-            case 2: $result = ' миллион';
+            case 2: $result = ' '.self::$texts['millions'][0];
                 if ($text >= 2 && $text <= 4) {
-                    $result .= 'а';
+                    $result = ' '.self::$texts['millions'][1];
                 } elseif (($text >= 5 && $text <= 9) || $text == 0) {
-                    $result .= 'ов';
+                    $result = ' '.self::$texts['millions'][2];
                 }
                 break;
 
@@ -252,5 +175,19 @@ class DigitText
         }
 
         return $result;
+    }
+
+    /**
+     * Loading localized data.
+     */
+    private static function loadTexts()
+    {
+        $locale = __DIR__.'/lang/'.self::$lang.'/digittext.php';
+
+        if (file_exists($locale)) {
+            self::$texts = require __DIR__.'/lang/'.self::$lang.'/digittext.php';
+        } else {
+            self::$texts = require __DIR__.'/lang/ru/digittext.php';
+        }
     }
 }

@@ -37,16 +37,6 @@ class DigitServiceProvider extends ServiceProvider
     protected $defer = true;
 
     /**
-     * Base function.
-     */
-    public function boot()
-    {
-        $this->publishes([
-            __DIR__.'/lang/' => base_path('resources/lang/'),
-                ], 'digittext');
-    }
-
-    /**
      * Register the service provider.
      *
      * @return void
