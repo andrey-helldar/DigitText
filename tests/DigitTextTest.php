@@ -20,7 +20,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new DigitText;
+        $this->object = new DigitText();
     }
 
     /**
@@ -29,7 +29,6 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-
     }
 
     /**
@@ -39,16 +38,17 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     public function testText()
     {
-        $result0  = $this->object->text();
-        $result1  = $this->object->text(64);
-        $result2  = $this->object->text(764);
-        $result3  = $this->object->text(2866);
-        $result4  = $this->object->text(10383);
-        $result5  = $this->object->text(14383);
-        $result6  = $this->object->text(20383);
-        $result7  = $this->object->text(72383);
-        $result8  = $this->object->text(764383);
-        $result9  = $this->object->text(700383);
+        $result0 = $this->object->text();
+        $result1 = $this->object->text(64);
+        $result2 = $this->object->text(764);
+        $result3 = $this->object->text(2866);
+        $result4 = $this->object->text(10383);
+        $result5 = $this->object->text(14383);
+        $result6 = $this->object->text(20383);
+        $result7 = $this->object->text(72383);
+        $result8 = $this->object->text(764383);
+        $result9 = $this->object->text(700383);
+
         $result10 = $this->object->text(2644383);
         $result11 = $this->object->text(7644383);
         $result12 = $this->object->text(70043783);
