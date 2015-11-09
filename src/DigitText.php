@@ -27,7 +27,7 @@ namespace Helldar\DigitText;
 
 class DigitText
 {
-    public static $texts = [
+    private static $texts = [
         0 => [
             0  => '',
             1  => 'один',
@@ -122,7 +122,7 @@ class DigitText
     /**
      * Showing a fractional number in a text equivalent.
      *
-     * @param int    $digit
+     * @param string $digit
      * @param string $lang
      *
      * @return string

@@ -25,7 +25,9 @@
 
 namespace Helldar\DigitText;
 
-class DigitServiceProvider
+use Illuminate\Support\ServiceProvider;
+
+class DigitServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
