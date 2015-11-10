@@ -15,7 +15,7 @@ The module allows to translate numbers into a text equivalent. This is important
 
 1. Require this package in your composer.json and run composer update:
 
-		"andrey-helldar/digittext" : "1.*"
+		"andrey-helldar/digittext": "^1.0",
 
 2. After composer update, add service providers to the config/app.php
 
