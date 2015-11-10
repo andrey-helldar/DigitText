@@ -35,16 +35,6 @@ class DigitText
     private static $lang = 'ru';
 
     /**
-     * The list of available locales.
-     *
-     * @var array
-     */
-    private static $locales = [
-        'ru',
-        'en'
-    ];
-
-    /**
      * Array of numbers.
      *
      * @var array
@@ -69,7 +59,7 @@ class DigitText
      */
     public static function text($digit = 0, $lang = 'ru', $currency = false)
     {
-        if (in_array($lang, self::$locales)) {
+        if (!is_null($lang)) {
             self::$lang = $lang;
         }
 
