@@ -39,6 +39,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     public function testText()
     {
+        // RU
         $result0 = $this->object->text();
         $result1 = $this->object->text(64.23, 'ru', true);
         $result2 = $this->object->text(764);
@@ -46,15 +47,11 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
         $result4 = $this->object->text('10,000');
         $result5 = $this->object->text(14383);
         $result6 = $this->object->text(20383);
-        $result7 = $this->object->text(72383);
-        $result8 = $this->object->text(764383);
-        $result9 = $this->object->text(700383);
+        $result7 = $this->object->text(700383);
+        $result8 = $this->object->text(7644383);
+        $result9 = $this->object->text(70043783.65, 'ru', true);
 
-        $result10 = $this->object->text(2644383);
-        $result11 = $this->object->text(7644383);
-        $result12 = $this->object->text(70043783.65, 'ru', true);
-        $result13 = $this->object->text(786443783);
-
+        $result10 = $this->object->text(786443783);
         $this->assertEquals('ноль', $result0);
         $this->assertEquals('шестьдесят четыре руб 23 коп', $result1);
         $this->assertEquals('семьсот шестьдесят четыре', $result2);
@@ -62,13 +59,35 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('десять тысяч', $result4);
         $this->assertEquals('четырнадцать тысячи триста восемьдесят три', $result5);
         $this->assertEquals('двадцать тысяч триста восемьдесят три', $result6);
-        $this->assertEquals('семьдесят две тысячи триста восемьдесят три', $result7);
-        $this->assertEquals('семьсот шестьдесят четыре тысячи триста восемьдесят три', $result8);
-        $this->assertEquals('семьсот тысяч триста восемьдесят три', $result9);
+        $this->assertEquals('семьсот тысяч триста восемьдесят три', $result7);
 
-        $this->assertEquals('два миллиона шестьсот сорок четыре тысячи триста восемьдесят три', $result10);
-        $this->assertEquals('семь миллионов шестьсот сорок четыре тысячи триста восемьдесят три', $result11);
-        $this->assertEquals('семьдесят миллионов сорок три тысячи семьсот восемьдесят три руб 65 коп', $result12);
-        $this->assertEquals('семьсот восемьдесят шесть миллионов четыреста сорок три тысячи семьсот восемьдесят три', $result13);
+        $this->assertEquals('семь миллионов шестьсот сорок четыре тысячи триста восемьдесят три', $result8);
+        $this->assertEquals('семьдесят миллионов сорок три тысячи семьсот восемьдесят три руб 65 коп', $result9);
+        $this->assertEquals('семьсот восемьдесят шесть миллионов четыреста сорок три тысячи семьсот восемьдесят три', $result10);
+
+        // EN
+        $result11 = $this->object->text(null, 'en');
+        $result12 = $this->object->text(64.23, 'en', true);
+        $result13 = $this->object->text(764, 'en');
+        $result14 = $this->object->text(2866, 'en');
+        $result15 = $this->object->text('10,000', 'en');
+        $result16 = $this->object->text(14383, 'en');
+        $result17 = $this->object->text(20383, 'en');
+        $result18 = $this->object->text(700383, 'en');
+        $result19 = $this->object->text(7644383, 'en');
+        $result20 = $this->object->text(70043783.65, 'en', true);
+        $result21 = $this->object->text(786443783, 'en');
+
+        $this->assertEquals('zero', $result11);
+        $this->assertEquals('sixty four dollars 23 cents', $result12);
+        $this->assertEquals('seven hundred sixty four', $result13);
+        $this->assertEquals('two thousands eight hundred sixty six', $result14);
+        $this->assertEquals('ten thousands', $result15);
+        $this->assertEquals('fourteen thousands three hundred eighty three', $result16);
+        $this->assertEquals('twenty thousands three hundred eighty three', $result17);
+        $this->assertEquals('seven hundred thousands three hundred eighty three', $result18);
+        $this->assertEquals('seven million six hundred forty four thousands three hundred eighty three', $result19);
+        $this->assertEquals('seventy million forty three thousands seven hundred eighty three dollars 65 cents', $result20);
+        $this->assertEquals('seven hundred eighty six million four hundred forty three thousands seven hundred eighty three', $result21);
     }
 }

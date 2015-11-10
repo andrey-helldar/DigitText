@@ -61,4 +61,4 @@ DigitText was written by Andrey Helldar for the Laravel framework 5.1 or later, 
 
 ## Translation
 
-Translations of text and comment by Google translate. Help with translation +1 in karma :)
+Translations of text and comment by Google Translate. Help with translation +1 in karma :)

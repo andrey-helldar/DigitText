@@ -41,6 +41,7 @@ class DigitText
      */
     private static $locales = [
         'ru',
+        'en'
     ];
 
     /**
@@ -68,12 +69,16 @@ class DigitText
      */
     public static function text($digit = 0, $lang = 'ru', $currency = false)
     {
-        if (array_key_exists($lang, self::$locales)) {
+        if (in_array($lang, self::$locales)) {
             self::$lang = $lang;
         }
 
         // Loading texts from locale page
         self::loadTexts();
+
+        if (is_null($digit)) {
+            $digit = 0;
+        }
 
         if ($digit == 0) {
             return self::$texts['zero'];
