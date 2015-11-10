@@ -43,7 +43,7 @@ Example:
 
     // Result:
     zero
-    sixty four dollars
+    sixty four
     two thousands eight hundred sixty six
 
     zero dollar
