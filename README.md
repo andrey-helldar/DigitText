@@ -33,22 +33,22 @@ To transfer the design using the form:
 
 Example:
 
-    DigitText::text();
-    DigitText::text(64.42);
-    DigitText::text(2866);
+    DigitText::text(null, 'en');
+    DigitText::text(64.23, 'en');
+    DigitText::text(2866, 'en');
 
-    DigitText::text(0, 'ru', true);
-    DigitText::text(64.42, 'ru', true);
-    DigitText::text(2866, 'ru', true);
+    DigitText::text(0, 'en', true);
+    DigitText::text(64.23, 'en', true);
+    DigitText::text(2866, 'en', true);
 
     // Result:
-    ноль
-    шестьдесят четыре
-    две тысячи восемьсот шестьдесят шесть
+    zero
+    sixty four dollars
+    two thousands eight hundred sixty six
 
-    ноль руб
-    шестьдесят четыре руб 42 коп
-    две тысячи восемьсот шестьдесят шесть руб
+    zero dollar
+    sixty four dollars 23 cents
+    two thousands eight hundred sixty six dollars
 
 
 ## Support Library
