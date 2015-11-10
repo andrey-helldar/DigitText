@@ -9,29 +9,29 @@
 [![Dependency Status](https://www.versioneye.com/php/andrey-helldar:digittext/dev-master/badge.svg)](https://www.versioneye.com/php/andrey-helldar:digittext/dev-master)
 [![License](https://poser.pugx.org/andrey-helldar/digittext/license)](https://packagist.org/packages/andrey-helldar/digittext)
 
-The module allows to translate numbers into a text equivalent. This is important in the billing.
+Модуль позволяет переводить числа в текстовый эквивалент. Это актуально при выставлении счетов по безналичному расчету.
 
-## Installation
+## Установка
 
-1. Require this package in your composer.json and run composer update:
+1. В раздел "require" файла composer.json добавьте пакет и выполните composer update:
 
 		"andrey-helldar/digittext": "^1.0",
 
-2. After composer update, add service providers to the config/app.php
+2. После обновления композера, добавьте сервис провадер в файл config/app.php
 
 		Helldar\DigitText\DigitServiceProvider::class,
 
-3. Add this to the facade in config/app.php:
+3. Затем в файл config/app.php добавьте фасад:
 
 		'DigitText' => Helldar\DigitText\DigitText::class,
 
-## Documentation
+## Документация
 
-To transfer the design using the form:
+Для перевода числа в текст используйте конструкцию:
 
     DigitText::text($number = 0, $lang = 'ru', $currency = false)
 
-Example:
+Пример:
 
     DigitText::text();
     DigitText::text(64.42);
@@ -41,7 +41,7 @@ Example:
     DigitText::text(64.42, 'ru', true);
     DigitText::text(2866, 'ru', true);
 
-    // Result:
+    // Результат:
     ноль
     шестьдесят четыре
     две тысячи восемьсот шестьдесят шесть
@@ -51,14 +51,10 @@ Example:
     две тысячи восемьсот шестьдесят шесть руб
 
 
-## Support Library
+## Поддержка
 
-You can donate via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=94B8LCPAPJ5VG), Yandex Money (410012608840929), WebMoney (Z124862854284)
+Вы можете задонатить автору пакета: [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=94B8LCPAPJ5VG), Yandex Money (410012608840929), WebMoney (Z124862854284)
 
-## Copyright and License
+## Копирайты и лицензия
 
-DigitText was written by Andrey Helldar for the Laravel framework 5.1 or later, and is released under the MIT License. See the LICENSE file for details.
-
-## Translation
-
-Translations of text and comment by Google Translate. Help with translation +1 in karma :)
+DigitText разработан Андреем Хэллдаром для фреймворка Laravel версии 5.1 или выше, и распространяется под лицензией MIT. Смотрите файл LICENSE.
