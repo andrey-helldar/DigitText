@@ -1,4 +1,4 @@
-## Laravel 5.1+ Digit to Text Module
+## Laravel 5.2+ Digit to Text Module
 
 [![StyleCI](https://styleci.io/repos/45746985/shield)](https://styleci.io/repos/45746985)
 [![Build Status](https://travis-ci.org/andrey-helldar/DigitText.svg?branch=master)](https://travis-ci.org/andrey-helldar/DigitText)
@@ -15,7 +15,7 @@ The module allows to translate numbers into a text equivalent. This is important
 
 1. Require this package in your composer.json and run composer update:
 
-		"andrey-helldar/digittext": "^1.0",
+		"andrey-helldar/digittext": "^2.0",
 
 2. After composer update, add service providers to the config/app.php
 
@@ -57,7 +57,7 @@ You can donate via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&
 
 ## Copyright and License
 
-DigitText was written by Andrey Helldar for the Laravel framework 5.1 or later, and is released under the MIT License. See the LICENSE file for details.
+DigitText was written by Andrey Helldar for the Laravel framework 5.2 or later, and is released under the MIT License. See the LICENSE file for details.
 
 ## Translation
 

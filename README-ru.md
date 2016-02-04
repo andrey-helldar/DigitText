@@ -1,4 +1,4 @@
-## Laravel 5.1+ Digit to Text Module
+## Laravel 5.2+ Digit to Text Module
 
 [![StyleCI](https://styleci.io/repos/45746985/shield)](https://styleci.io/repos/45746985)
 [![Build Status](https://travis-ci.org/andrey-helldar/DigitText.svg?branch=master)](https://travis-ci.org/andrey-helldar/DigitText)
@@ -15,7 +15,7 @@
 
 1. В раздел "require" файла composer.json добавьте пакет и выполните composer update:
 
-		"andrey-helldar/digittext": "^1.0",
+		"andrey-helldar/digittext": "^2.0",
 
 2. После обновления композера, добавьте сервис провадер в файл config/app.php
 
@@ -57,4 +57,4 @@
 
 ## Копирайты и лицензия
 
-DigitText разработан Андреем Хэллдаром для фреймворка Laravel версии 5.1 или выше, и распространяется под лицензией MIT. Смотрите файл LICENSE.
+DigitText разработан Андреем Хэллдаром для фреймворка Laravel версии 5.2 или выше, и распространяется под лицензией MIT. Смотрите файл LICENSE.

@@ -10,13 +10,13 @@
     ],
     "require": {
         "php": ">=5.6",
-        "illuminate/http": "5.1.*",
-        "illuminate/routing": "5.1.*",
-        "illuminate/session": "5.1.*",
-        "illuminate/support": "5.1.*"
+        "illuminate/http": "5.2.*",
+        "illuminate/routing": "5.2.*",
+        "illuminate/session": "5.2.*",
+        "illuminate/support": "5.2.*"
     },
     "require-dev": {
-        "mockery/mockery": "~0.9",
+        "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5"
     },
     "autoload": {
