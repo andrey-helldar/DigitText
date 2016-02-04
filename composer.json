@@ -13,7 +13,8 @@
         "illuminate/http": "5.2.*",
         "illuminate/routing": "5.2.*",
         "illuminate/session": "5.2.*",
-        "illuminate/support": "5.2.*"
+        "illuminate/support": "5.2.*",
+        "illuminate/pipeline": "5.2.*"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
