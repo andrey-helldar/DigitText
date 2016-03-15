@@ -15,15 +15,15 @@
 
 1. В раздел "require" файла composer.json добавьте пакет и выполните composer update:
 
-    composer require andrey-helldar/digittext
+        composer require andrey-helldar/digittext
 
 2. После обновления композера, добавьте сервис провадер в файл config/app.php
 
-    Helldar\DigitText\DigitServiceProvider::class,
+        Helldar\DigitText\DigitServiceProvider::class,
 
 3. Затем в файл config/app.php добавьте фасад:
 
-    'DigitText' => Helldar\DigitText\DigitText::class,
+        'DigitText' => Helldar\DigitText\DigitText::class,
 
 ## Документация
 
