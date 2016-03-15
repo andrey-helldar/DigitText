@@ -15,15 +15,15 @@ The module allows to translate numbers into a text equivalent. This is important
 
 1. Run command in console:
 
-    composer require andrey-helldar/digittext
+        composer require andrey-helldar/digittext
 
 2. After composer update, add service providers to the config/app.php
 
-    Helldar\DigitText\DigitServiceProvider::class,
+        Helldar\DigitText\DigitServiceProvider::class,
 
 3. Add this to the facade in config/app.php:
 
-    'DigitText' => Helldar\DigitText\DigitText::class,
+        'DigitText' => Helldar\DigitText\DigitText::class,
 
 ## Documentation
 
