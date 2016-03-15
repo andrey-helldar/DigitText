@@ -13,17 +13,17 @@ The module allows to translate numbers into a text equivalent. This is important
 
 ## Installation
 
-1. Require this package in your composer.json and run composer update:
+1. Run command in console:
 
-		"andrey-helldar/digittext": "^2.0",
+    composer require andrey-helldar/digittext
 
 2. After composer update, add service providers to the config/app.php
 
-		Helldar\DigitText\DigitServiceProvider::class,
+    Helldar\DigitText\DigitServiceProvider::class,
 
 3. Add this to the facade in config/app.php:
 
-		'DigitText' => Helldar\DigitText\DigitText::class,
+    'DigitText' => Helldar\DigitText\DigitText::class,
 
 ## Documentation
 
