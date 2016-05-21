@@ -50,7 +50,7 @@ Example:
     sixty four dollars 23 cents
     two thousands eight hundred sixty six dollars
 
-# Support languages
+## Support Library
 
     EN - English
     DE - Deutsch
