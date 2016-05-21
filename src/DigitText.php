@@ -2,7 +2,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Andrey Helldar <helldar@ai-rus.com>.
+ * Copyright 2016 Andrey Helldar <helldar@ai-rus.com>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -63,6 +63,12 @@ class DigitText
             self::$lang = $lang;
         }
 
+        // Return text from php_intl library
+        $intl = self::intl($digit, $lang, $currency);
+        if (!is_null($intl)) {
+            return $intl;
+        }
+
         // Loading texts from locale page
         self::loadTexts();
 
@@ -75,7 +81,7 @@ class DigitText
         }
 
         // Get the fractional part
-        self::fractal((float) $digit);
+        self::fraction((float) $digit);
 
         // Get the integer part
         $digit = (int) str_replace([',', ' '], '', $digit);
@@ -212,9 +218,9 @@ class DigitText
             $result = trim($content).' '.self::$texts['currency']['int'];
 
             if (self::$surplus > 0) {
-                $result .= ' '.self::$surplus.' '.self::$texts['currency']['fractal'];
+                $result .= ' '.self::$surplus.' '.self::$texts['currency']['fraction'];
             } else {
-                $result .= ' 00 '.self::$texts['currency']['fractal'];
+                $result .= ' 00 '.self::$texts['currency']['fraction'];
             }
         }
 
@@ -228,7 +234,7 @@ class DigitText
      *
      * @return type
      */
-    private static function fractal($digit = null)
+    private static function fraction($digit = null)
     {
         if (is_null($digit)) {
             self::$surplus = 0;
@@ -257,5 +263,16 @@ class DigitText
         } else {
             self::$texts = require __DIR__.'/lang/ru/digittext.php';
         }
+    }
+
+    private static function intl($digit = 0, $lang = 'ru-RU', $currency = false)
+    {
+        if ($currency) {
+            if (extension_loaded('php_intl')) {
+                return (new \MessageFormatter($lang, '{n, spellout}'))->format(['n' => $digit]);
+            }
+        }
+
+        return null;
     }
 }

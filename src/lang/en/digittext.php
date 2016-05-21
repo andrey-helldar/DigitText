@@ -115,7 +115,7 @@ return [
     ],
     'currency'  => [
         'int'      => 'dollars',
-        'fractal'  => 'cents',
+        'fraction'  => 'cents',
         'position' => 'after',
     ],
     'zero'      => 'zero',

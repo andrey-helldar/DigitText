@@ -115,7 +115,7 @@ return [
     ],
     'currency'  => [
         'int'      => 'руб',
-        'fractal'  => 'коп',
+        'fraction'  => 'коп',
         'position' => 'after',
     ],
     'zero'      => 'ноль',
