@@ -23,18 +23,18 @@
  * THE SOFTWARE.
  */
 
-return [
-    0           => [
-        0  => '',
-        1  => 'one',
-        2  => 'two',
-        3  => 'three',
-        4  => 'four',
-        5  => 'five',
-        6  => 'six',
-        7  => 'seven',
-        8  => 'eight',
-        9  => 'nine',
+return array(
+    0 => array(
+        0 => '',
+        1 => 'one',
+        2 => 'two',
+        3 => 'three',
+        4 => 'four',
+        5 => 'five',
+        6 => 'six',
+        7 => 'seven',
+        8 => 'eight',
+        9 => 'nine',
         10 => 'ten',
         11 => 'eleven',
         12 => 'twelve',
@@ -45,8 +45,8 @@ return [
         17 => 'seventeen',
         18 => 'eighteen',
         19 => 'nineteen',
-    ],
-    1           => [
+    ),
+    1 => array(
         2 => 'twenty',
         3 => 'thirty',
         4 => 'forty',
@@ -55,8 +55,8 @@ return [
         7 => 'seventy',
         8 => 'eighty',
         9 => 'ninety',
-    ],
-    2           => [
+    ),
+    2 => array(
         0 => '',
         1 => 'one hundred',
         2 => 'two hundred',
@@ -67,18 +67,18 @@ return [
         7 => 'seven hundred',
         8 => 'eight hundred',
         9 => 'nine hundred',
-    ],
-    3           => [
-        0  => '',
-        1  => 'one',
-        2  => 'two',
-        3  => 'three',
-        4  => 'four',
-        5  => 'five',
-        6  => 'six',
-        7  => 'seven',
-        8  => 'eight',
-        9  => 'nine',
+    ),
+    3 => array(
+        0 => '',
+        1 => 'one',
+        2 => 'two',
+        3 => 'three',
+        4 => 'four',
+        5 => 'five',
+        6 => 'six',
+        7 => 'seven',
+        8 => 'eight',
+        9 => 'nine',
         10 => 'ten',
         11 => 'eleven',
         12 => 'twelve',
@@ -89,8 +89,8 @@ return [
         17 => 'seventeen',
         18 => 'eighteen',
         19 => 'nineteen',
-    ],
-    4           => [
+    ),
+    4 => array(
         0 => '',
         2 => 'twenty',
         3 => 'thirty',
@@ -100,8 +100,8 @@ return [
         7 => 'seventy',
         8 => 'eighty',
         9 => 'ninety',
-    ],
-    5           => [
+    ),
+    5 => array(
         0 => '',
         1 => 'one hundred',
         2 => 'two hundred',
@@ -112,21 +112,21 @@ return [
         7 => 'seven hundred',
         8 => 'eight hundred',
         9 => 'nine hundred',
-    ],
-    'currency'  => [
-        'int'      => 'dollars',
+    ),
+    'currency' => array(
+        'int' => 'dollars',
         'fraction' => 'cents',
         'position' => 'after',
-    ],
-    'zero'      => 'zero',
-    'thousands' => [
+    ),
+    'zero' => 'zero',
+    'thousands' => array(
         0 => 'thousands',
         1 => 'thousand',
         2 => 'thousands',
-    ],
-    'millions'  => [
+    ),
+    'millions' => array(
         0 => 'million',
         1 => 'million',
         2 => 'million',
-    ],
-];
+    ),
+);

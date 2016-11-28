@@ -67,6 +67,6 @@ class DigitServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['digittext', 'Helldar\DigitText\DigitText'];
+        return array('digittext', 'Helldar\DigitText\DigitText');
     }
 }
