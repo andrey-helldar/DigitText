@@ -5,6 +5,8 @@
 [![Total Downloads](https://poser.pugx.org/andrey-helldar/digittext/downloads)](https://packagist.org/packages/andrey-helldar/digittext)
 [![Latest Stable Version](https://poser.pugx.org/andrey-helldar/digittext/v/stable)](https://packagist.org/packages/andrey-helldar/digittext)
 [![Latest Unstable Version](https://poser.pugx.org/andrey-helldar/digittext/v/unstable)](https://packagist.org/packages/andrey-helldar/digittext)
+[![PHP-Eye](https://php-eye.com/badge/andrey-helldar/digittext/tested.svg?style=flat)](https://php-eye.com/package/andrey-helldar/digittext)
+
 
 [![Dependency Status](https://www.versioneye.com/php/andrey-helldar:digittext/dev-master/badge.svg)](https://www.versioneye.com/php/andrey-helldar:digittext/dev-master)
 [![License](https://poser.pugx.org/andrey-helldar/digittext/license)](https://packagist.org/packages/andrey-helldar/digittext)
