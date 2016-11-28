@@ -87,7 +87,7 @@ class DigitText
         self::fraction((float) $digit);
 
         // Get the integer part
-        $digit = (int) str_replace([',', ' '], '', $digit);
+        $digit = (int) str_replace(array(',', ' '), '', $digit);
 
         $groups = str_split(self::dsort((int) $digit), 3);
         $result = '';
@@ -120,7 +120,7 @@ class DigitText
     {
         if ($currency) {
             if (extension_loaded('php_intl')) {
-                return (new \MessageFormatter($lang, '{n, spellout}'))->format(['n' => $digit]);
+                return (new \MessageFormatter($lang, '{n, spellout}'))->format(array('n' => $digit));
             }
         }
     }
@@ -166,7 +166,7 @@ class DigitText
         $digit = (string) $digit;
 
         if ($digit == '0') {
-            return [0 => 0];
+            return array(0 => 0);
         }
 
         $sortedDigit = '';

@@ -34,20 +34,20 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     public function testRu()
     {
-        $result = [
-            $this->object->text(null, 'ru')              => 'ноль',
-            $this->object->text(64.23, 'ru', true)       => 'шестьдесят четыре руб 23 коп',
-            $this->object->text(764, 'ru')               => 'семьсот шестьдесят четыре',
-            $this->object->text(2866, 'ru')              => 'две тысячи восемьсот шестьдесят шесть',
-            $this->object->text(7700, 'ru')              => 'семь тысяч семьсот',
-            $this->object->text('10,000', 'ru')          => 'десять тысяч',
-            $this->object->text(14383, 'ru')             => 'четырнадцать тысячи триста восемьдесят три',
-            $this->object->text(20383, 'ru')             => 'двадцать тысяч триста восемьдесят три',
-            $this->object->text(700383, 'ru')            => 'семьсот тысяч триста восемьдесят три',
-            $this->object->text(7644383, 'ru')           => 'семь миллионов шестьсот сорок четыре тысячи триста восемьдесят три',
+        $result = array(
+            $this->object->text(null, 'ru') => 'ноль',
+            $this->object->text(64.23, 'ru', true) => 'шестьдесят четыре руб 23 коп',
+            $this->object->text(764, 'ru') => 'семьсот шестьдесят четыре',
+            $this->object->text(2866, 'ru') => 'две тысячи восемьсот шестьдесят шесть',
+            $this->object->text(7700, 'ru') => 'семь тысяч семьсот',
+            $this->object->text('10,000', 'ru') => 'десять тысяч',
+            $this->object->text(14383, 'ru') => 'четырнадцать тысячи триста восемьдесят три',
+            $this->object->text(20383, 'ru') => 'двадцать тысяч триста восемьдесят три',
+            $this->object->text(700383, 'ru') => 'семьсот тысяч триста восемьдесят три',
+            $this->object->text(7644383, 'ru') => 'семь миллионов шестьсот сорок четыре тысячи триста восемьдесят три',
             $this->object->text(70043783.65, 'ru', true) => 'семьдесят миллионов сорок три тысячи семьсот восемьдесят три руб 65 коп',
-            $this->object->text(786443783, 'ru')         => 'семьсот восемьдесят шесть миллионов четыреста сорок три тысячи семьсот восемьдесят три',
-        ];
+            $this->object->text(786443783, 'ru') => 'семьсот восемьдесят шесть миллионов четыреста сорок три тысячи семьсот восемьдесят три',
+        );
 
         $this->testDigits($result);
     }
@@ -63,7 +63,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      *
      * @param array $items
      */
-    public function testDigits($items = [])
+    public function testDigits($items = array())
     {
         foreach ($items as $key => $result) {
             $this->assertEquals($result, $key);
@@ -81,20 +81,20 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     public function testEn()
     {
-        $result = [
-            $this->object->text()                        => 'zero',
-            $this->object->text(64.23, 'en', true)       => 'sixty four dollars 23 cents',
-            $this->object->text(764)                     => 'seven hundred sixty four',
-            $this->object->text(2866)                    => 'two thousands eight hundred sixty six',
-            $this->object->text(7700)                    => 'seven thousands seven hundred',
-            $this->object->text('10,000')                => 'ten thousands',
-            $this->object->text(14383)                   => 'fourteen thousands three hundred eighty three',
-            $this->object->text(20383)                   => 'twenty thousands three hundred eighty three',
-            $this->object->text(700383)                  => 'seven hundred thousands three hundred eighty three',
-            $this->object->text(7644383)                 => 'seven million six hundred forty four thousands three hundred eighty three',
+        $result = array(
+            $this->object->text() => 'zero',
+            $this->object->text(64.23, 'en', true) => 'sixty four dollars 23 cents',
+            $this->object->text(764) => 'seven hundred sixty four',
+            $this->object->text(2866) => 'two thousands eight hundred sixty six',
+            $this->object->text(7700) => 'seven thousands seven hundred',
+            $this->object->text('10,000') => 'ten thousands',
+            $this->object->text(14383) => 'fourteen thousands three hundred eighty three',
+            $this->object->text(20383) => 'twenty thousands three hundred eighty three',
+            $this->object->text(700383) => 'seven hundred thousands three hundred eighty three',
+            $this->object->text(7644383) => 'seven million six hundred forty four thousands three hundred eighty three',
             $this->object->text(70043783.65, 'en', true) => 'seventy million forty three thousands seven hundred eighty three dollars 65 cents',
-            $this->object->text(786443783)               => 'seven hundred eighty six million four hundred forty three thousands seven hundred eighty three',
-        ];
+            $this->object->text(786443783) => 'seven hundred eighty six million four hundred forty three thousands seven hundred eighty three',
+        );
 
         $this->testDigits($result);
     }
