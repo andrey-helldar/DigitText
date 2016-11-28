@@ -114,9 +114,9 @@ return [
         9 => 'neunhundert',
     ],
     'currency'  => [
-        'int'       => 'mark',
-        'fraction'  => 'cent',
-        'position'  => 'after',
+        'int'      => 'mark',
+        'fraction' => 'cent',
+        'position' => 'after',
     ],
     'zero'      => 'null',
     'thousands' => [
