@@ -84,17 +84,17 @@ class DigitText
         }
 
         // Get the fractional part
-        self::fraction((float)$digit);
+        self::fraction((float) $digit);
 
         // Get the integer part
-        $digit = (int)str_replace([',', ' '], '', $digit);
+        $digit = (int) str_replace([',', ' '], '', $digit);
 
-        $groups = str_split(self::dsort((int)$digit), 3);
+        $groups = str_split(self::dsort((int) $digit), 3);
         $result = '';
 
         for ($i = count($groups) - 1; $i >= 0; $i--) {
-            if ((int)$groups[$i] > 0) {
-                $result .= ' ' . trim(self::digits($groups[$i], $i));
+            if ((int) $groups[$i] > 0) {
+                $result .= ' '.trim(self::digits($groups[$i], $i));
             }
         }
 
@@ -105,7 +105,9 @@ class DigitText
      * php_intl Loader.
      *
      * @author  Andrey Helldar <helldar@ai-rus.com>
+     *
      * @version 2016-11-28
+     *
      * @since   1.0
      *
      * @param float  $digit
@@ -128,9 +130,9 @@ class DigitText
      */
     private static function loadTexts()
     {
-        $locale      = __DIR__ . '/lang/' . self::$lang . '/digittext.php';
-        $lang        = file_exists($locale) ? self::$lang : self::$lang_fallback;
-        self::$texts = require __DIR__ . '/lang/' . $lang . '/digittext.php';
+        $locale = __DIR__.'/lang/'.self::$lang.'/digittext.php';
+        $lang = file_exists($locale) ? self::$lang : self::$lang_fallback;
+        self::$texts = require __DIR__.'/lang/'.$lang.'/digittext.php';
     }
 
     /**
@@ -148,8 +150,8 @@ class DigitText
             return;
         }
 
-        $pos           = strripos((string)$digit, '.');
-        self::$surplus = $pos === false ? 0 : mb_substr((string)$digit, $pos + 1);
+        $pos = strripos((string) $digit, '.');
+        self::$surplus = $pos === false ? 0 : mb_substr((string) $digit, $pos + 1);
     }
 
     /**
@@ -161,7 +163,7 @@ class DigitText
      */
     private static function dsort($digit = '0')
     {
-        $digit = (string)$digit;
+        $digit = (string) $digit;
 
         if ($digit == '0') {
             return [0 => 0];
@@ -190,20 +192,20 @@ class DigitText
             return self::$texts['zero'];
         }
 
-        $digitUnsorted = (int)self::dsort($digit);
+        $digitUnsorted = (int) self::dsort($digit);
 
         if ($digitUnsorted > 0 && $digitUnsorted < 20) {
-            return trim(self::$texts[$id == 1 ? 3 : 0][(int)$digitUnsorted] . self::decline($id, $digitUnsorted));
+            return trim(self::$texts[$id == 1 ? 3 : 0][(int) $digitUnsorted].self::decline($id, $digitUnsorted));
         }
 
-        $array  = str_split((string)$digit, 1);
+        $array = str_split((string) $digit, 1);
         $result = '';
 
         for ($i = count($array) - 1; $i >= 0; $i--) {
-            $result .= ' ' . self::$texts[$id == 1 ? $i + 3 : $i][$array[$i]];
+            $result .= ' '.self::$texts[$id == 1 ? $i + 3 : $i][$array[$i]];
         }
 
-        return trim($result) . self::decline($id, $digitUnsorted);
+        return trim($result).self::decline($id, $digitUnsorted);
     }
 
     /**
@@ -216,26 +218,26 @@ class DigitText
      */
     private static function decline($group = 0, $digit = 0.0)
     {
-        $text   = (string)((int)$digit);
-        $text   = (int)$text[strlen($digit) - 1];
+        $text = (string) ((int) $digit);
+        $text = (int) $text[strlen($digit) - 1];
         $result = '';
 
         switch ($group) {
             case 1:
-                $result = ' ' . self::$texts['thousands'][0];
+                $result = ' '.self::$texts['thousands'][0];
                 if ($text == 1) {
-                    $result = ' ' . self::$texts['thousands'][1];
+                    $result = ' '.self::$texts['thousands'][1];
                 } elseif ($text >= 2 && $text <= 4) {
-                    $result = ' ' . self::$texts['thousands'][2];
+                    $result = ' '.self::$texts['thousands'][2];
                 }
                 break;
 
             case 2:
-                $result = ' ' . self::$texts['millions'][0];
+                $result = ' '.self::$texts['millions'][0];
                 if ($text >= 2 && $text <= 4) {
-                    $result = ' ' . self::$texts['millions'][1];
+                    $result = ' '.self::$texts['millions'][1];
                 } elseif (($text >= 5 && $text <= 9) || $text == 0) {
-                    $result = ' ' . self::$texts['millions'][2];
+                    $result = ' '.self::$texts['millions'][2];
                 }
                 break;
 
@@ -260,18 +262,18 @@ class DigitText
         }
 
         if (self::$texts['currency']['position'] == 'before') {
-            $result = self::$texts['currency']['int'] . ' ' . $content;
+            $result = self::$texts['currency']['int'].' '.$content;
 
             if (self::$surplus > 0) {
-                $result .= '.' . self::$surplus;
+                $result .= '.'.self::$surplus;
             }
         } else {
-            $result = trim($content) . ' ' . self::$texts['currency']['int'];
+            $result = trim($content).' '.self::$texts['currency']['int'];
 
             if (self::$surplus > 0) {
-                $result .= ' ' . self::$surplus . ' ' . self::$texts['currency']['fraction'];
+                $result .= ' '.self::$surplus.' '.self::$texts['currency']['fraction'];
             } else {
-                $result .= ' 00 ' . self::$texts['currency']['fraction'];
+                $result .= ' 00 '.self::$texts['currency']['fraction'];
             }
         }
 
