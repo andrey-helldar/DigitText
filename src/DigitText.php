@@ -189,7 +189,7 @@ class DigitText
                 }
                 break;
 
-            default :break;
+            default:break;
         }
 
         return $result;
@@ -272,7 +272,5 @@ class DigitText
                 return (new \MessageFormatter($lang, '{n, spellout}'))->format(['n' => $digit]);
             }
         }
-
-        return null;
     }
 }
