@@ -114,9 +114,9 @@ return [
         9 => 'девятьсот',
     ],
     'currency'  => [
-        'int'      => 'руб',
+        'int'       => 'руб',
         'fraction'  => 'коп',
-        'position' => 'after',
+        'position'  => 'after',
     ],
     'zero'      => 'ноль',
     'thousands' => [
