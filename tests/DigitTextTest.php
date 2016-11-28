@@ -15,6 +15,83 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
     protected $object;
 
     /**
+     * @covers Helldar\DigitText\DigitText::text
+     */
+    public function testText()
+    {
+        $this->testRu();
+        $this->testEn();
+    }
+
+    /**
+     * Russian localization testing.
+     *
+     * @author  Andrey Helldar <helldar@ai-rus.com>
+     * @version 2016-11-28
+     * @since   1.0
+     */
+    private function testRu()
+    {
+        $result = [
+            $this->object->text()                        => 'ноль',
+            $this->object->text(64.23, 'ru', true)       => 'шестьдесят четыре руб 23 коп',
+            $this->object->text(764)                     => 'семьсот шестьдесят четыре',
+            $this->object->text(2866)                    => 'две тысячи восемьсот шестьдесят шесть',
+            $this->object->text('10,000')                => 'десять тысяч',
+            $this->object->text(14383)                   => 'четырнадцать тысячи триста восемьдесят три',
+            $this->object->text(20383)                   => 'двадцать тысяч триста восемьдесят три',
+            $this->object->text(700383)                  => 'семьсот тысяч триста восемьдесят три',
+            $this->object->text(7644383)                 => 'семь миллионов шестьсот сорок четыре тысячи триста восемьдесят три',
+            $this->object->text(70043783.65, 'ru', true) => 'семьдесят миллионов сорок три тысячи семьсот восемьдесят три руб 65 коп',
+            $this->object->text(786443783)               => 'семьсот восемьдесят шесть миллионов четыреста сорок три тысячи семьсот восемьдесят три',
+        ];
+
+        $this->testDigits($result);
+    }
+
+    /**
+     * Testing the translation of numbers to text equivalent.
+     *
+     * @author  Andrey Helldar <helldar@ai-rus.com>
+     * @version 2016-11-28
+     * @since   1.0
+     *
+     * @param array $items
+     */
+    private function testDigits($items = [])
+    {
+        foreach ($items as $key => $result) {
+            $this->assertEquals($result, $key);
+        }
+    }
+
+    /**
+     * English localization testing.
+     *
+     * @author  Andrey Helldar <helldar@ai-rus.com>
+     * @version 2016-11-28
+     * @since   1.0
+     */
+    private function testEn()
+    {
+        $result = [
+            $this->object->text(null, 'en')              => 'zero',
+            $this->object->text(64.23, 'en', true)       => 'sixty four dollars 23 cents',
+            $this->object->text(764, 'en')               => 'seven hundred sixty four',
+            $this->object->text(2866, 'en')              => 'two thousands eight hundred sixty six',
+            $this->object->text('10,000', 'en')          => 'ten thousands',
+            $this->object->text(14383, 'en')             => 'fourteen thousands three hundred eighty three',
+            $this->object->text(20383, 'en')             => 'twenty thousands three hundred eighty three',
+            $this->object->text(700383, 'en')            => 'seven hundred thousands three hundred eighty three',
+            $this->object->text(7644383, 'en')           => 'seven million six hundred forty four thousands three hundred eighty three',
+            $this->object->text(70043783.65, 'en', true) => 'seventy million forty three thousands seven hundred eighty three dollars 65 cents',
+            $this->object->text(786443783, 'en')         => 'seven hundred eighty six million four hundred forty three thousands seven hundred eighty three',
+        ];
+
+        $this->testDigits($result);
+    }
+
+    /**
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
@@ -30,64 +107,5 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         // none
-    }
-
-    /**
-     * @covers Helldar\DigitText\DigitText::text
-     *
-     * @todo   Implement testText().
-     */
-    public function testText()
-    {
-        // RU
-        $result0 = $this->object->text();
-        $result1 = $this->object->text(64.23, 'ru', true);
-        $result2 = $this->object->text(764);
-        $result3 = $this->object->text(2866);
-        $result4 = $this->object->text('10,000');
-        $result5 = $this->object->text(14383);
-        $result6 = $this->object->text(20383);
-        $result7 = $this->object->text(700383);
-        $result8 = $this->object->text(7644383);
-        $result9 = $this->object->text(70043783.65, 'ru', true);
-
-        $result10 = $this->object->text(786443783);
-        $this->assertEquals('ноль', $result0);
-        $this->assertEquals('шестьдесят четыре руб 23 коп', $result1);
-        $this->assertEquals('семьсот шестьдесят четыре', $result2);
-        $this->assertEquals('две тысячи восемьсот шестьдесят шесть', $result3);
-        $this->assertEquals('десять тысяч', $result4);
-        $this->assertEquals('четырнадцать тысячи триста восемьдесят три', $result5);
-        $this->assertEquals('двадцать тысяч триста восемьдесят три', $result6);
-        $this->assertEquals('семьсот тысяч триста восемьдесят три', $result7);
-
-        $this->assertEquals('семь миллионов шестьсот сорок четыре тысячи триста восемьдесят три', $result8);
-        $this->assertEquals('семьдесят миллионов сорок три тысячи семьсот восемьдесят три руб 65 коп', $result9);
-        $this->assertEquals('семьсот восемьдесят шесть миллионов четыреста сорок три тысячи семьсот восемьдесят три', $result10);
-
-        // EN
-        $result11 = $this->object->text(null, 'en');
-        $result12 = $this->object->text(64.23, 'en', true);
-        $result13 = $this->object->text(764, 'en');
-        $result14 = $this->object->text(2866, 'en');
-        $result15 = $this->object->text('10,000', 'en');
-        $result16 = $this->object->text(14383, 'en');
-        $result17 = $this->object->text(20383, 'en');
-        $result18 = $this->object->text(700383, 'en');
-        $result19 = $this->object->text(7644383, 'en');
-        $result20 = $this->object->text(70043783.65, 'en', true);
-        $result21 = $this->object->text(786443783, 'en');
-
-        $this->assertEquals('zero', $result11);
-        $this->assertEquals('sixty four dollars 23 cents', $result12);
-        $this->assertEquals('seven hundred sixty four', $result13);
-        $this->assertEquals('two thousands eight hundred sixty six', $result14);
-        $this->assertEquals('ten thousands', $result15);
-        $this->assertEquals('fourteen thousands three hundred eighty three', $result16);
-        $this->assertEquals('twenty thousands three hundred eighty three', $result17);
-        $this->assertEquals('seven hundred thousands three hundred eighty three', $result18);
-        $this->assertEquals('seven million six hundred forty four thousands three hundred eighty three', $result19);
-        $this->assertEquals('seventy million forty three thousands seven hundred eighty three dollars 65 cents', $result20);
-        $this->assertEquals('seven hundred eighty six million four hundred forty three thousands seven hundred eighty three', $result21);
     }
 }
