@@ -1,26 +1,26 @@
 {
-    "name": "andrey-helldar/digittext",
+    "name":        "andrey-helldar/digittext",
     "description": "The module allows to translate numbers into a text equivalent",
-    "license": "MIT",
-    "authors": [
+    "license":     "MIT",
+    "authors":     [
         {
-            "name": "Andrey Helldar",
+            "name":  "Andrey Helldar",
             "email": "helldar@ai-rus.com"
         }
     ],
-    "require": {
-        "php": ">=5.5.9",
-        "illuminate/http": "5.2.*",
-        "illuminate/routing": "5.2.*",
-        "illuminate/session": "5.2.*",
-        "illuminate/support": "5.2.*",
+    "require":     {
+        "php":                 ">=5.5.9",
+        "illuminate/http":     "5.2.*",
+        "illuminate/routing":  "5.2.*",
+        "illuminate/session":  "5.2.*",
+        "illuminate/support":  "5.2.*",
         "illuminate/pipeline": "5.2.*"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~5"
     },
-    "autoload": {
+    "autoload":    {
         "psr-4": {
             "Helldar\\DigitText\\": "src/"
         }
