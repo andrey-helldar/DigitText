@@ -86,7 +86,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
             $this->object->text(64.23, 'en', true)       => 'sixty four dollars 23 cents',
             $this->object->text(764)                     => 'seven hundred sixty four',
             $this->object->text(2866)                    => 'two thousands eight hundred sixty six',
-            $this->object->text(7700)                    => 'seven thousand seven hundred',
+            $this->object->text(7700)                    => 'seven thousands seven hundred',
             $this->object->text('10,000')                => 'ten thousands',
             $this->object->text(14383)                   => 'fourteen thousands three hundred eighty three',
             $this->object->text(20383)                   => 'twenty thousands three hundred eighty three',

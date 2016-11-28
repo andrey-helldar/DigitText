@@ -1,4 +1,4 @@
-## Laravel 5.2+ Digit to Text Module
+## Laravel 5.3+ Digit to Text Module
 
 [![StyleCI](https://styleci.io/repos/45746985/shield)](https://styleci.io/repos/45746985)
 [![Build Status](https://travis-ci.org/andrey-helldar/DigitText.svg?branch=master)](https://travis-ci.org/andrey-helldar/DigitText)
@@ -6,6 +6,7 @@
 [![Latest Stable Version](https://poser.pugx.org/andrey-helldar/digittext/v/stable)](https://packagist.org/packages/andrey-helldar/digittext)
 [![Latest Unstable Version](https://poser.pugx.org/andrey-helldar/digittext/v/unstable)](https://packagist.org/packages/andrey-helldar/digittext)
 [![PHP-Eye](https://php-eye.com/badge/andrey-helldar/digittext/tested.svg?style=flat)](https://php-eye.com/package/andrey-helldar/digittext)
+
 
 [![Dependency Status](https://www.versioneye.com/php/andrey-helldar:digittext/dev-master/badge.svg)](https://www.versioneye.com/php/andrey-helldar:digittext/dev-master)
 [![License](https://poser.pugx.org/andrey-helldar/digittext/license)](https://packagist.org/packages/andrey-helldar/digittext)
@@ -25,6 +26,8 @@
 3. Затем в файл config/app.php добавьте фасад:
 
         'DigitText' => Helldar\DigitText\DigitText::class,
+
+Для тех, кто пользуется Laravel 5.2, смотрите ветку [Laravel 5.2](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.2)
 
 ## Документация
 
@@ -65,4 +68,4 @@
 
 ## Копирайты и лицензия
 
-DigitText разработан Андреем Хэллдаром для фреймворка Laravel версии 5.2 или выше, и распространяется под лицензией MIT. Смотрите файл LICENSE.
+DigitText разработан Андреем Хэллдаром для фреймворка Laravel версии 5.3 или выше, и распространяется под лицензией MIT. Смотрите файл LICENSE.
