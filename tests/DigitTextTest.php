@@ -27,7 +27,9 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      * Russian localization testing.
      *
      * @author  Andrey Helldar <helldar@ai-rus.com>
+     *
      * @version 2016-11-28
+     *
      * @since   1.0
      */
     public function testRu()
@@ -54,7 +56,9 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      * Testing the translation of numbers to text equivalent.
      *
      * @author  Andrey Helldar <helldar@ai-rus.com>
+     *
      * @version 2016-11-28
+     *
      * @since   1.0
      *
      * @param array $items
@@ -70,7 +74,9 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      * English localization testing.
      *
      * @author  Andrey Helldar <helldar@ai-rus.com>
+     *
      * @version 2016-11-28
+     *
      * @since   1.0
      */
     public function testEn()
