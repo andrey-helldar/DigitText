@@ -35,6 +35,13 @@ class DigitText
     private static $lang = 'en';
 
     /**
+     * Default language.
+     *
+     * @var string
+     */
+    private static $lang_fallback = 'en';
+
+    /**
      * Array of numbers.
      *
      * @var array
@@ -72,11 +79,7 @@ class DigitText
         // Loading texts from locale page
         self::loadTexts();
 
-        if (is_null($digit)) {
-            $digit = 0;
-        }
-
-        if ($digit == 0) {
+        if (is_null($digit) || $digit == 0) {
             return self::$texts['zero'];
         }
 
@@ -95,11 +98,7 @@ class DigitText
             }
         }
 
-        if ($currency) {
-            return self::currency($result);
-        } else {
-            return trim($result);
-        }
+        return $currency ? self::currency($result) : trim($result);
     }
 
     /**
@@ -129,13 +128,9 @@ class DigitText
      */
     private static function loadTexts()
     {
-        $locale = __DIR__ . '/lang/' . self::$lang . '/digittext.php';
-
-        if (file_exists($locale)) {
-            self::$texts = require __DIR__ . '/lang/' . self::$lang . '/digittext.php';
-        } else {
-            self::$texts = require __DIR__ . '/lang/en/digittext.php';
-        }
+        $locale      = __DIR__ . '/lang/' . self::$lang . '/digittext.php';
+        $lang        = file_exists($locale) ? self::$lang : self::$lang_fallback;
+        self::$texts = require __DIR__ . '/lang/' . $lang . '/digittext.php';
     }
 
     /**
@@ -153,13 +148,8 @@ class DigitText
             return;
         }
 
-        $pos = strripos((string)$digit, '.');
-
-        if ($pos === false) {
-            self::$surplus = 0;
-        } else {
-            self::$surplus = mb_substr((string)$digit, $pos + 1);
-        }
+        $pos           = strripos((string)$digit, '.');
+        self::$surplus = $pos === false ? 0 : mb_substr((string)$digit, $pos + 1);
     }
 
     /**
@@ -226,9 +216,8 @@ class DigitText
      */
     private static function decline($group = 0, $digit = 0.0)
     {
-        $text = (string)((int)$digit);
-        $text = (int)$text[strlen($digit) - 1];
-
+        $text   = (string)((int)$digit);
+        $text   = (int)$text[strlen($digit) - 1];
         $result = '';
 
         switch ($group) {
