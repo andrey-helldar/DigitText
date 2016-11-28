@@ -1,6 +1,12 @@
 {
     "name":        "andrey-helldar/digittext",
     "description": "The module allows to translate numbers into a text equivalent",
+    "keywords":    [
+        "date",
+        "time",
+        "DateTime",
+        "DigitText"
+    ],
     "license":     "MIT",
     "authors":     [
         {
@@ -9,12 +15,12 @@
         }
     ],
     "require":     {
-        "php":                 ">=5.6.4",
-        "illuminate/http":     "5.3.*",
-        "illuminate/routing":  "5.3.*",
-        "illuminate/session":  "5.3.*",
-        "illuminate/support":  "5.3.*",
-        "illuminate/pipeline": "5.3.*"
+        "php":                 ">=5.5.9",
+        "illuminate/http":     "5.2.*|5.3.*",
+        "illuminate/routing":  "5.2.*|5.3.*",
+        "illuminate/session":  "5.2.*|5.3.*",
+        "illuminate/support":  "5.2.*|5.3.*",
+        "illuminate/pipeline": "5.2.*|5.3.*"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
