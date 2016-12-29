@@ -91,7 +91,6 @@ class DigitText
 
         $groups = str_split(self::dsort((int) $digit), 3);
         $result = '';
-
         for ($i = count($groups) - 1; $i >= 0; $i--) {
             if ((int) $groups[$i] > 0) {
                 $result .= ' '.trim(self::digits($groups[$i], $i));
@@ -194,15 +193,17 @@ class DigitText
 
         $digitUnsorted = (int) self::dsort($digit);
 
-        if ($digitUnsorted > 0 && $digitUnsorted < 20) {
-            return trim(self::$texts[$id == 1 ? 3 : 0][(int) $digitUnsorted].self::decline($id, $digitUnsorted));
-        }
-
         $array = str_split((string) $digit, 1);
         $result = '';
 
         for ($i = count($array) - 1; $i >= 0; $i--) {
-            $result .= ' '.self::$texts[$id == 1 ? $i + 3 : $i][$array[$i]];
+            if ($i === 1 && $array[$i] == '1') {
+                $d = $array[$i].$array[$i - 1];
+                $result .= ' '.trim(self::$texts[$id == 1 ? 3 : 0][(int) $d]);
+                $i--;
+            } elseif ((int) $array[$i] > 0) {
+                $result .= ' '.self::$texts[$id == 1 ? $i + 3 : $i][$array[$i]];
+            }
         }
 
         return trim($result).self::decline($id, $digitUnsorted);
