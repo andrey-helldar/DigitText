@@ -66,20 +66,20 @@ class DigitText
      */
     public static function text($digit = 0.0, $lang = 'en', $currency = false)
     {
-        if (!is_null($lang)) {
+        if (!empty($lang)) {
             self::$lang = $lang;
         }
 
         // Return text from php_intl library
         $intl = self::intl($digit, $lang, $currency);
-        if (!is_null($intl)) {
+        if (!empty($intl)) {
             return $intl;
         }
 
         // Loading texts from locale page
         self::loadTexts();
 
-        if (is_null($digit) || $digit == 0) {
+        if (empty($digit) || $digit == 0) {
             return self::$texts['zero'];
         }
 
@@ -93,7 +93,7 @@ class DigitText
         $result = '';
         for ($i = sizeof($groups) - 1; $i >= 0; $i--) {
             if ((int) $groups[$i] > 0) {
-                $result .= ' '.trim(self::digits($groups[$i], $i));
+                $result .= ' '.self::digits($groups[$i], $i);
             }
         }
 
@@ -113,7 +113,7 @@ class DigitText
      * @param string $lang
      * @param bool   $currency
      *
-     * @return string
+     * @return string|void
      */
     private static function intl($digit = 0.0, $lang = 'en-US', $currency = false)
     {
@@ -122,6 +122,8 @@ class DigitText
                 return (new \MessageFormatter($lang, '{n, spellout}'))->format(array('n' => $digit));
             }
         }
+
+        return;
     }
 
     /**
@@ -139,11 +141,11 @@ class DigitText
      *
      * @param float $digit
      *
-     * @return type
+     * @return void
      */
     private static function fraction($digit = null)
     {
-        if (is_null($digit)) {
+        if (empty($digit)) {
             self::$surplus = 0;
 
             return;
@@ -163,12 +165,11 @@ class DigitText
     private static function dsort($digit = '0')
     {
         $digit = (string) $digit;
+        $sortedDigit = '';
 
         if ($digit == '0') {
             return array(0 => 0);
         }
-
-        $sortedDigit = '';
 
         for ($i = strlen($digit) - 1; $i >= 0; $i--) {
             $sortedDigit .= $digit[$i];
@@ -206,7 +207,7 @@ class DigitText
             }
         }
 
-        return trim($result).self::decline($id, $digitUnsorted);
+        return trim(trim($result).self::decline($id, $digitUnsorted));
     }
 
     /**
@@ -258,7 +259,7 @@ class DigitText
      */
     private static function currency($content = null)
     {
-        if (is_null($content)) {
+        if (empty($content)) {
             return '---';
         }
 
