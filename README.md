@@ -9,8 +9,10 @@
 
 
 [![Quality Score](https://img.shields.io/scrutinizer/g/andrey-helldar/digittext.svg?style=flat-square)](https://github.com/andrey-helldar/DigitText)
+[![Code Coverage](https://scrutinizer-ci.com/g/andrey-helldar/DigitText/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/andrey-helldar/DigitText/?branch=master)
 [![Dependency Status](https://www.versioneye.com/php/andrey-helldar:digittext/dev-master/badge.svg?style=flat-square)](https://www.versioneye.com/php/andrey-helldar:digittext/dev-master)
 [![StyleCI](https://styleci.io/repos/45746985/shield)](https://styleci.io/repos/45746985)
+
 [![PHP-Eye](https://php-eye.com/badge/andrey-helldar/digittext/tested.svg?style=flat)](https://php-eye.com/package/andrey-helldar/digittext)
 
 
