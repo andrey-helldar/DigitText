@@ -1,34 +1,51 @@
 {
-    "name":        "andrey-helldar/digittext",
+    "name": "andrey-helldar/digittext",
     "description": "The module allows to translate numbers into a text equivalent",
-    "keywords":    [
+    "type": "library",
+    "license": "MIT",
+    "homepage": "http://ai-rus.com",
+    "keywords": [
         "date",
         "time",
         "DateTime",
         "DigitText"
     ],
-    "license":     "MIT",
-    "authors":     [
+    "authors": [
         {
-            "name":  "Andrey Helldar",
+            "name": "Andrey Helldar",
             "email": "helldar@ai-rus.com"
         }
     ],
-    "require":     {
-        "php":                 ">=5.5.9",
-        "illuminate/http":     "5.2.*|5.3.*",
-        "illuminate/routing":  "5.2.*|5.3.*",
-        "illuminate/session":  "5.2.*|5.3.*",
-        "illuminate/support":  "5.2.*|5.3.*",
+    "support": {
+        "issues": "https://github.com/andrey-helldar/DigitText/issues",
+        "source": "https://github.com/andrey-helldar/DigitText"
+    },
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/http": "5.2.*|5.3.*",
+        "illuminate/routing": "5.2.*|5.3.*",
+        "illuminate/session": "5.2.*|5.3.*",
+        "illuminate/support": "5.2.*|5.3.*",
         "illuminate/pipeline": "5.2.*|5.3.*"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5"
+        "phpunit/phpunit": "~4.0|~5.0"
     },
-    "autoload":    {
+    "autoload": {
         "psr-4": {
             "Helldar\\DigitText\\": "src/"
         }
-    }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit; ./vendor/bin/php-cs-fixer fix -v --diff --dry-run;",
+        "phpunit": "./vendor/bin/phpunit;",
+        "phpcs": "./vendor/bin/php-cs-fixer fix -v --diff --dry-run;"
+    },
+    "minimum-stability": "stable"
 }
