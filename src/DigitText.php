@@ -91,7 +91,7 @@ class DigitText
 
         $groups = str_split(self::dsort((int) $digit), 3);
         $result = '';
-        for ($i = count($groups) - 1; $i >= 0; $i--) {
+        for ($i = sizeof($groups) - 1; $i >= 0; $i--) {
             if ((int) $groups[$i] > 0) {
                 $result .= ' '.trim(self::digits($groups[$i], $i));
             }
@@ -196,7 +196,7 @@ class DigitText
         $array = str_split((string) $digit, 1);
         $result = '';
 
-        for ($i = count($array) - 1; $i >= 0; $i--) {
+        for ($i = sizeof($array) - 1; $i >= 0; $i--) {
             if ($i === 1 && $array[$i] == '1') {
                 $d = $array[$i].$array[$i - 1];
                 $result .= ' '.trim(self::$texts[$id == 1 ? 3 : 0][(int) $d]);
