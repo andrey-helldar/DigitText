@@ -47,6 +47,20 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
             $this->object->text(7644383, 'ru') => 'семь миллионов шестьсот сорок четыре тысячи триста восемьдесят три',
             $this->object->text(70043783.65, 'ru', true) => 'семьдесят миллионов сорок три тысячи семьсот восемьдесят три руб 65 коп',
             $this->object->text(786443783, 'ru') => 'семьсот восемьдесят шесть миллионов четыреста сорок три тысячи семьсот восемьдесят три',
+
+            $this->object->text(109, 'ru') => 'сто девять',
+            $this->object->text(110, 'ru') => 'сто десять',
+            $this->object->text(111, 'ru') => 'сто одиннадцать',
+            $this->object->text(112, 'ru') => 'сто двенадцать',
+            $this->object->text(113, 'ru') => 'сто тринадцать',
+            $this->object->text(114, 'ru') => 'сто четырнадцать',
+            $this->object->text(115, 'ru') => 'сто пятнадцать',
+            $this->object->text(116, 'ru') => 'сто шестнадцать',
+            $this->object->text(117, 'ru') => 'сто семнадцать',
+            $this->object->text(118, 'ru') => 'сто восемнадцать',
+            $this->object->text(119, 'ru') => 'сто девятнадцать',
+            $this->object->text(120, 'ru') => 'сто двадцать',
+            $this->object->text(121, 'ru') => 'сто двадцать один',
         );
 
         $this->testDigits($result);
@@ -94,6 +108,20 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
             $this->object->text(7644383) => 'seven million six hundred forty four thousands three hundred eighty three',
             $this->object->text(70043783.65, 'en', true) => 'seventy million forty three thousands seven hundred eighty three dollars 65 cents',
             $this->object->text(786443783) => 'seven hundred eighty six million four hundred forty three thousands seven hundred eighty three',
+
+            $this->object->text(109) => 'one hundred nine',
+            $this->object->text(110) => 'one hundred ten',
+            $this->object->text(111) => 'one hundred eleven',
+            $this->object->text(112) => 'one hundred twelve',
+            $this->object->text(113) => 'one hundred thirteen',
+            $this->object->text(114) => 'one hundred fourteen',
+            $this->object->text(115) => 'one hundred fifteen',
+            $this->object->text(116) => 'one hundred sixteen',
+            $this->object->text(117) => 'one hundred seventeen',
+            $this->object->text(118) => 'one hundred eighteen',
+            $this->object->text(119) => 'one hundred nineteen',
+            $this->object->text(120) => 'one hundred twenty',
+            $this->object->text(121) => 'one hundred twenty one',
         );
 
         $this->testDigits($result);
