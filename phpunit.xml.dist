@@ -12,12 +12,12 @@
 
     <filter>
         <whitelist>
-            <directory>src/Carbon</directory>
+            <directory>src</directory>
         </whitelist>
     </filter>
 
     <testsuites>
-        <testsuite name="Carbon Test Suite">
+        <testsuite name="DigitText Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
