@@ -1,22 +1,25 @@
-## Laravel 5.3+ Digit to Text Module
-
-
-[![Build Status](https://travis-ci.org/andrey-helldar/DigitText.svg?branch=master&style=flat-square)](https://travis-ci.org/andrey-helldar/DigitText)
-[![Total Downloads](https://poser.pugx.org/andrey-helldar/digittext/downloads?format=flat-square)](https://packagist.org/packages/andrey-helldar/digittext)
-[![Latest Stable Version](https://poser.pugx.org/andrey-helldar/digittext/v/stable?format=flat-square)](https://packagist.org/packages/andrey-helldar/digittext)
-[![Latest Unstable Version](https://poser.pugx.org/andrey-helldar/digittext/v/unstable?format=flat-square)](https://packagist.org/packages/andrey-helldar/digittext)
-[![License](https://poser.pugx.org/andrey-helldar/digittext/license?format=flat-square)](https://packagist.org/packages/andrey-helldar/digittext)
-
-
-[![Quality Score](https://img.shields.io/scrutinizer/g/andrey-helldar/digittext.svg?style=flat-square)](https://github.com/andrey-helldar/DigitText)
-[![Code Coverage](https://scrutinizer-ci.com/g/andrey-helldar/DigitText/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/andrey-helldar/DigitText/?branch=master)
-[![Dependency Status](https://www.versioneye.com/php/andrey-helldar:digittext/dev-master/badge.svg?style=flat-square)](https://www.versioneye.com/php/andrey-helldar:digittext/dev-master)
-[![StyleCI](https://styleci.io/repos/45746985/shield)](https://styleci.io/repos/45746985)
-
-[![PHP-Eye](https://php-eye.com/badge/andrey-helldar/digittext/tested.svg?style=flat)](https://php-eye.com/package/andrey-helldar/digittext)
-
+## Digit to Text for Laravel 5.3+
 
 The module allows to translate numbers into a text equivalent. This is important in the billing.
+
+![Digit to Text for Laravel 5.3+](https://cloud.githubusercontent.com/assets/10347617/21897789/f51aed2c-d92d-11e6-9f86-de24d148c0ca.jpg)
+
+<p align="center">
+<a href="https://travis-ci.org/andrey-helldar/DigitText"><img src="https://travis-ci.org/andrey-helldar/DigitText.svg?branch=master&style=flat-square" alt="Build Status" /></a>
+<a href="https://packagist.org/packages/andrey-helldar/DigitText"><img src="https://img.shields.io/packagist/dt/andrey-helldar/DigitText.svg?style=flat-square" alt="Total Downloads" /></a>
+<a href="https://packagist.org/packages/andrey-helldar/DigitText"><img src="https://poser.pugx.org/andrey-helldar/DigitText/v/stable?format=flat-square" alt="Latest Stable Version" /></a>
+<a href="https://packagist.org/packages/andrey-helldar/DigitText"><img src="https://poser.pugx.org/andrey-helldar/DigitText/v/unstable?format=flat-square" alt="Latest Unstable Version" /></a>
+<a href="https://github.com/andrey-helldar/DigitText"><img src="https://poser.pugx.org/andrey-helldar/DigitText/license?format=flat-square" alt="License" /></a>
+</p>
+
+
+<p align="center">
+<a href="https://github.com/andrey-helldar/DigitText"><img src="https://img.shields.io/scrutinizer/g/andrey-helldar/DigitText.svg?style=flat-square" alt="Quality Score" /></a>
+<a href="https://www.versioneye.com/php/andrey-helldar:DigitText/dev-master"><img src="https://www.versioneye.com/php/andrey-helldar:DigitText/dev-master/badge?style=flat-square" alt="Dependency Status" /></a>
+<a href="https://styleci.io/repos/45746985"><img src="https://styleci.io/repos/45746985/shield" alt="StyleCI" /></a>
+<a href="https://php-eye.com/package/andrey-helldar/DigitText"><img src="https://php-eye.com/badge/andrey-helldar/DigitText/tested.svg?style=flat" alt="PHP-Eye" /></a>
+</p>
+
 
 ## Installation
 
