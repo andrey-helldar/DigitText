@@ -23,17 +23,33 @@ The module allows to translate numbers into a text equivalent. This is important
 
 ## Installation
 
-1. Run command in console:
+To get the latest version of DigitText, simply require the project using [Composer](https://getcomposer.org/):
 
-        composer require andrey-helldar/digittext
+```bash
+$ composer require andrey-helldar/digittext
+```
 
-2. After composer update, add service providers to the config/app.php
+Instead, you may of course manually update your require block and run `composer update` if you so choose:
 
-        Helldar\DigitText\DigitServiceProvider::class,
+```json
+{
+    "require": {
+        "andrey-helldar/digittext": "^4.0"
+    }
+}
+```
 
-3. Add this to the facade in config/app.php:
+Once DigitText is installed, you need to register the service provider. Open up `config/app.php` and add the following to the `providers` key.
 
-        'DigitText' => Helldar\DigitText\Facade::class,
+* `Helldar\DigitText\DigitServiceProvider::class,`
+
+and add facade in `config/app.php`:
+
+```php
+'DigitText' => Helldar\DigitText\Facade::class,
+```
+
+Now, use `DigitText` Facade or `digit_text()` helper.
 
 For those who use Laravel 5.2, see the branch [Laravel 5.2](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.2)
 
