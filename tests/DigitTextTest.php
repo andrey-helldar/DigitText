@@ -19,36 +19,34 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      *
      * @author  Andrey Helldar <helldar@ai-rus.com>
      *
-     * @since   2016-11-28
      * @since   2017-03-27
-     * @since   1.0
      */
     public function testRu()
     {
         $result = array(
-            $this->object->get(0, 'ru') => 'ноль',
-            $this->object->get(64.23, 'ru', true) => 'шестьдесят четыре руб 23 коп',
-            $this->object->get(764, 'ru') => 'семьсот шестьдесят четыре',
-            $this->object->get(2866, 'ru') => 'две тысячи восемьсот шестьдесят шесть',
-            $this->object->get(7700, 'ru') => 'семь тысяч семьсот',
-            $this->object->get('10,000', 'ru') => 'десять тысяч',
-            $this->object->get(14383, 'ru') => 'четырнадцать тысячи триста восемьдесят три',
-            $this->object->get(20383, 'ru') => 'двадцать тысяч триста восемьдесят три',
-            $this->object->get(700383, 'ru') => 'семьсот тысяч триста восемьдесят три',
-            $this->object->get(7644383, 'ru') => 'семь миллионов шестьсот сорок четыре тысячи триста восемьдесят три',
+            $this->object->get(0, 'ru')                 => 'ноль',
+            $this->object->get(64.23, 'ru', true)       => 'шестьдесят четыре руб 23 коп',
+            $this->object->get(764, 'ru')               => 'семьсот шестьдесят четыре',
+            $this->object->get(2866, 'ru')              => 'две тысячи восемьсот шестьдесят шесть',
+            $this->object->get(7700, 'ru')              => 'семь тысяч семьсот',
+            $this->object->get('10,000', 'ru')          => 'десять тысяч',
+            $this->object->get(14383, 'ru')             => 'четырнадцать тысячи триста восемьдесят три',
+            $this->object->get(20383, 'ru')             => 'двадцать тысяч триста восемьдесят три',
+            $this->object->get(700383, 'ru')            => 'семьсот тысяч триста восемьдесят три',
+            $this->object->get(7644383, 'ru')           => 'семь миллионов шестьсот сорок четыре тысячи триста восемьдесят три',
             $this->object->get(70043783.65, 'ru', true) => 'семьдесят миллионов сорок три тысячи семьсот восемьдесят три руб 65 коп',
-            $this->object->get(786443783, 'ru') => 'семьсот восемьдесят шесть миллионов четыреста сорок три тысячи семьсот восемьдесят три',
-            $this->object->get(109, 'ru') => 'сто девять',
-            $this->object->get(110, 'ru') => 'сто десять',
-            $this->object->get(111, 'ru') => 'сто одиннадцать',
-            $this->object->get(112, 'ru') => 'сто двенадцать',
-            $this->object->get(116, 'ru') => 'сто шестнадцать',
-            $this->object->get(118, 'ru') => 'сто восемнадцать',
-            $this->object->get(120, 'ru') => 'сто двадцать',
-            $this->object->get(121, 'ru') => 'сто двадцать один',
-            $this->object->get(10010, 'ru') => 'десять тысяч десять',
-            $this->object->get(10110, 'ru') => 'десять тысяч сто десять',
-            $this->object->get(510110, 'ru') => 'пятьсот десять тысяч сто десять',
+            $this->object->get(786443783, 'ru')         => 'семьсот восемьдесят шесть миллионов четыреста сорок три тысячи семьсот восемьдесят три',
+            $this->object->get(109, 'ru')               => 'сто девять',
+            $this->object->get(110, 'ru')               => 'сто десять',
+            $this->object->get(111, 'ru')               => 'сто одиннадцать',
+            $this->object->get(112, 'ru')               => 'сто двенадцать',
+            $this->object->get(116, 'ru')               => 'сто шестнадцать',
+            $this->object->get(118, 'ru')               => 'сто восемнадцать',
+            $this->object->get(120, 'ru')               => 'сто двадцать',
+            $this->object->get(121, 'ru')               => 'сто двадцать один',
+            $this->object->get(10010, 'ru')             => 'десять тысяч десять',
+            $this->object->get(10110, 'ru')             => 'десять тысяч сто десять',
+            $this->object->get(510110, 'ru')            => 'пятьсот десять тысяч сто десять',
         );
 
         $this->runTestDigits($result);
@@ -59,37 +57,111 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      *
      * @author  Andrey Helldar <helldar@ai-rus.com>
      *
-     * @version 2016-11-28
-     *
-     * @since   1.0
+     * @since   2016-11-28
      */
     public function testEn()
     {
         $result = array(
-            $this->object->get() => 'zero',
-            $this->object->get(64.23, 'en', true) => 'sixty four dollars 23 cents',
-            $this->object->get(764) => 'seven hundred sixty four',
-            $this->object->get(2866) => 'two thousands eight hundred sixty six',
-            $this->object->get(7700) => 'seven thousands seven hundred',
-            $this->object->get('10,000') => 'ten thousands',
-            $this->object->get(14383) => 'fourteen thousands three hundred eighty three',
-            $this->object->get(20383) => 'twenty thousands three hundred eighty three',
-            $this->object->get(700383) => 'seven hundred thousands three hundred eighty three',
-            $this->object->get(7644383) => 'seven million six hundred forty four thousands three hundred eighty three',
+            $this->object->get()                        => 'zero',
+            $this->object->get(64.23, 'en', true)       => 'sixty four dollars 23 cents',
+            $this->object->get(764)                     => 'seven hundred sixty four',
+            $this->object->get(2866)                    => 'two thousands eight hundred sixty six',
+            $this->object->get(7700)                    => 'seven thousands seven hundred',
+            $this->object->get('10,000')                => 'ten thousands',
+            $this->object->get(14383)                   => 'fourteen thousands three hundred eighty three',
+            $this->object->get(20383)                   => 'twenty thousands three hundred eighty three',
+            $this->object->get(700383)                  => 'seven hundred thousands three hundred eighty three',
+            $this->object->get(7644383)                 => 'seven million six hundred forty four thousands three hundred eighty three',
             $this->object->get(70043783.65, 'en', true) => 'seventy million forty three thousands seven hundred eighty three dollars 65 cents',
-            $this->object->get(786443783) => 'seven hundred eighty six million four hundred forty three thousands seven hundred eighty three',
-            $this->object->get(109) => 'one hundred nine',
-            $this->object->get(110) => 'one hundred ten',
-            $this->object->get(111) => 'one hundred eleven',
-            $this->object->get(112) => 'one hundred twelve',
-            $this->object->get(115) => 'one hundred fifteen',
-            $this->object->get(116) => 'one hundred sixteen',
-            $this->object->get(118) => 'one hundred eighteen',
-            $this->object->get(120) => 'one hundred twenty',
-            $this->object->get(121) => 'one hundred twenty one',
-            $this->object->get(10010) => 'ten thousands ten',
-            $this->object->get(10110) => 'ten thousands one hundred ten',
-            $this->object->get(510110) => 'five hundred ten thousands one hundred ten',
+            $this->object->get(786443783)               => 'seven hundred eighty six million four hundred forty three thousands seven hundred eighty three',
+            $this->object->get(109)                     => 'one hundred nine',
+            $this->object->get(110)                     => 'one hundred ten',
+            $this->object->get(111)                     => 'one hundred eleven',
+            $this->object->get(112)                     => 'one hundred twelve',
+            $this->object->get(115)                     => 'one hundred fifteen',
+            $this->object->get(116)                     => 'one hundred sixteen',
+            $this->object->get(118)                     => 'one hundred eighteen',
+            $this->object->get(120)                     => 'one hundred twenty',
+            $this->object->get(121)                     => 'one hundred twenty one',
+            $this->object->get(10010)                   => 'ten thousands ten',
+            $this->object->get(10110)                   => 'ten thousands one hundred ten',
+            $this->object->get(510110)                  => 'five hundred ten thousands one hundred ten',
+        );
+
+        $this->runTestDigits($result);
+    }
+
+    /**
+     * Ukrainian localization testing.
+     *
+     * @author  Andrey Helldar <helldar@ai-rus.com>
+     *
+     * @since   2017-03-27
+     */
+    public function testUk()
+    {
+        $result = array(
+            $this->object->get(0, 'uk')                 => 'нуль',
+            $this->object->get(64.23, 'uk', true)       => 'шістдесят чотири грн 23 коп',
+            $this->object->get(764, 'uk')               => 'сімсот шістдесят чотири',
+            $this->object->get(2866, 'uk')              => 'дві тисячі вісімсот шістдесят шість',
+            $this->object->get(7700, 'uk')              => 'сім тисяч сімсот',
+            $this->object->get('10,000', 'uk')          => 'десять тисяч',
+            $this->object->get(14383, 'uk')             => 'чотирнадцять тисячі триста вісімдесят три',
+            $this->object->get(20383, 'uk')             => 'двадцять тисяч триста вісімдесят три',
+            $this->object->get(700383, 'uk')            => 'сімсот тисяч триста вісімдесят три',
+            $this->object->get(7644383, 'uk')           => 'сім мільйонів шістсот сорок чотири тисячі триста вісімдесят три',
+            $this->object->get(70043783.65, 'uk', true) => 'сімдесят мільйонів сорок три тисячі сімсот вісімдесят три грн 65 коп',
+            $this->object->get(786443783, 'uk')         => 'сімсот вісімдесят шість мільйонів чотириста сорок три тисячі сімсот вісімдесят три',
+            $this->object->get(109, 'uk')               => 'сто дев\'ять',
+            $this->object->get(110, 'uk')               => 'сто десять',
+            $this->object->get(111, 'uk')               => 'сто одинадцять',
+            $this->object->get(112, 'uk')               => 'сто дванадцять',
+            $this->object->get(116, 'uk')               => 'сто шістнадцять',
+            $this->object->get(118, 'uk')               => 'сто вісімнадцять',
+            $this->object->get(120, 'uk')               => 'сто двадцять',
+            $this->object->get(121, 'uk')               => 'сто двадцять один',
+            $this->object->get(10010, 'uk')             => 'десять тисяч десять',
+            $this->object->get(10110, 'uk')             => 'десять тисяч сто десять',
+            $this->object->get(510110, 'uk')            => 'п\'ятсот десять тисяч сто десять',
+        );
+
+        $this->runTestDigits($result);
+    }
+
+    /**
+     * German localization testing.
+     *
+     * @author  Andrey Helldar <helldar@ai-rus.com>
+     *
+     * @since   2017-03-27
+     */
+    public function testDe()
+    {
+        $result = array(
+            $this->object->get(0, 'de')                 => 'null',
+            $this->object->get(64.23, 'de', true)       => 'sechzig vier mark 23 cent',
+            $this->object->get(764, 'de')               => 'siebenhundert sechzig vier',
+            $this->object->get(2866, 'de')              => 'zwei tausende achthundert sechzig sechs',
+            $this->object->get(7700, 'de')              => 'sieben tausende siebenhundert',
+            $this->object->get('10,000', 'de')          => 'zehn tausende',
+            $this->object->get(14383, 'de')             => 'vierzehn tausende dreihundert achtzig drei',
+            $this->object->get(20383, 'de')             => 'zwanzig tausende dreihundert achtzig drei',
+            $this->object->get(700383, 'de')            => 'siebenhundert tausende dreihundert achtzig drei',
+            $this->object->get(7644383, 'de')           => 'sieben million sechshundert vierzig vier tausende dreihundert achtzig drei',
+            $this->object->get(70043783.65, 'de', true) => 'siebzig million vierzig drei tausende siebenhundert achtzig drei mark 65 cent',
+            $this->object->get(786443783, 'de')         => 'siebenhundert achtzig sechs million vierhundert vierzig drei tausende siebenhundert achtzig drei',
+            $this->object->get(109, 'de')               => 'hundert neun',
+            $this->object->get(110, 'de')               => 'hundert zehn',
+            $this->object->get(111, 'de')               => 'hundert elf',
+            $this->object->get(112, 'de')               => 'hundert zwölf',
+            $this->object->get(116, 'de')               => 'hundert sechzehn',
+            $this->object->get(118, 'de')               => 'hundert achtzehn',
+            $this->object->get(120, 'de')               => 'hundert zwanzig',
+            $this->object->get(121, 'de')               => 'hundert zwanzig ein',
+            $this->object->get(10010, 'de')             => 'zehn tausende zehn',
+            $this->object->get(10110, 'de')             => 'zehn tausende hundert zehn',
+            $this->object->get(510110, 'de')            => 'fünfhundert zehn tausende hundert zehn',
         );
 
         $this->runTestDigits($result);
@@ -107,7 +179,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     public function runTestDigits($items = array())
     {
-        foreach ($items as $key => $result) {
+        foreach($items as $key => $result) {
             $this->assertEquals($result, $key);
         }
     }
