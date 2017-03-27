@@ -33,7 +33,7 @@ The module allows to translate numbers into a text equivalent. This is important
 
 3. Add this to the facade in config/app.php:
 
-        'DigitText' => Helldar\DigitText\DigitText::class,
+        'DigitText' => Helldar\DigitText\Facade::class,
 
 For those who use Laravel 5.2, see the branch [Laravel 5.2](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.2)
 
@@ -41,17 +41,20 @@ For those who use Laravel 5.2, see the branch [Laravel 5.2](https://github.com/a
 
 To transfer the design using the form:
 
-    DigitText::text($number = 0, $lang = 'ru', $currency = false)
+    DigitText::number($number = 0)->lang('en')->currency(false)->get();
+    
+    //or use helper:    
+    digit_text()->number($number = 0)->lang('en')->currency(false)->get();
 
 Example:
 
-    DigitText::text(null, 'en');
-    DigitText::text(64.23, 'en');
-    DigitText::text(2866, 'en');
+    DigitText::number(null)->lang('en')->get();
+    DigitText::number(64.23)->lang('en')->get();
+    DigitText::number(2866)->lang('en')->get();
 
-    DigitText::text(0, 'en', true);
-    DigitText::text(64.23, 'en', true);
-    DigitText::text(2866, 'en', true);
+    DigitText::number(0)->lang('en')->currency()->get();
+    DigitText::number(64.23)->lang('en')->currency()->get();
+    DigitText::number(2866)->lang('en')->currency()->get();
 
     // Result:
     zero

@@ -45,7 +45,7 @@ class DigitServiceProvider extends ServiceProvider
     {
         $this->registerDigitText();
 
-        $this->app->alias('digittext', 'Helldar\DigitText\DigitText');
+        $this->app->alias('digittext', Facade::class);
     }
 
     /**
@@ -55,8 +55,8 @@ class DigitServiceProvider extends ServiceProvider
      */
     protected function registerDigitText()
     {
-        $this->app->singleton('digittext', function ($app) {
-            return new DigitText();
+        $this->app->singleton('digittext', function($app) {
+            return new Facade();
         });
     }
 
@@ -67,6 +67,6 @@ class DigitServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('digittext', 'Helldar\DigitText\DigitText');
+        return array('digittext', Facade::class);
     }
 }

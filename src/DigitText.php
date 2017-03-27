@@ -2,7 +2,7 @@
 /*
  * The MIT License
  *
- * Copyright 2016 Andrey Helldar <helldar@ai-rus.com>.
+ * Copyright 2017 Andrey Helldar <helldar@ai-rus.com>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,76 +28,135 @@ namespace Helldar\DigitText;
 class DigitText
 {
     /**
-     * Home locale.
-     *
-     * @var string
-     */
-    private static $lang = 'en';
-
-    /**
      * Default language.
      *
      * @var string
      */
-    private static $lang_fallback = 'en';
+    private $lang_fallback = 'en';
+
+    /**
+     * Selected locale.
+     *
+     * @var string
+     */
+    private $lang = 'en';
 
     /**
      * Array of numbers.
      *
      * @var array
      */
-    private static $texts;
+    private $texts;
 
     /**
      * Remainder of the division.
      *
      * @var int
      */
-    private static $surplus = 0;
+    private $surplus = 0;
+
+    /**
+     * @var bool
+     */
+    private $is_currency = false;
+
+    /**
+     * @var string
+     */
+    private $result = '';
+
+    /**
+     * Return result.
+     *
+     * @author Andrey Helldar <helldar@ai-rus.com>
+     *
+     * @since  2017-03-27
+     * @return string
+     */
+    public function get()
+    {
+        return $this->result;
+    }
+
+    /**
+     * Set lang.
+     *
+     * @author Andrey Helldar <helldar@ai-rus.com>
+     *
+     * @since  2017-03-27
+     *
+     * @param null $lang
+     *
+     * @return $this
+     */
+    public function lang($lang = null)
+    {
+        $this->lang = !empty(trim($lang)) ? trim($lang) : $this->lang_fallback;
+
+        return $this;
+    }
+
+    /**
+     * Set currency.
+     *
+     * @author Andrey Helldar <helldar@ai-rus.com>
+     *
+     * @since  2017-03-27
+     *
+     * @param bool $is_currency
+     *
+     * @return $this
+     */
+    public function currency($is_currency = false)
+    {
+        $this->is_currency = (bool) $is_currency;
+
+        return $this;
+    }
 
     /**
      * Showing a fractional number in a text equivalent.
      *
-     * @param float  $digit
-     * @param string $lang
-     * @param bool   $currency
+     * @param float $digit
      *
-     * @return string
+     * @return $this
      */
-    public static function text($digit = 0.0, $lang = 'en', $currency = false)
+    public function number($digit = 0.0)
     {
-        if (!empty($lang)) {
-            self::$lang = $lang;
-        }
-
         // Return text from php_intl library
-        $intl = self::intl($digit, $lang, $currency);
-        if (!empty($intl)) {
-            return $intl;
+        $intl = $this->intl($digit);
+        if(!empty($intl)) {
+            $this->result = $intl;
+
+            return $this;
         }
 
         // Loading texts from locale page
-        self::loadTexts();
+        $this->loadTexts();
 
-        if (empty($digit) || $digit == 0) {
-            return self::$texts['zero'];
+        if(empty($digit) || $digit == 0) {
+            $this->result = $this->texts['zero'];
+
+            return $this;
         }
 
         // Get the fractional part
-        self::fraction((float) $digit);
+        $this->fraction((float) $digit);
 
         // Get the integer part
         $digit = (int) str_replace(array(',', ' '), '', $digit);
 
-        $groups = str_split(self::dsort((int) $digit), 3);
+        $groups = str_split($this->dsort((int) $digit), 3);
         $result = '';
-        for ($i = sizeof($groups) - 1; $i >= 0; $i--) {
-            if ((int) $groups[$i] > 0) {
-                $result .= ' '.self::digits($groups[$i], $i);
+        for($i = sizeof($groups) - 1; $i >= 0; $i--) {
+            if((int) $groups[$i] > 0) {
+                $result .= ' '.$this->digits($groups[$i], $i);
             }
         }
 
-        return $currency ? self::currency($result) : trim($result);
+        $this->result = $this->is_currency ? $this->getCurrency($result) : trim($result);
+
+        return $this;
     }
 
     /**
@@ -105,21 +164,18 @@ class DigitText
      *
      * @author  Andrey Helldar <helldar@ai-rus.com>
      *
-     * @version 2016-11-28
+     * @since   2016-11-28
+     * @since   2017-03-27 Refactoring code.
      *
-     * @since   1.0
-     *
-     * @param float  $digit
-     * @param string $lang
-     * @param bool   $currency
+     * @param float $digit
      *
      * @return string|void
      */
-    private static function intl($digit = 0.0, $lang = 'en-US', $currency = false)
+    private function intl($digit = 0.0)
     {
-        if ($currency) {
-            if (extension_loaded('php_intl')) {
-                return (new \MessageFormatter($lang, '{n, spellout}'))->format(array('n' => $digit));
+        if($this->is_currency) {
+            if(extension_loaded('php_intl')) {
+                return (new \MessageFormatter($this->lang, '{n, spellout}'))->format(array('n' => $digit));
             }
         }
 
@@ -128,12 +184,16 @@ class DigitText
 
     /**
      * Loading localized data.
+     *
+     * @author Andrey Helldar <helldar@ai-rus.com>
+     *
+     * @since  2017-03-27
      */
-    private static function loadTexts()
+    private function loadTexts()
     {
-        $locale = __DIR__.'/lang/'.self::$lang.'/digittext.php';
-        $lang = file_exists($locale) ? self::$lang : self::$lang_fallback;
-        self::$texts = require __DIR__.'/lang/'.$lang.'/digittext.php';
+        $locale      = sprintf("%s/lang/%s.php", __DIR__, $this->lang);
+        $lang        = file_exists($locale) ? $this->lang : $this->lang_fallback;
+        $this->texts = require sprintf("%s/lang/%s.php", __DIR__, $lang);
     }
 
     /**
@@ -143,16 +203,16 @@ class DigitText
      *
      * @return void
      */
-    private static function fraction($digit = null)
+    private function fraction($digit = null)
     {
-        if (empty($digit)) {
-            self::$surplus = 0;
+        if(empty($digit)) {
+            $this->surplus = 0;
 
             return;
         }
 
-        $pos = strripos((string) $digit, '.');
-        self::$surplus = $pos === false ? 0 : mb_substr((string) $digit, $pos + 1);
+        $pos           = strripos((string) $digit, '.');
+        $this->surplus = $pos === false ? 0 : mb_substr((string) $digit, $pos + 1);
     }
 
     /**
@@ -162,16 +222,16 @@ class DigitText
      *
      * @return string
      */
-    private static function dsort($digit = '0')
+    private function dsort($digit = '0')
     {
-        $digit = (string) $digit;
+        $digit       = (string) $digit;
         $sortedDigit = '';
 
-        if ($digit == '0') {
+        if($digit == '0') {
             return array(0 => 0);
         }
 
-        for ($i = strlen($digit) - 1; $i >= 0; $i--) {
+        for($i = strlen($digit) - 1; $i >= 0; $i--) {
             $sortedDigit .= $digit[$i];
         }
 
@@ -186,28 +246,28 @@ class DigitText
      *
      * @return string
      */
-    private static function digits($digit = 0.0, $id = 0)
+    private function digits($digit = 0.0, $id = 0)
     {
-        if ($digit == 0) {
-            return self::$texts['zero'];
+        if($digit == 0) {
+            return $this->texts['zero'];
         }
 
-        $digitUnsorted = (int) self::dsort($digit);
+        $digitUnsorted = (int) $this->dsort($digit);
 
-        $array = str_split((string) $digit, 1);
+        $array  = str_split((string) $digit, 1);
         $result = '';
 
-        for ($i = sizeof($array) - 1; $i >= 0; $i--) {
-            if ($i === 1 && $array[$i] == '1') {
-                $d = $array[$i].$array[$i - 1];
-                $result .= ' '.trim(self::$texts[$id == 1 ? 3 : 0][(int) $d]);
+        for($i = sizeof($array) - 1; $i >= 0; $i--) {
+            if($i === 1 && $array[$i] == '1') {
+                $d      = $array[$i].$array[$i - 1];
+                $result .= ' '.trim($this->texts[$id == 1 ? 3 : 0][(int) $d]);
                 $i--;
-            } elseif ((int) $array[$i] > 0) {
-                $result .= ' '.self::$texts[$id == 1 ? $i + 3 : $i][$array[$i]];
+            } elseif((int) $array[$i] > 0) {
+                $result .= ' '.$this->texts[$id == 1 ? $i + 3 : $i][$array[$i]];
             }
         }
 
-        return trim(trim($result).self::decline($id, $digitUnsorted));
+        return trim(trim($result).$this->decline($id, $digitUnsorted));
     }
 
     /**
@@ -218,28 +278,28 @@ class DigitText
      *
      * @return string
      */
-    private static function decline($group = 0, $digit = 0.0)
+    private function decline($group = 0, $digit = 0.0)
     {
-        $text = (string) ((int) $digit);
-        $text = (int) $text[strlen($digit) - 1];
+        $text   = (string) ((int) $digit);
+        $text   = (int) $text[strlen($digit) - 1];
         $result = '';
 
-        switch ($group) {
+        switch($group) {
             case 1:
-                $result = ' '.self::$texts['thousands'][0];
-                if ($text == 1) {
-                    $result = ' '.self::$texts['thousands'][1];
-                } elseif ($text >= 2 && $text <= 4) {
-                    $result = ' '.self::$texts['thousands'][2];
+                $result = ' '.$this->texts['thousands'][0];
+                if($text == 1) {
+                    $result = ' '.$this->texts['thousands'][1];
+                } elseif($text >= 2 && $text <= 4) {
+                    $result = ' '.$this->texts['thousands'][2];
                 }
                 break;
 
             case 2:
-                $result = ' '.self::$texts['millions'][0];
-                if ($text >= 2 && $text <= 4) {
-                    $result = ' '.self::$texts['millions'][1];
-                } elseif (($text >= 5 && $text <= 9) || $text == 0) {
-                    $result = ' '.self::$texts['millions'][2];
+                $result = ' '.$this->texts['millions'][0];
+                if($text >= 2 && $text <= 4) {
+                    $result = ' '.$this->texts['millions'][1];
+                } elseif(($text >= 5 && $text <= 9) || $text == 0) {
+                    $result = ' '.$this->texts['millions'][2];
                 }
                 break;
 
@@ -257,25 +317,25 @@ class DigitText
      *
      * @return string
      */
-    private static function currency($content = null)
+    private function getCurrency($content = null)
     {
-        if (empty($content)) {
+        if(empty($content)) {
             return '---';
         }
 
-        if (self::$texts['currency']['position'] == 'before') {
-            $result = self::$texts['currency']['int'].' '.$content;
+        if($this->texts['currency']['position'] == 'before') {
+            $result = $this->texts['currency']['int'].' '.$content;
 
-            if (self::$surplus > 0) {
-                $result .= '.'.self::$surplus;
+            if($this->surplus > 0) {
+                $result .= '.'.$this->surplus;
             }
         } else {
-            $result = trim($content).' '.self::$texts['currency']['int'];
+            $result = trim($content).' '.$this->texts['currency']['int'];
 
-            if (self::$surplus > 0) {
-                $result .= ' '.self::$surplus.' '.self::$texts['currency']['fraction'];
+            if($this->surplus > 0) {
+                $result .= ' '.$this->surplus.' '.$this->texts['currency']['fraction'];
             } else {
-                $result .= ' 00 '.self::$texts['currency']['fraction'];
+                $result .= ' 00 '.$this->texts['currency']['fraction'];
             }
         }
 
