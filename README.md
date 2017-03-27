@@ -57,29 +57,33 @@ For those who use Laravel 5.2, see the branch [Laravel 5.2](https://github.com/a
 
 To transfer the design using the form:
 
-    DigitText::number($number = 0)->lang('en')->currency(false)->get();
+    DigitText::get($number = 0, $lang = 'en', $is_currency = false);
     
     //or use helper:    
-    digit_text()->number($number = 0)->lang('en')->currency(false)->get();
+    digit_text()->get($number = 0, $lang = 'en', $is_currency = false);
 
 Example:
 
-    DigitText::number(null)->lang('en')->get();
-    DigitText::number(64.23)->lang('en')->get();
-    DigitText::number(2866)->lang('en')->get();
+    digit_text()->get(null);
+    digit_text()->get(64.23);
+    digit_text()->get(2866);
+    digit_text()->get(2866, 'ru');
 
-    DigitText::number(0)->lang('en')->currency()->get();
-    DigitText::number(64.23)->lang('en')->currency()->get();
-    DigitText::number(2866)->lang('en')->currency()->get();
+    digit_text()->get(0, 'en', true);
+    digit_text()->get(64.23, 'en', true);
+    digit_text()->get(2866, 'en', true);
+    digit_text()->get(2866, 'ru', true);
 
     // Result:
     zero
     sixty four
     two thousands eight hundred sixty six
+    две тысячи восемьсот шестьдесят шесть
 
     zero dollar
     sixty four dollars 23 cents
     two thousands eight hundred sixty six dollars
+    две тысячи восемьсот шестьдесят шесть руб
 
 ## Support Languages
 
