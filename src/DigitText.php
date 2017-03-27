@@ -61,22 +61,9 @@ class DigitText
     private $is_currency = false;
 
     /**
-     * @var string
+     * @var null
      */
-    private $result = '';
-
-    /**
-     * Return result.
-     *
-     * @author Andrey Helldar <helldar@ai-rus.com>
-     *
-     * @since  2017-03-27
-     * @return string
-     */
-    public function get()
-    {
-        return $this->result;
-    }
+    private $digit = null;
 
     /**
      * Set lang.
@@ -85,15 +72,12 @@ class DigitText
      *
      * @since  2017-03-27
      *
-     * @param null $lang
-     *
-     * @return $this
+     * @param string $lang
      */
-    public function lang($lang = null)
+    private function lang($lang = 'en')
     {
-        $this->lang = !empty(trim($lang)) ? trim($lang) : $this->lang_fallback;
-
-        return $this;
+        $filename   = sprintf("%s/lang/%s.php", __DIR__, trim($lang));
+        $this->lang = file_exists($filename) ? trim($lang) : $this->lang_fallback;
     }
 
     /**
@@ -104,40 +88,42 @@ class DigitText
      * @since  2017-03-27
      *
      * @param bool $is_currency
-     *
-     * @return $this
      */
-    public function currency($is_currency = false)
+    private function currency($is_currency = false)
     {
         $this->is_currency = (bool) $is_currency;
-
-        return $this;
     }
 
     /**
      * Showing a fractional number in a text equivalent.
      *
-     * @param float $digit
+     * @author Andrey Helldar <helldar@ai-rus.com>
      *
-     * @return $this
+     * @since  2017-03-27
+     *
+     * @param float  $digit
+     * @param string $lang
+     * @param bool   $is_currency
+     *
+     * @return mixed|string|void
      */
-    public function number($digit = 0.0)
+    public function get($digit = 0.0, $lang = 'en', $is_currency = false)
     {
-        // Return text from php_intl library
-        $intl = $this->intl($digit);
-        if(!empty($intl)) {
-            $this->result = $intl;
+        $this->lang($lang);
+        $this->currency($is_currency);
+        $this->fixDigit($digit);
 
-            return $this;
+        // Return text from php_intl library
+        $intl = $this->intl();
+        if(!empty($intl)) {
+            return $intl;
         }
 
         // Loading texts from locale page
         $this->loadTexts();
 
-        if(empty($digit) || $digit == 0) {
-            $this->result = $this->texts['zero'];
-
-            return $this;
+        if($this->digit == 0) {
+            return $this->texts['zero'];
         }
 
         // Get the fractional part
@@ -154,9 +140,32 @@ class DigitText
             }
         }
 
-        $this->result = $this->is_currency ? $this->getCurrency($result) : trim($result);
+        return $this->is_currency ? $this->getCurrency($result) : trim($result);
+    }
 
-        return $this;
+    /**
+     * @author Andrey Helldar <helldar@ai-rus.com>
+     *
+     * @since  2017-03-27l
+     *
+     * @param null $digit
+     */
+    private function fixDigit($digit = null)
+    {
+        if(empty($digit)) {
+            $this->digit = 0;
+
+            return;
+        }
+
+        if(strripos((string) $digit, '.') === false) {
+            $this->digit = intval($digit);
+
+            return;
+        }
+
+        $digit       = explode('.', str_replace([',', '-', ' ', "'", '`'], '', (string) $digit));
+        $this->digit = sprintf("%s.%s", intval($digit[0]), intval($digit[1]));
     }
 
     /**
@@ -167,15 +176,13 @@ class DigitText
      * @since   2016-11-28
      * @since   2017-03-27 Refactoring code.
      *
-     * @param float $digit
-     *
      * @return string|void
      */
-    private function intl($digit = 0.0)
+    private function intl()
     {
         if($this->is_currency) {
             if(extension_loaded('php_intl')) {
-                return (new \MessageFormatter($this->lang, '{n, spellout}'))->format(array('n' => $digit));
+                return (new \MessageFormatter($this->lang, '{n, spellout}'))->format(array('n' => $this->digit));
             }
         }
 
@@ -191,8 +198,8 @@ class DigitText
      */
     private function loadTexts()
     {
-        $locale      = sprintf("%s/lang/%s.php", __DIR__, $this->lang);
-        $lang        = file_exists($locale) ? $this->lang : $this->lang_fallback;
+        $filename    = sprintf("%s/lang/%s.php", __DIR__, $this->lang);
+        $lang        = file_exists($filename) ? $this->lang : $this->lang_fallback;
         $this->texts = require sprintf("%s/lang/%s.php", __DIR__, $lang);
     }
 

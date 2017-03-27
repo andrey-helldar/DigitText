@@ -18,6 +18,6 @@ class Facade
      */
     public static function digit($digit = null)
     {
-        return (new DigitText())->number($digit);
+        return (new DigitText())->get($digit);
     }
 }
