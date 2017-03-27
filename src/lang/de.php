@@ -114,7 +114,7 @@ return array(
         9 => 'neunhundert',
     ),
     'currency' => array(
-        'int' => 'mark',
+        'int' => 'Mark',
         'fraction' => 'cent',
         'position' => 'after',
     ),
