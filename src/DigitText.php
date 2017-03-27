@@ -76,7 +76,7 @@ class DigitText
      */
     private function lang($lang = 'en')
     {
-        $filename   = sprintf('%s/lang/%s.php', __DIR__, trim($lang));
+        $filename = sprintf('%s/lang/%s.php', __DIR__, trim($lang));
         $this->lang = file_exists($filename) ? trim($lang) : $this->lang_fallback;
     }
 
@@ -117,14 +117,14 @@ class DigitText
 
         // Return text from php_intl library
         $intl = $this->intl();
-        if(!empty($intl)) {
+        if (!empty($intl)) {
             return $intl;
         }
 
         // Loading texts from locale page
         $this->loadTexts();
 
-        if($this->digit == 0) {
+        if ($this->digit == 0) {
             return $this->texts['zero'];
         }
 
@@ -132,14 +132,14 @@ class DigitText
         $this->fraction();
 
         $groups = str_split($this->digitReverse((int) $this->digit), 3);
-        $result = [];
-        for($i = sizeof($groups) - 1; $i >= 0; $i--) {
-            if((int) $groups[$i] > 0) {
+        $result = array();
+        for ($i = sizeof($groups) - 1; $i >= 0; $i--) {
+            if ((int) $groups[$i] > 0) {
                 $result[] = $this->digits($groups[$i], $i);
             }
         }
 
-        if($this->lang == 'de') {
+        if ($this->lang == 'de') {
             $result = array_reverse($result);
         }
 
@@ -157,7 +157,7 @@ class DigitText
      */
     private function fixDigit($digit = null)
     {
-        if(empty($digit)) {
+        if (empty($digit)) {
             $this->digit = 0;
 
             return;
@@ -165,13 +165,13 @@ class DigitText
 
         $digit = str_replace(array(',', '-', ' ', "'", '`'), '', (string) $digit);
 
-        if(strripos((string) $digit, '.') === false) {
+        if (strripos((string) $digit, '.') === false) {
             $this->digit = (float) $digit;
 
             return;
         }
 
-        $digit       = explode('.', $digit);
+        $digit = explode('.', $digit);
         $this->digit = (float) sprintf('%s.%s', intval($digit[0]), intval($digit[1]));
     }
 
@@ -187,8 +187,8 @@ class DigitText
      */
     private function intl()
     {
-        if($this->is_currency) {
-            if(extension_loaded('php_intl')) {
+        if ($this->is_currency) {
+            if (extension_loaded('php_intl')) {
                 return (new \MessageFormatter($this->lang, '{n, spellout}'))->format(array('n' => $this->digit));
             }
         }
@@ -205,8 +205,8 @@ class DigitText
      */
     private function loadTexts()
     {
-        $filename    = sprintf('%s/lang/%s.php', __DIR__, $this->lang);
-        $lang        = file_exists($filename) ? $this->lang : $this->lang_fallback;
+        $filename = sprintf('%s/lang/%s.php', __DIR__, $this->lang);
+        $lang = file_exists($filename) ? $this->lang : $this->lang_fallback;
         $this->texts = require sprintf('%s/lang/%s.php', __DIR__, $lang);
     }
 
@@ -217,13 +217,13 @@ class DigitText
      */
     private function fraction()
     {
-        if(empty($this->digit)) {
+        if (empty($this->digit)) {
             $this->surplus = 0;
 
             return;
         }
 
-        $pos           = strripos((string) $this->digit, '.');
+        $pos = strripos((string) $this->digit, '.');
         $this->surplus = $pos === false ? 0 : mb_substr((string) $this->digit, $pos + 1);
     }
 
@@ -249,21 +249,21 @@ class DigitText
      */
     private function digits($digit = 0.0, $id = 0)
     {
-        if($digit == 0) {
+        if ($digit == 0) {
             return $this->texts['zero'];
         }
 
         $digitUnsorted = (int) $this->digitReverse($digit);
 
-        $array  = str_split((string) $digit, 1);
-        $result = [];
+        $array = str_split((string) $digit, 1);
+        $result = array();
 
-        for($i = sizeof($array) - 1; $i >= 0; $i--) {
-            if($i === 1 && $array[$i] == '1') {
-                $d        = $array[$i].$array[$i - 1];
+        for ($i = sizeof($array) - 1; $i >= 0; $i--) {
+            if ($i === 1 && $array[$i] == '1') {
+                $d = $array[$i].$array[$i - 1];
                 $result[] = trim($this->texts[$id == 1 ? 3 : 0][(int) $d]);
                 $i--;
-            } elseif((int) $array[$i] > 0) {
+            } elseif ((int) $array[$i] > 0) {
                 $result[] = $this->texts[$id == 1 ? $i + 3 : $i][$array[$i]];
             }
         }
@@ -283,26 +283,26 @@ class DigitText
      */
     private function decline($group = 0, $digit = 0.0)
     {
-        $text    = (string) ((int) $digit);
-        $text    = (int) $text[strlen($digit) - 1];
-        $result  = '';
+        $text = (string) ((int) $digit);
+        $text = (int) $text[strlen($digit) - 1];
+        $result = '';
         $deleter = $this->lang == 'de' ? '' : ' ';
 
-        switch($group) {
+        switch ($group) {
             case 1:
                 $result = $deleter.$this->texts['thousands'][0];
-                if($text == 1) {
+                if ($text == 1) {
                     $result = $deleter.$this->texts['thousands'][1];
-                } elseif($text >= 2 && $text <= 4) {
+                } elseif ($text >= 2 && $text <= 4) {
                     $result = $deleter.$this->texts['thousands'][2];
                 }
                 break;
 
             case 2:
                 $result = $deleter.$this->texts['millions'][0];
-                if($text >= 2 && $text <= 4) {
+                if ($text >= 2 && $text <= 4) {
                     $result = $deleter.$this->texts['millions'][1];
-                } elseif(($text >= 5 && $text <= 9) || $text == 0) {
+                } elseif (($text >= 5 && $text <= 9) || $text == 0) {
                     $result = $deleter.$this->texts['millions'][2];
                 }
                 break;
@@ -323,20 +323,20 @@ class DigitText
      */
     private function getCurrency($content = null)
     {
-        if(empty($content)) {
+        if (empty($content)) {
             return '---';
         }
 
-        if($this->texts['currency']['position'] == 'before') {
+        if ($this->texts['currency']['position'] == 'before') {
             $result = $this->texts['currency']['int'].' '.$content;
 
-            if($this->surplus > 0) {
+            if ($this->surplus > 0) {
                 $result .= '.'.$this->surplus;
             }
         } else {
             $result = trim($content).' '.$this->texts['currency']['int'];
 
-            if($this->surplus > 0) {
+            if ($this->surplus > 0) {
                 $result .= ' '.$this->surplus.' '.$this->texts['currency']['fraction'];
             } else {
                 $result .= ' 00 '.$this->texts['currency']['fraction'];
