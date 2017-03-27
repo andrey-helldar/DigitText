@@ -55,7 +55,7 @@ class DigitServiceProvider extends ServiceProvider
      */
     protected function registerDigitText()
     {
-        $this->app->singleton('digittext', function($app) {
+        $this->app->singleton('digittext', function ($app) {
             return new Facade();
         });
     }

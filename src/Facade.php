@@ -2,7 +2,6 @@
 
 namespace Helldar\DigitText;
 
-
 class Facade
 {
     /**
