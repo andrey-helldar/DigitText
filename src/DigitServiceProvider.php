@@ -2,7 +2,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Andrey Helldar <helldar@ai-rus.com>.
+ * Copyright 2015-2017 Andrey Helldar <helldar@ai-rus.com>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,9 @@ namespace Helldar\DigitText;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class DigitServiceProvider
+ */
 class DigitServiceProvider extends ServiceProvider
 {
     /**
@@ -67,6 +70,6 @@ class DigitServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('digittext', Facade::class);
+        return ['digittext', Facade::class];
     }
 }

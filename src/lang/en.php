@@ -2,7 +2,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Andrey Helldar <helldar@ai-rus.com>.
+ * Copyright 2015-2017 Andrey Helldar <helldar@ai-rus.com>.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,18 +23,18 @@
  * THE SOFTWARE.
  */
 
-return array(
-    0 => array(
-        0 => '',
-        1 => 'one',
-        2 => 'two',
-        3 => 'three',
-        4 => 'four',
-        5 => 'five',
-        6 => 'six',
-        7 => 'seven',
-        8 => 'eight',
-        9 => 'nine',
+return [
+    0 => [
+        0  => '',
+        1  => 'one',
+        2  => 'two',
+        3  => 'three',
+        4  => 'four',
+        5  => 'five',
+        6  => 'six',
+        7  => 'seven',
+        8  => 'eight',
+        9  => 'nine',
         10 => 'ten',
         11 => 'eleven',
         12 => 'twelve',
@@ -45,8 +45,9 @@ return array(
         17 => 'seventeen',
         18 => 'eighteen',
         19 => 'nineteen',
-    ),
-    1 => array(
+    ],
+
+    1 => [
         2 => 'twenty',
         3 => 'thirty',
         4 => 'forty',
@@ -55,8 +56,9 @@ return array(
         7 => 'seventy',
         8 => 'eighty',
         9 => 'ninety',
-    ),
-    2 => array(
+    ],
+
+    2 => [
         0 => '',
         1 => 'one hundred',
         2 => 'two hundred',
@@ -67,18 +69,19 @@ return array(
         7 => 'seven hundred',
         8 => 'eight hundred',
         9 => 'nine hundred',
-    ),
-    3 => array(
-        0 => '',
-        1 => 'one',
-        2 => 'two',
-        3 => 'three',
-        4 => 'four',
-        5 => 'five',
-        6 => 'six',
-        7 => 'seven',
-        8 => 'eight',
-        9 => 'nine',
+    ],
+
+    3 => [
+        0  => '',
+        1  => 'one',
+        2  => 'two',
+        3  => 'three',
+        4  => 'four',
+        5  => 'five',
+        6  => 'six',
+        7  => 'seven',
+        8  => 'eight',
+        9  => 'nine',
         10 => 'ten',
         11 => 'eleven',
         12 => 'twelve',
@@ -89,8 +92,9 @@ return array(
         17 => 'seventeen',
         18 => 'eighteen',
         19 => 'nineteen',
-    ),
-    4 => array(
+    ],
+
+    4 => [
         0 => '',
         2 => 'twenty',
         3 => 'thirty',
@@ -100,8 +104,9 @@ return array(
         7 => 'seventy',
         8 => 'eighty',
         9 => 'ninety',
-    ),
-    5 => array(
+    ],
+
+    5 => [
         0 => '',
         1 => 'one hundred',
         2 => 'two hundred',
@@ -112,21 +117,25 @@ return array(
         7 => 'seven hundred',
         8 => 'eight hundred',
         9 => 'nine hundred',
-    ),
-    'currency' => array(
-        'int' => 'dollars',
+    ],
+
+    'currency' => [
+        'int'      => 'dollars',
         'fraction' => 'cents',
         'position' => 'after',
-    ),
+    ],
+
     'zero' => 'zero',
-    'thousands' => array(
+
+    'thousands' => [
         0 => 'thousands',
         1 => 'thousand',
         2 => 'thousands',
-    ),
-    'millions' => array(
+    ],
+
+    'millions' => [
         0 => 'million',
         1 => 'million',
         2 => 'million',
-    ),
-);
+    ],
+];
