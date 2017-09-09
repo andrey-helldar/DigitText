@@ -77,7 +77,7 @@ class DigitText
      */
     private function setLang(string $lang = 'en')
     {
-        $filename   = sprintf('%s/lang/%s.php', __DIR__, trim($lang));
+        $filename = sprintf('%s/lang/%s.php', __DIR__, trim($lang));
         $this->lang = (file_exists($filename) ? trim($lang) : $this->lang_fallback);
     }
 
@@ -88,7 +88,7 @@ class DigitText
      */
     private function setCurrency(bool $is_currency = false)
     {
-        $this->is_currency = (bool)$is_currency;
+        $this->is_currency = (bool) $is_currency;
     }
 
     /**
@@ -123,10 +123,10 @@ class DigitText
         // Get the fractional part
         $this->fraction();
 
-        $groups = str_split($this->digitReverse((int)$this->digit), 3);
+        $groups = str_split($this->digitReverse((int) $this->digit), 3);
         $result = [];
         for ($i = sizeof($groups) - 1; $i >= 0; $i--) {
-            if ((int)$groups[$i] > 0) {
+            if ((int) $groups[$i] > 0) {
                 array_push($result, $this->digits($groups[$i], $i));
             }
         }
@@ -142,7 +142,7 @@ class DigitText
 
         $result = implode($divider, $result);
 
-        return ($this->is_currency ? $this->getCurrency($result) : trim($result));
+        return $this->is_currency ? $this->getCurrency($result) : trim($result);
     }
 
     /**
@@ -158,16 +158,16 @@ class DigitText
             return;
         }
 
-        $digit = str_replace([',', '-', ' ', "'", '`'], '', (string)$digit);
+        $digit = str_replace([',', '-', ' ', "'", '`'], '', (string) $digit);
 
-        if (strripos((string)$digit, '.') === false) {
-            $this->digit = (float)$digit;
+        if (strripos((string) $digit, '.') === false) {
+            $this->digit = (float) $digit;
 
             return;
         }
 
-        $digit       = explode('.', $digit);
-        $this->digit = (float)sprintf('%s.%s', intval($digit[0]), intval($digit[1]));
+        $digit = explode('.', $digit);
+        $this->digit = (float) sprintf('%s.%s', intval($digit[0]), intval($digit[1]));
     }
 
     /**
@@ -189,8 +189,8 @@ class DigitText
      */
     private function loadTexts()
     {
-        $filename    = sprintf('%s/lang/%s.php', __DIR__, $this->lang);
-        $lang        = file_exists($filename) ? $this->lang : $this->lang_fallback;
+        $filename = sprintf('%s/lang/%s.php', __DIR__, $this->lang);
+        $lang = file_exists($filename) ? $this->lang : $this->lang_fallback;
         $this->texts = (require sprintf('%s/lang/%s.php', __DIR__, $lang));
     }
 
@@ -207,9 +207,9 @@ class DigitText
             return;
         }
 
-        $pos = strripos((string)$this->digit, '.');
+        $pos = strripos((string) $this->digit, '.');
 
-        $this->surplus = ($pos === false ? 0 : mb_substr((string)$this->digit, $pos + 1));
+        $this->surplus = ($pos === false ? 0 : mb_substr((string) $this->digit, $pos + 1));
     }
 
     /**
@@ -221,7 +221,7 @@ class DigitText
      */
     private function digitReverse($digit = '0')
     {
-        return strrev((string)$digit);
+        return strrev((string) $digit);
     }
 
     /**
@@ -238,23 +238,23 @@ class DigitText
             return $this->texts['zero'];
         }
 
-        $digitUnsorted = (int)$this->digitReverse($digit);
+        $digitUnsorted = (int) $this->digitReverse($digit);
 
-        $array  = str_split((string)$digit, 1);
+        $array = str_split((string) $digit, 1);
         $result = [];
 
         for ($i = sizeof($array) - 1; $i >= 0; $i--) {
             if ($i === 1 && $array[$i] == '1') {
                 $d = ($array[$i] . $array[$i - 1]);
-                array_push($result, trim($this->texts[$id == 1 ? 3 : 0][(int)$d]));
+                array_push($result, trim($this->texts[$id == 1 ? 3 : 0][(int) $d]));
                 $i--;
-            } elseif ((int)$array[$i] > 0) {
+            } elseif ((int) $array[$i] > 0) {
                 array_push($result, $this->texts[$id == 1 ? $i + 3 : $i][$array[$i]]);
             }
         }
 
         $divider = ($this->lang == 'de' ? 'und' : ' ');
-        $result  = implode($divider, $result);
+        $result = implode($divider, $result);
 
         return trim(trim($result) . $this->decline($id, $digitUnsorted));
     }
@@ -269,9 +269,9 @@ class DigitText
      */
     private function decline($group = 0, $digit = 0.0)
     {
-        $text    = (string)((int)$digit);
-        $text    = (int)$text[strlen($digit) - 1];
-        $result  = '';
+        $text = (string) ((int) $digit);
+        $text = (int) $text[strlen($digit) - 1];
+        $result = '';
         $divider = ($this->lang == 'de' ? '' : ' ');
 
         switch ($group) {
