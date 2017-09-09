@@ -32,5 +32,5 @@
  */
 function digit_text()
 {
-    return (new \Helldar\DigitText\DigitText());
+    return new \Helldar\DigitText\DigitText();
 }
