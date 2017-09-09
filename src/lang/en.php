@@ -23,8 +23,8 @@
  * THE SOFTWARE.
  */
 
-return array(
-    0 => array(
+return [
+    0 => [
         0 => '',
         1 => 'one',
         2 => 'two',
@@ -45,9 +45,9 @@ return array(
         17 => 'seventeen',
         18 => 'eighteen',
         19 => 'nineteen',
-    ),
+    ],
 
-    1 => array(
+    1 => [
         2 => 'twenty',
         3 => 'thirty',
         4 => 'forty',
@@ -56,9 +56,9 @@ return array(
         7 => 'seventy',
         8 => 'eighty',
         9 => 'ninety',
-    ),
+    ],
 
-    2 => array(
+    2 => [
         0 => '',
         1 => 'one hundred',
         2 => 'two hundred',
@@ -69,9 +69,9 @@ return array(
         7 => 'seven hundred',
         8 => 'eight hundred',
         9 => 'nine hundred',
-    ),
+    ],
 
-    3 => array(
+    3 => [
         0 => '',
         1 => 'one',
         2 => 'two',
@@ -92,9 +92,9 @@ return array(
         17 => 'seventeen',
         18 => 'eighteen',
         19 => 'nineteen',
-    ),
+    ],
 
-    4 => array(
+    4 => [
         0 => '',
         2 => 'twenty',
         3 => 'thirty',
@@ -104,9 +104,9 @@ return array(
         7 => 'seventy',
         8 => 'eighty',
         9 => 'ninety',
-    ),
+    ],
 
-    5 => array(
+    5 => [
         0 => '',
         1 => 'one hundred',
         2 => 'two hundred',
@@ -117,25 +117,25 @@ return array(
         7 => 'seven hundred',
         8 => 'eight hundred',
         9 => 'nine hundred',
-    ),
+    ],
 
-    'currency' => array(
+    'currency' => [
         'int' => 'dollars',
         'fraction' => 'cents',
         'position' => 'after',
-    ),
+    ],
 
     'zero' => 'zero',
 
-    'thousands' => array(
+    'thousands' => [
         0 => 'thousands',
         1 => 'thousand',
         2 => 'thousands',
-    ),
+    ],
 
-    'millions' => array(
+    'millions' => [
         0 => 'million',
         1 => 'million',
         2 => 'million',
-    ),
-);
+    ],
+];

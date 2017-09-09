@@ -137,7 +137,7 @@ class DigitText
         $this->fraction();
 
         $groups = str_split($this->digitReverse((int) $this->digit), 3);
-        $result = array();
+        $result = [];
         for ($i = sizeof($groups) - 1; $i >= 0; $i--) {
             if ((int) $groups[$i] > 0) {
                 $result[] = $this->digits($groups[$i], $i);
@@ -164,7 +164,7 @@ class DigitText
             return;
         }
 
-        $digit = str_replace(array(',', '-', ' ', "'", '`'), '', (string) $digit);
+        $digit = str_replace([',', '-', ' ', "'", '`'], '', (string) $digit);
 
         if (strripos((string) $digit, '.') === false) {
             $this->digit = (float) $digit;
@@ -185,7 +185,7 @@ class DigitText
     {
         if ($this->is_currency) {
             if (extension_loaded('php_intl')) {
-                return (new \MessageFormatter($this->lang, '{n, spellout}'))->format(array('n' => $this->digit));
+                return (new \MessageFormatter($this->lang, '{n, spellout}'))->format(['n' => $this->digit]);
             }
         }
 
@@ -248,11 +248,11 @@ class DigitText
         $digitUnsorted = (int) $this->digitReverse($digit);
 
         $array = str_split((string) $digit, 1);
-        $result = array();
+        $result = [];
 
         for ($i = sizeof($array) - 1; $i >= 0; $i--) {
             if ($i === 1 && $array[$i] == '1') {
-                $d = $array[$i].$array[$i - 1];
+                $d = $array[$i] . $array[$i - 1];
                 $result[] = trim($this->texts[$id == 1 ? 3 : 0][(int) $d]);
                 $i--;
             } elseif ((int) $array[$i] > 0) {
@@ -262,7 +262,7 @@ class DigitText
 
         $result = implode(($this->lang == 'de' ? 'und' : ' '), $result);
 
-        return trim(trim($result).$this->decline($id, $digitUnsorted));
+        return trim(trim($result) . $this->decline($id, $digitUnsorted));
     }
 
     /**
@@ -282,20 +282,20 @@ class DigitText
 
         switch ($group) {
             case 1:
-                $result = $deleter.$this->texts['thousands'][0];
+                $result = $deleter . $this->texts['thousands'][0];
                 if ($text == 1) {
-                    $result = $deleter.$this->texts['thousands'][1];
+                    $result = $deleter . $this->texts['thousands'][1];
                 } elseif ($text >= 2 && $text <= 4) {
-                    $result = $deleter.$this->texts['thousands'][2];
+                    $result = $deleter . $this->texts['thousands'][2];
                 }
                 break;
 
             case 2:
-                $result = $deleter.$this->texts['millions'][0];
+                $result = $deleter . $this->texts['millions'][0];
                 if ($text >= 2 && $text <= 4) {
-                    $result = $deleter.$this->texts['millions'][1];
+                    $result = $deleter . $this->texts['millions'][1];
                 } elseif (($text >= 5 && $text <= 9) || $text == 0) {
-                    $result = $deleter.$this->texts['millions'][2];
+                    $result = $deleter . $this->texts['millions'][2];
                 }
                 break;
 
@@ -320,18 +320,18 @@ class DigitText
         }
 
         if ($this->texts['currency']['position'] == 'before') {
-            $result = $this->texts['currency']['int'].' '.$content;
+            $result = $this->texts['currency']['int'] . ' ' . $content;
 
             if ($this->surplus > 0) {
-                $result .= '.'.$this->surplus;
+                $result .= '.' . $this->surplus;
             }
         } else {
-            $result = trim($content).' '.$this->texts['currency']['int'];
+            $result = trim($content) . ' ' . $this->texts['currency']['int'];
 
             if ($this->surplus > 0) {
-                $result .= ' '.$this->surplus.' '.$this->texts['currency']['fraction'];
+                $result .= ' ' . $this->surplus . ' ' . $this->texts['currency']['fraction'];
             } else {
-                $result .= ' 00 '.$this->texts['currency']['fraction'];
+                $result .= ' 00 ' . $this->texts['currency']['fraction'];
             }
         }
 

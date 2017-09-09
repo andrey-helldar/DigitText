@@ -23,8 +23,8 @@
  * THE SOFTWARE.
  */
 
-return array(
-    0 => array(
+return [
+    0 => [
         0 => '',
         1 => 'ein',
         2 => 'zwei',
@@ -45,9 +45,9 @@ return array(
         17 => 'siebzehn',
         18 => 'achtzehn',
         19 => 'neunzehn',
-    ),
+    ],
 
-    1 => array(
+    1 => [
         2 => 'zwanzig',
         3 => 'dreißig',
         4 => 'vierzig',
@@ -56,9 +56,9 @@ return array(
         7 => 'siebzig',
         8 => 'achtzig',
         9 => 'neunzig',
-    ),
+    ],
 
-    2 => array(
+    2 => [
         0 => '',
         1 => 'hundert',
         2 => 'zweihundert',
@@ -69,9 +69,9 @@ return array(
         7 => 'siebenhundert',
         8 => 'achthundert',
         9 => 'neunhundert',
-    ),
+    ],
 
-    3 => array(
+    3 => [
         0 => '',
         1 => 'einer',
         2 => 'zwei',
@@ -92,9 +92,9 @@ return array(
         17 => 'siebzehn',
         18 => 'achtzehn',
         19 => 'neunzehn',
-    ),
+    ],
 
-    4 => array(
+    4 => [
         0 => '',
         2 => 'zwanzig',
         3 => 'dreißig',
@@ -104,9 +104,9 @@ return array(
         7 => 'siebzig',
         8 => 'achtzig',
         9 => 'neunzig',
-    ),
+    ],
 
-    5 => array(
+    5 => [
         0 => '',
         1 => 'hundert',
         2 => 'zweihundert',
@@ -117,25 +117,25 @@ return array(
         7 => 'siebenhundert',
         8 => 'achthundert',
         9 => 'neunhundert',
-    ),
+    ],
 
-    'currency' => array(
+    'currency' => [
         'int' => 'Mark',
         'fraction' => 'cent',
         'position' => 'after',
-    ),
+    ],
 
     'zero' => 'null',
 
-    'thousands' => array(
+    'thousands' => [
         0 => 'tausende',
         1 => 'tausend',
         2 => 'tausende',
-    ),
+    ],
 
-    'millions' => array(
+    'millions' => [
         0 => 'million',
         1 => 'million',
         2 => 'million',
-    ),
-);
+    ],
+];
