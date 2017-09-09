@@ -1,7 +1,3 @@
-/bootstrap/compiled.php
-.env.*.php
-.env.php
-.env
-/nbproject/
-/vendor
-/.idea
+.idea/
+vendor/
+composer.lock
