@@ -12,7 +12,6 @@ matrix:
       env: LARAVEL_VERSION=5.5.*
 
 install:
-  - composer require "laravel/framework:${LARAVEL_VERSION}" --no-update -n
   - travis_retry composer install --no-suggest --prefer-dist -n -o
 
 script:
