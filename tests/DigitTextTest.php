@@ -42,7 +42,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     public function testRu()
     {
-        $result = array(
+        $result = [
             $this->object->get(0, 'ru') => 'ноль',
             $this->object->get(64.23, 'ru', true) => 'шестьдесят четыре руб 23 коп',
             $this->object->get(764, 'ru') => 'семьсот шестьдесят четыре',
@@ -66,7 +66,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
             $this->object->get(10010, 'ru') => 'десять тысяч десять',
             $this->object->get(10110, 'ru') => 'десять тысяч сто десять',
             $this->object->get(510110, 'ru') => 'пятьсот десять тысяч сто десять',
-        );
+        ];
 
         $this->runTestDigits($result);
     }
@@ -76,7 +76,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     public function testEn()
     {
-        $result = array(
+        $result = [
             $this->object->get() => 'zero',
             $this->object->get(64.23, 'en', true) => 'sixty four dollars 23 cents',
             $this->object->get(764) => 'seven hundred sixty four',
@@ -101,7 +101,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
             $this->object->get(10010) => 'ten thousands ten',
             $this->object->get(10110) => 'ten thousands one hundred ten',
             $this->object->get(510110) => 'five hundred ten thousands one hundred ten',
-        );
+        ];
 
         $this->runTestDigits($result);
     }
@@ -111,7 +111,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     public function testUk()
     {
-        $result = array(
+        $result = [
             $this->object->get(0, 'uk') => 'нуль',
             $this->object->get(64.23, 'uk', true) => 'шістдесят чотири грн 23 коп',
             $this->object->get(764, 'uk') => 'сімсот шістдесят чотири',
@@ -135,7 +135,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
             $this->object->get(10010, 'uk') => 'десять тисяч десять',
             $this->object->get(10110, 'uk') => 'десять тисяч сто десять',
             $this->object->get(510110, 'uk') => 'п\'ятсот десять тисяч сто десять',
-        );
+        ];
 
         $this->runTestDigits($result);
     }
@@ -145,7 +145,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      */
     public function testDe()
     {
-        $result = array(
+        $result = [
             $this->object->get(null, 'de') => 'null',
             $this->object->get(64.23, 'de', true) => 'vierundsechzig Mark 23 Cent',
             $this->object->get(764, 'de') => 'siebenhundertsechsundsechzig',
@@ -170,7 +170,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
             $this->object->get(10010, 'de') => 'zehntausendzehn',
             $this->object->get(10110, 'de') => 'zehntausendhundertzehn',
             $this->object->get(510110, 'de') => 'fünfhundertzehntausendhundertzehn',
-        );
+        ];
 
         $this->runTestDigits($result);
     }
@@ -180,7 +180,7 @@ class DigitTextTest extends PHPUnit_Framework_TestCase
      *
      * @param array $items
      */
-    public function runTestDigits($items = array())
+    public function runTestDigits($items = [])
     {
         foreach ($items as $key => $result) {
             $this->assertEquals($result, $key);

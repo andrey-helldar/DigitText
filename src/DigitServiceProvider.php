@@ -70,6 +70,6 @@ class DigitServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('digittext', Facade::class);
+        return ['digittext', Facade::class];
     }
 }
