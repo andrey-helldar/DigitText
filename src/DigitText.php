@@ -96,13 +96,13 @@ class DigitText
      *
      * TODO: Incorrect translation into German.
      *
-     * @param float  $digit
-     * @param string $lang
-     * @param bool   $is_currency
+     * @param float|string $digit
+     * @param string       $lang
+     * @param bool         $is_currency
      *
      * @return null|string
      */
-    public function get(float $digit = 0.0, string $lang = 'en', bool $is_currency = false)
+    public function get($digit = 0.0, string $lang = 'en', bool $is_currency = false)
     {
         $this->setLang($lang);
         $this->setCurrency($is_currency);
@@ -136,7 +136,11 @@ class DigitText
         }
 
         $divider = (Str::lower($this->lang) === 'de' ? 'und' : ' ');
-        $result  = implode($divider, $result);
+        if (Str::lower($this->lang) === 'de') {
+            $result = array_reverse($result);
+        }
+
+        $result = implode($divider, $result);
 
         return ($this->is_currency ? $this->getCurrency($result) : trim($result));
     }
@@ -205,11 +209,7 @@ class DigitText
 
         $pos = strripos((string)$this->digit, '.');
 
-        if ($pos === false) {
-            $this->surplus = 0;
-        } else {
-            mb_substr((string)$this->digit, $pos + 1);
-        }
+        $this->surplus = ($pos === false ? 0 : mb_substr((string)$this->digit, $pos + 1));
     }
 
     /**
@@ -219,7 +219,7 @@ class DigitText
      *
      * @return string
      */
-    private function digitReverse(string $digit = '0')
+    private function digitReverse($digit = '0')
     {
         return strrev((string)$digit);
     }
@@ -232,7 +232,7 @@ class DigitText
      *
      * @return string
      */
-    private function digits(float $digit = 0.0, int $id = 0)
+    private function digits($digit = 0.0, $id = 0)
     {
         if ($digit == 0) {
             return $this->texts['zero'];
@@ -267,7 +267,7 @@ class DigitText
      *
      * @return string
      */
-    private function decline(int $group = 0, float $digit = 0.0)
+    private function decline($group = 0, $digit = 0.0)
     {
         $text    = (string)((int)$digit);
         $text    = (int)$text[strlen($digit) - 1];

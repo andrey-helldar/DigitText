@@ -29,7 +29,9 @@
         "illuminate/pipeline": "5.5.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "~6.0"
+        "phpunit/phpunit": "~6.0",
+        "graham-campbell/testbench": "^4.0",
+        "mockery/mockery": "dev-master#c90a17247147543081e4d00f46911e422b49e583"
     },
     "autoload": {
         "psr-4": {
@@ -41,17 +43,18 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Helldar\\DigitText\\Tests\\": "tests/"
         }
     },
-    "scripts": {
-        "test": "./vendor/bin/phpunit; ./vendor/bin/php-cs-fixer fix -v --diff --dry-run;",
-        "phpunit": "./vendor/bin/phpunit;",
-        "phpcs": "./vendor/bin/php-cs-fixer fix -v --diff --dry-run;"
+    "config": {
+        "preferred-install": "dist"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "extra": {
+        "branch-alias": {
+            "dev-master": "5.0-dev"
+        },
         "laravel": {
             "providers": [
                 "Helldar\\DigitText\\ServiceProvider"
