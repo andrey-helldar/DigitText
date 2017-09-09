@@ -49,7 +49,7 @@ and add facade in `config/app.php`:
 'DigitText' => Helldar\DigitText\Facade::class,
 ```
 
-Now, use `DigitText` Facade or `digit_text()` helper.
+Now, use `DigitText` Facade.
 
 For those who use Laravel 5.2, see the branch [Laravel 5.2](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.2)
 
@@ -58,21 +58,18 @@ For those who use Laravel 5.2, see the branch [Laravel 5.2](https://github.com/a
 To transfer the design using the form:
 
     DigitText::get($number = 0, $lang = 'en', $is_currency = false);
-    
-    //or use helper:    
-    digit_text()->get($number = 0, $lang = 'en', $is_currency = false);
 
 Example:
 
-    digit_text()->get(null);
-    digit_text()->get(64.23);
-    digit_text()->get(2866);
-    digit_text()->get(2866, 'ru');
+    DigitText::get(null);
+    DigitText::get(64.23);
+    DigitText::get(2866);
+    DigitText::get(2866, 'ru');
 
-    digit_text()->get(0, 'en', true);
-    digit_text()->get(64.23, 'en', true);
-    digit_text()->get(2866, 'en', true);
-    digit_text()->get(2866, 'ru', true);
+    DigitText::get(0, 'en', true);
+    DigitText::get(64.23, 'en', true);
+    DigitText::get(2866, 'en', true);
+    DigitText::get(2866, 'ru', true);
 
     // Result:
     zero

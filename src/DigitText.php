@@ -90,6 +90,20 @@ class DigitText
     }
 
     /**
+     * Showing a fractional number in a text equivalent from a static method.
+     *
+     * @param float  $digit
+     * @param string $lang
+     * @param bool   $is_currency
+     *
+     * @return mixed|string|void
+     */
+    public static function get($digit = 0.0, $lang = 'en', $is_currency = false)
+    {
+        return (new self())->text($digit, $lang, $is_currency);
+    }
+
+    /**
      * Showing a fractional number in a text equivalent.
      *
      * TODO: Incorrect translation into German.
@@ -100,7 +114,7 @@ class DigitText
      *
      * @return mixed|string|void
      */
-    public function get($digit = 0.0, $lang = 'en', $is_currency = false)
+    public function text($digit = 0.0, $lang = 'en', $is_currency = false)
     {
         $this->lang($lang);
         $this->currency($is_currency);

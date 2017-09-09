@@ -24,7 +24,11 @@
  */
 
 /**
- * @return \Helldar\DigitText\DigitText
+ * A Helper for showing a fractional number in a text equivalent from a static method.
+ *
+ * @deprecated
+ *
+ * @return mixed|string|void
  */
 function digit_text()
 {

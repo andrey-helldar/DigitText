@@ -37,7 +37,7 @@ class Facade
      *
      * @return string
      */
-    public static function digit($digit = null)
+    public static function get($digit = null)
     {
         return (new DigitText())->get($digit);
     }
