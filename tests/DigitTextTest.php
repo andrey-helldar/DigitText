@@ -152,7 +152,7 @@ class DigitTextTest extends \GrahamCampbell\TestBench\AbstractTestCase
     {
         $result = [
             $this->obj->get(null, 'de') => 'null',
-            $this->obj->get(64.23, 'de', true) => 'vierundsechzig Mark 23 Cent',
+            $this->obj->get(64.23, 'de', true) => 'vierundsechzig Mark 23 сent',
             $this->obj->get(764, 'de') => 'siebenhundertsechsundsechzig',
             $this->obj->get(2866, 'de') => 'zweitausendachthundertsechsundsechzig',
             $this->obj->get(7700, 'de') => 'siebentausendsiebenhundert',
