@@ -64,7 +64,7 @@ class DigitText
     private $is_currency = false;
 
     /**
-     * @var double
+     * @var float
      */
     private $digit = null;
 
@@ -75,7 +75,7 @@ class DigitText
      */
     private function setLang(string $lang = 'en')
     {
-        $filename   = sprintf('%s/lang/%s.php', __DIR__, trim($lang));
+        $filename = sprintf('%s/lang/%s.php', __DIR__, trim($lang));
         $this->lang = (file_exists($filename) ? trim($lang) : $this->lang_fallback);
     }
 
@@ -86,7 +86,7 @@ class DigitText
      */
     private function setCurrency(bool $is_currency = false)
     {
-        $this->is_currency = (bool)$is_currency;
+        $this->is_currency = (bool) $is_currency;
     }
 
     /**
@@ -94,9 +94,9 @@ class DigitText
      *
      * TODO: Incorrect translation into German when specifying a fractional number.
      *
-     * @param double|string $digit
-     * @param string        $lang
-     * @param bool          $is_currency
+     * @param float|string $digit
+     * @param string       $lang
+     * @param bool         $is_currency
      *
      * @return null|string
      */
@@ -124,7 +124,7 @@ class DigitText
      */
     private function getResult()
     {
-        $result  = $this->getFractional();
+        $result = $this->getFractional();
         $divider = ($this->lang == 'de' ? 'und' : ' ');
 
         if ($this->lang === 'de') {
@@ -145,11 +145,11 @@ class DigitText
     {
         $this->fraction();
 
-        $groups = str_split($this->digitReverse((int)$this->digit), 3);
+        $groups = str_split($this->digitReverse((int) $this->digit), 3);
         $result = [];
 
         for ($i = sizeof($groups) - 1; $i >= 0; $i--) {
-            if ((int)$groups[$i] > 0) {
+            if ((int) $groups[$i] > 0) {
                 array_push($result, $this->digits($groups[$i], $i));
             }
         }
@@ -170,16 +170,16 @@ class DigitText
             return;
         }
 
-        $digit = str_replace([',', '-', ' ', "'", '`'], '', (string)$digit);
+        $digit = str_replace([',', '-', ' ', "'", '`'], '', (string) $digit);
 
-        if (strripos((string)$digit, '.') === false) {
-            $this->digit = (double)$digit;
+        if (strripos((string) $digit, '.') === false) {
+            $this->digit = (double) $digit;
 
             return;
         }
 
-        $digit       = explode('.', $digit);
-        $this->digit = (double)sprintf('%s.%s', intval($digit[0]), intval($digit[1]));
+        $digit = explode('.', $digit);
+        $this->digit = (double) sprintf('%s.%s', intval($digit[0]), intval($digit[1]));
     }
 
     /**
@@ -201,8 +201,8 @@ class DigitText
      */
     private function loadTexts()
     {
-        $filename    = sprintf('%s/lang/%s.php', __DIR__, $this->lang);
-        $lang        = file_exists($filename) ? $this->lang : $this->lang_fallback;
+        $filename = sprintf('%s/lang/%s.php', __DIR__, $this->lang);
+        $lang = file_exists($filename) ? $this->lang : $this->lang_fallback;
         $this->texts = (require sprintf('%s/lang/%s.php', __DIR__, $lang));
     }
 
@@ -219,9 +219,9 @@ class DigitText
             return;
         }
 
-        $pos = strripos((string)$this->digit, '.');
+        $pos = strripos((string) $this->digit, '.');
 
-        $this->surplus = ($pos === false ? 0 : mb_substr((string)$this->digit, $pos + 1));
+        $this->surplus = ($pos === false ? 0 : mb_substr((string) $this->digit, $pos + 1));
     }
 
     /**
@@ -233,14 +233,14 @@ class DigitText
      */
     private function digitReverse($digit = '0')
     {
-        return strrev((string)$digit);
+        return strrev((string) $digit);
     }
 
     /**
      * The conversion of numbers in text.
      *
-     * @param double $digit
-     * @param int    $id
+     * @param float $digit
+     * @param int   $id
      *
      * @return string
      */
@@ -256,64 +256,64 @@ class DigitText
     /**
      * The compact digits to text.
      *
-     * @param double $digit
-     * @param int    $id
+     * @param float $digit
+     * @param int   $id
      *
      * @return string
      */
     private function compactDigits($digit = 0.0, $id = 0)
     {
-        $array  = str_split((string)$digit, 1);
+        $array = str_split((string) $digit, 1);
         $result = [];
 
         for ($i = sizeof($array) - 1; $i >= 0; $i--) {
             if ($i === 1 && $array[$i] == '1') {
-                $d = ($array[$i] . $array[$i - 1]);
-                array_push($result, trim($this->texts[$id == 1 ? 3 : 0][(int)$d]));
+                $d = ($array[$i].$array[$i - 1]);
+                array_push($result, trim($this->texts[$id == 1 ? 3 : 0][(int) $d]));
                 $i--;
-            } elseif ((int)$array[$i] > 0) {
+            } elseif ((int) $array[$i] > 0) {
                 array_push($result, $this->texts[$id == 1 ? $i + 3 : $i][$array[$i]]);
             }
         }
 
-        $reversed = (int)$this->digitReverse($digit);
-        $divider  = ($this->lang == 'de' ? 'und' : ' ');
-        $result   = implode($divider, $result);
+        $reversed = (int) $this->digitReverse($digit);
+        $divider = ($this->lang == 'de' ? 'und' : ' ');
+        $result = implode($divider, $result);
 
-        return trim(trim($result) . $this->decline($id, $reversed));
+        return trim(trim($result).$this->decline($id, $reversed));
     }
 
     /**
      * Declination of discharges.
      *
-     * @param int    $group
-     * @param double $digit
+     * @param int   $group
+     * @param float $digit
      *
      * @return string
      */
     private function decline($group = 0, $digit = 0.0)
     {
-        $text    = (string)((int)$digit);
-        $text    = (int)$text[strlen($digit) - 1];
-        $result  = '';
+        $text = (string) ((int) $digit);
+        $text = (int) $text[strlen($digit) - 1];
+        $result = '';
         $divider = ($this->lang == 'de' ? '' : ' ');
 
         switch ($group) {
             case 1:
-                $result = ($divider . $this->texts['thousands'][0]);
+                $result = ($divider.$this->texts['thousands'][0]);
                 if ($text == 1) {
-                    $result = ($divider . $this->texts['thousands'][1]);
+                    $result = ($divider.$this->texts['thousands'][1]);
                 } elseif ($text >= 2 && $text <= 4) {
-                    $result = ($divider . $this->texts['thousands'][2]);
+                    $result = ($divider.$this->texts['thousands'][2]);
                 }
                 break;
 
             case 2:
-                $result = ($divider . $this->texts['millions'][0]);
+                $result = ($divider.$this->texts['millions'][0]);
                 if ($text >= 2 && $text <= 4) {
-                    $result = ($divider . $this->texts['millions'][1]);
+                    $result = ($divider.$this->texts['millions'][1]);
                 } elseif (($text >= 5 && $text <= 9) || $text == 0) {
-                    $result = ($divider . $this->texts['millions'][2]);
+                    $result = ($divider.$this->texts['millions'][2]);
                 }
                 break;
 
@@ -344,7 +344,7 @@ class DigitText
             ]);
 
             if ($this->surplus > 0) {
-                $result .= ('.' . $this->surplus);
+                $result .= ('.'.$this->surplus);
             }
         } else {
             $result = implode(' ', [
