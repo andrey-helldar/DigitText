@@ -26,19 +26,30 @@
 namespace Helldar\DigitText;
 
 /**
- * Class Facade
+ * Class ServiceProvider
  */
-class Facade
+class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
-     * Facade for DigitText.
+     * Indicates if loading of the provider is deferred.
      *
-     * @param null $digit
-     *
-     * @return string
+     * @var bool
      */
-    public static function get($digit = null)
+    protected $defer = false;
+
+    /**
+     * Register the service provider.
+     */
+    public function register()
     {
-        return (new DigitText())->get($digit);
+        //
+    }
+
+    /**
+     * Bootstrap the application events.
+     */
+    public function boot()
+    {
+        //
     }
 }

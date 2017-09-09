@@ -1,8 +1,8 @@
-## Digit to Text for Laravel 5.3+
+## DigitText for Laravel 5.5+
 
 The module allows to translate numbers into a text equivalent. This is important in the billing.
 
-![Digit to Text for Laravel 5.3+](https://cloud.githubusercontent.com/assets/10347617/21897789/f51aed2c-d92d-11e6-9f86-de24d148c0ca.jpg)
+![Digit to Text for Laravel 5.5+](https://cloud.githubusercontent.com/assets/10347617/21897789/f51aed2c-d92d-11e6-9f86-de24d148c0ca.jpg)
 
 <p align="center">
 <a href="https://travis-ci.org/andrey-helldar/DigitText"><img src="https://travis-ci.org/andrey-helldar/DigitText.svg?branch=master&style=flat-square" alt="Build Status" /></a>
@@ -20,6 +20,7 @@ The module allows to translate numbers into a text equivalent. This is important
 <a href="https://php-eye.com/package/andrey-helldar/DigitText"><img src="https://php-eye.com/badge/andrey-helldar/DigitText/tested.svg?style=flat" alt="PHP-Eye" /></a>
 </p>
 
+### For those who use Laravel 5.2 / 5.3 / 5.4, see the branches [Laravel 5.2](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.2), [Laravel 5.3](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.3) and [Laravel 5.4](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.4).
 
 ## Installation
 
@@ -34,42 +35,36 @@ Instead, you may of course manually update your require block and run `composer 
 ```json
 {
     "require": {
-        "andrey-helldar/digittext": "^4.0"
+        "andrey-helldar/digittext": "^5.0"
     }
 }
 ```
 
-Once DigitText is installed, you need to register the service provider. Open up `config/app.php` and add the following to the `providers` key.
+If you don't use auto-discovery, add the ServiceProvider to the providers array in `config/app.php`:
 
-* `Helldar\DigitText\DigitServiceProvider::class,`
+    `Helldar\DigitText\ServiceProvider::class,`
 
-and add facade in `config/app.php`:
+Now, use `DigitText` Facade or `digit_text` helper.
 
-```php
-'DigitText' => Helldar\DigitText\Facade::class,
-```
-
-Now, use `DigitText` Facade.
-
-For those who use Laravel 5.2, see the branch [Laravel 5.2](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.2)
 
 ## Documentation
 
 To transfer the design using the form:
 
-    DigitText::get($number = 0, $lang = 'en', $is_currency = false);
+    (new DigitText)->get($number = 0, $lang = 'en', $is_currency = false);
+    digit_text($number = 0, $lang = 'en', $is_currency = false);
 
 Example:
 
-    DigitText::get(null);
-    DigitText::get(64.23);
-    DigitText::get(2866);
-    DigitText::get(2866, 'ru');
+    digit_text(null);
+    digit_text(64.23);
+    digit_text(2866);
+    digit_text(2866, 'ru');
 
-    DigitText::get(0, 'en', true);
-    DigitText::get(64.23, 'en', true);
-    DigitText::get(2866, 'en', true);
-    DigitText::get(2866, 'ru', true);
+    digit_text(0, 'en', true);
+    digit_text(64.23, 'en', true);
+    digit_text(2866, 'en', true);
+    digit_text(2866, 'ru', true);
 
     // Result:
     zero
@@ -96,7 +91,7 @@ You can donate via [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&
 
 ## Copyright and License
 
-DigitText was written by Andrey Helldar for the Laravel framework 5.3 or later, and is released under the MIT License. See the LICENSE file for details.
+DigitText was written by Andrey Helldar for the Laravel framework 5.5 or later, and is released under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Translation
 
