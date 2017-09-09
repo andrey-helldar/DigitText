@@ -15,7 +15,7 @@ The module allows to translate numbers into a text equivalent. This is important
 
 <p align="center">
 <a href="https://github.com/andrey-helldar/DigitText"><img src="https://img.shields.io/scrutinizer/g/andrey-helldar/DigitText.svg?style=flat-square" alt="Quality Score" /></a>
-<a href="https://www.versioneye.com/php/andrey-helldar:DigitText/dev-master"><img src="https://www.versioneye.com/php/andrey-helldar:DigitText/dev-master/badge?style=flat-square" alt="Dependency Status" /></a>
+<a href='https://www.versioneye.com/user/projects/583c2f0a37b2d80048bca483'><img src='https://www.versioneye.com/user/projects/583c2f0a37b2d80048bca483/badge.svg?style=flat-square' alt="Dependency Status" /></a>
 <a href="https://styleci.io/repos/45746985"><img src="https://styleci.io/repos/45746985/shield" alt="StyleCI" /></a>
 <a href="https://php-eye.com/package/andrey-helldar/DigitText"><img src="https://php-eye.com/badge/andrey-helldar/DigitText/tested.svg?style=flat" alt="PHP-Eye" /></a>
 </p>
