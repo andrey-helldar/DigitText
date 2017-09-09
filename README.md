@@ -49,22 +49,25 @@ Now, use `DigitText` Facade or `digit_text` helper.
 
 ## Documentation
 
-To transfer the design using the form:
+You can use a helper
+
+    digit_text($number = 0, $lang = 'en', $is_currency = false);
+
+or go directly to a class "Helldar\DigitText\DigitText":
 
     (new DigitText)->get($number = 0, $lang = 'en', $is_currency = false);
-    digit_text($number = 0, $lang = 'en', $is_currency = false);
 
 Example:
 
-    digit_text(null);
-    digit_text(64.23);
-    digit_text(2866);
-    digit_text(2866, 'ru');
+    echo digit_text(null);
+    echo digit_text(64.23);
+    echo digit_text(2866);
+    echo digit_text(2866, 'ru');
 
-    digit_text(0, 'en', true);
-    digit_text(64.23, 'en', true);
-    digit_text(2866, 'en', true);
-    digit_text(2866, 'ru', true);
+    echo digit_text(0, 'en', true);
+    echo digit_text(64.23, 'en', true);
+    echo digit_text(2866, 'en', true);
+    echo digit_text(2866, 'ru', true);
 
     // Result:
     zero
