@@ -64,7 +64,7 @@ class DigitText
     private $is_currency = false;
 
     /**
-     * @var float
+     * @var double
      */
     private $digit = null;
 
@@ -94,9 +94,9 @@ class DigitText
      *
      * TODO: Incorrect translation into German when specifying a fractional number.
      *
-     * @param float|string $digit
-     * @param string       $lang
-     * @param bool         $is_currency
+     * @param double|string $digit
+     * @param string        $lang
+     * @param bool          $is_currency
      *
      * @return null|string
      */
@@ -239,8 +239,8 @@ class DigitText
     /**
      * The conversion of numbers in text.
      *
-     * @param float $digit
-     * @param int   $id
+     * @param double $digit
+     * @param int    $id
      *
      * @return string
      */
@@ -256,8 +256,8 @@ class DigitText
     /**
      * The compact digits to text.
      *
-     * @param float $digit
-     * @param int   $id
+     * @param double $digit
+     * @param int    $id
      *
      * @return string
      */
@@ -286,8 +286,8 @@ class DigitText
     /**
      * Declination of discharges.
      *
-     * @param int   $group
-     * @param float $digit
+     * @param int    $group
+     * @param double $digit
      *
      * @return string
      */
