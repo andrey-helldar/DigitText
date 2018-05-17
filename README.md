@@ -2,22 +2,14 @@
 
 The module allows to translate numbers into a text equivalent. This is important in the billing.
 
-![Digit to Text for Laravel 5.5+](https://cloud.githubusercontent.com/assets/10347617/21897789/f51aed2c-d92d-11e6-9f86-de24d148c0ca.jpg)
+![digittext](https://user-images.githubusercontent.com/10347617/40196235-9c3e4358-5a18-11e8-87eb-adfa183c6041.png)
 
 <p align="center">
-<a href="https://travis-ci.org/andrey-helldar/DigitText"><img src="https://travis-ci.org/andrey-helldar/DigitText.svg?branch=master&style=flat-square" alt="Build Status" /></a>
-<a href="https://packagist.org/packages/andrey-helldar/DigitText"><img src="https://img.shields.io/packagist/dt/andrey-helldar/DigitText.svg?style=flat-square" alt="Total Downloads" /></a>
-<a href="https://packagist.org/packages/andrey-helldar/DigitText"><img src="https://poser.pugx.org/andrey-helldar/DigitText/v/stable?format=flat-square" alt="Latest Stable Version" /></a>
-<a href="https://packagist.org/packages/andrey-helldar/DigitText"><img src="https://poser.pugx.org/andrey-helldar/DigitText/v/unstable?format=flat-square" alt="Latest Unstable Version" /></a>
-<a href="https://github.com/andrey-helldar/DigitText"><img src="https://poser.pugx.org/andrey-helldar/DigitText/license?format=flat-square" alt="License" /></a>
-</p>
-
-
-<p align="center">
-<a href="https://github.com/andrey-helldar/DigitText"><img src="https://img.shields.io/scrutinizer/g/andrey-helldar/DigitText.svg?style=flat-square" alt="Quality Score" /></a>
-<a href='https://www.versioneye.com/user/projects/583c2f0a37b2d80048bca483'><img src='https://www.versioneye.com/user/projects/583c2f0a37b2d80048bca483/badge.svg?style=flat-square' alt="Dependency Status" /></a>
-<a href="https://styleci.io/repos/45746985"><img src="https://styleci.io/repos/45746985/shield" alt="StyleCI" /></a>
-<a href="https://php-eye.com/package/andrey-helldar/DigitText"><img src="https://php-eye.com/badge/andrey-helldar/DigitText/tested.svg?style=flat" alt="PHP-Eye" /></a>
+    <a href="https://styleci.io/repos/45746985"><img src="https://styleci.io/repos/45746985/shield" alt="StyleCI" /></a>
+    <a href="https://packagist.org/packages/andrey-helldar/DigitText"><img src="https://img.shields.io/packagist/dt/andrey-helldar/DigitText.svg?style=flat-square" alt="Total Downloads" /></a>
+    <a href="https://packagist.org/packages/andrey-helldar/DigitText"><img src="https://poser.pugx.org/andrey-helldar/DigitText/v/stable?format=flat-square" alt="Latest Stable Version" /></a>
+    <a href="https://packagist.org/packages/andrey-helldar/DigitText"><img src="https://poser.pugx.org/andrey-helldar/DigitText/v/unstable?format=flat-square" alt="Latest Unstable Version" /></a>
+    <a href="https://github.com/andrey-helldar/DigitText"><img src="https://poser.pugx.org/andrey-helldar/DigitText/license?format=flat-square" alt="License" /></a>
 </p>
 
 ### For those who use Laravel 5.2 / 5.3 / 5.4, see the branches [Laravel 5.2](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.2), [Laravel 5.3](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.3) and [Laravel 5.4](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.4).
