@@ -2,14 +2,14 @@
 
 The module allows to translate numbers into a text equivalent. This is important in the billing.
 
-![digittext](https://user-images.githubusercontent.com/10347617/40196235-9c3e4358-5a18-11e8-87eb-adfa183c6041.png)
+![digittext](https://user-images.githubusercontent.com/10347617/40197725-f2138bfe-5a1c-11e8-99be-8a42715516c9.png)
 
 <p align="center">
     <a href="https://styleci.io/repos/45746985"><img src="https://styleci.io/repos/45746985/shield" alt="StyleCI" /></a>
     <a href="https://packagist.org/packages/andrey-helldar/DigitText"><img src="https://img.shields.io/packagist/dt/andrey-helldar/DigitText.svg?style=flat-square" alt="Total Downloads" /></a>
     <a href="https://packagist.org/packages/andrey-helldar/DigitText"><img src="https://poser.pugx.org/andrey-helldar/DigitText/v/stable?format=flat-square" alt="Latest Stable Version" /></a>
     <a href="https://packagist.org/packages/andrey-helldar/DigitText"><img src="https://poser.pugx.org/andrey-helldar/DigitText/v/unstable?format=flat-square" alt="Latest Unstable Version" /></a>
-    <a href="https://github.com/andrey-helldar/DigitText"><img src="https://poser.pugx.org/andrey-helldar/DigitText/license?format=flat-square" alt="License" /></a>
+    <a href="LICENSE"><img src="https://poser.pugx.org/andrey-helldar/DigitText/license?format=flat-square" alt="License" /></a>
 </p>
 
 ### For those who use Laravel 5.2 / 5.3 / 5.4, see the branches [Laravel 5.2](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.2), [Laravel 5.3](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.3) and [Laravel 5.4](https://github.com/andrey-helldar/DigitText/tree/Laravel_5.4).
