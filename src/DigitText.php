@@ -75,7 +75,7 @@ class DigitText
      */
     private function setLang(string $lang = 'en')
     {
-        $filename = sprintf('%s/lang/%s.php', __DIR__, trim($lang));
+        $filename   = sprintf('%s/lang/%s.php', __DIR__, trim($lang));
         $this->lang = (file_exists($filename) ? trim($lang) : $this->lang_fallback);
     }
 
@@ -124,7 +124,7 @@ class DigitText
      */
     private function getResult()
     {
-        $result = $this->getFractional();
+        $result  = $this->getFractional();
         $divider = ($this->lang == 'de' ? 'und' : ' ');
 
         if ($this->lang === 'de') {
@@ -178,7 +178,7 @@ class DigitText
             return;
         }
 
-        $digit = explode('.', $digit);
+        $digit       = explode('.', $digit);
         $this->digit = (double) sprintf('%s.%s', intval($digit[0]), intval($digit[1]));
     }
 
@@ -201,8 +201,8 @@ class DigitText
      */
     private function loadTexts()
     {
-        $filename = sprintf('%s/lang/%s.php', __DIR__, $this->lang);
-        $lang = file_exists($filename) ? $this->lang : $this->lang_fallback;
+        $filename    = sprintf('%s/lang/%s.php', __DIR__, $this->lang);
+        $lang        = file_exists($filename) ? $this->lang : $this->lang_fallback;
         $this->texts = (require sprintf('%s/lang/%s.php', __DIR__, $lang));
     }
 
@@ -263,12 +263,12 @@ class DigitText
      */
     private function compactDigits($digit = 0.0, $id = 0)
     {
-        $array = str_split((string) $digit, 1);
+        $array  = str_split((string) $digit, 1);
         $result = [];
 
         for ($i = sizeof($array) - 1; $i >= 0; $i--) {
             if ($i === 1 && $array[$i] == '1') {
-                $d = ($array[$i].$array[$i - 1]);
+                $d = ($array[$i] . $array[$i - 1]);
                 array_push($result, trim($this->texts[$id == 1 ? 3 : 0][(int) $d]));
                 $i--;
             } elseif ((int) $array[$i] > 0) {
@@ -277,10 +277,10 @@ class DigitText
         }
 
         $reversed = (int) $this->digitReverse($digit);
-        $divider = ($this->lang == 'de' ? 'und' : ' ');
-        $result = implode($divider, $result);
+        $divider  = ($this->lang == 'de' ? 'und' : ' ');
+        $result   = implode($divider, $result);
 
-        return trim(trim($result).$this->decline($id, $reversed));
+        return trim(trim($result) . $this->decline($id, $reversed));
     }
 
     /**
@@ -293,27 +293,27 @@ class DigitText
      */
     private function decline($group = 0, $digit = 0.0)
     {
-        $text = (string) ((int) $digit);
-        $text = (int) $text[strlen($digit) - 1];
-        $result = '';
+        $text    = (string) ((int) $digit);
+        $text    = (int) $text[strlen($digit) - 1];
+        $result  = '';
         $divider = ($this->lang == 'de' ? '' : ' ');
 
         switch ($group) {
             case 1:
-                $result = ($divider.$this->texts['thousands'][0]);
+                $result = ($divider . $this->texts['thousands'][0]);
                 if ($text == 1) {
-                    $result = ($divider.$this->texts['thousands'][1]);
+                    $result = ($divider . $this->texts['thousands'][1]);
                 } elseif ($text >= 2 && $text <= 4) {
-                    $result = ($divider.$this->texts['thousands'][2]);
+                    $result = ($divider . $this->texts['thousands'][2]);
                 }
                 break;
 
             case 2:
-                $result = ($divider.$this->texts['millions'][0]);
+                $result = ($divider . $this->texts['millions'][0]);
                 if ($text >= 2 && $text <= 4) {
-                    $result = ($divider.$this->texts['millions'][1]);
+                    $result = ($divider . $this->texts['millions'][1]);
                 } elseif (($text >= 5 && $text <= 9) || $text == 0) {
-                    $result = ($divider.$this->texts['millions'][2]);
+                    $result = ($divider . $this->texts['millions'][2]);
                 }
                 break;
 
@@ -344,7 +344,7 @@ class DigitText
             ]);
 
             if ($this->surplus > 0) {
-                $result .= ('.'.$this->surplus);
+                $result .= ('.' . $this->surplus);
             }
         } else {
             $result = implode(' ', [
