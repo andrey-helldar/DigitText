@@ -82,8 +82,8 @@ class DigitText
      */
     private function setLang(string $lang = 'en')
     {
-        $filename   = sprintf('%s/lang/%s.php', __DIR__, trim($lang));
-        $this->lang = file_exists($filename) ? trim($lang) : $this->lang_fallback;
+        $filename   = sprintf('%s/lang/%s.php', __DIR__, $lang);
+        $this->lang = file_exists($filename) ? $lang : $this->lang_fallback;
     }
 
     /**
@@ -93,7 +93,7 @@ class DigitText
      */
     private function setCurrency(bool $is_currency = false)
     {
-        $this->is_currency = (bool) $is_currency;
+        $this->is_currency = $is_currency;
     }
 
     /**
@@ -102,7 +102,7 @@ class DigitText
     private function getResult()
     {
         $result  = $this->getFractional();
-        $divider = ($this->lang == 'de' ? 'und' : ' ');
+        $divider = $this->lang === 'de' ? 'und' : ' ';
 
         if ($this->lang === 'de') {
             $result = array_reverse($result);
@@ -141,7 +141,7 @@ class DigitText
      */
     private function fixDigit($digit = null)
     {
-        if (empty($digit)) {
+        if (!$digit) {
             $this->digit = 0;
 
             return;
@@ -167,7 +167,8 @@ class DigitText
     private function intl()
     {
         if ($this->is_currency && extension_loaded('php_intl')) {
-            return (new \MessageFormatter($this->lang, '{n, spellout}'))->format(['n' => $this->digit]);
+            return (new \MessageFormatter($this->lang, '{n, spellout}'))
+                ->format(['n' => $this->digit]);
         }
 
         return null;
@@ -179,8 +180,7 @@ class DigitText
     private function loadTexts()
     {
         $filename    = sprintf('%s/lang/%s.php', __DIR__, $this->lang);
-        $lang        = file_exists($filename) ? $this->lang : $this->lang_fallback;
-        $this->texts = (require sprintf('%s/lang/%s.php', __DIR__, $lang));
+        $this->texts = require $filename;
     }
 
     /**
@@ -190,7 +190,7 @@ class DigitText
      */
     private function fraction()
     {
-        if (empty($this->digit)) {
+        if (!$this->digit) {
             $this->surplus = 0;
 
             return;
@@ -254,7 +254,7 @@ class DigitText
         }
 
         $reversed = (int) $this->digitReverse($digit);
-        $divider  = ($this->lang == 'de' ? 'und' : ' ');
+        $divider  = ($this->lang === 'de' ? 'und' : ' ');
         $result   = implode($divider, $result);
 
         return trim(trim($result) . $this->decline($id, $reversed));
