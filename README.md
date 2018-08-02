@@ -83,9 +83,4 @@ Example:
 
 ## Copyright and License
 
-DigitText was written by Andrey Helldar for the Laravel framework 5.5 or later, and is released under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-
-## Translation
-
-Translations of text and comment by Google Translate. Help with translation +1 in karma :)
+DigitText was written for the Laravel framework 5.5 or later, and is released under the MIT License. See the [LICENSE](LICENSE) file for details.
