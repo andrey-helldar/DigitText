@@ -52,7 +52,7 @@ or go directly to a class "Helldar\DigitText\DigitText":
 
 ```php
 (new DigitText)
-    ->get($number = 0, $lang = 'en', $is_currency = false);
+    ->get($number = 0, string $lang = 'en', bool $is_currency = false);
 ```
 
 Example:
