@@ -17,7 +17,7 @@
     </filter>
 
     <testsuites>
-        <testsuite name="DigitText Test Suite">
+        <testsuite name="DigitTest Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
