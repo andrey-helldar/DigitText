@@ -1,5 +1,7 @@
 <?php
 
+use Helldar\DigitText\DigitText;
+
 if (!function_exists('digit_text')) {
     /**
      * A Helper for showing a fractional number in a text equivalent from a static method.
@@ -10,9 +12,9 @@ if (!function_exists('digit_text')) {
      *
      * @return string
      */
-    function digit_text($digit = 0.0, $lang = 'en', $is_currency = false)
+    function digit_text($digit = 0.0, string $lang = 'en', bool $is_currency = false)
     {
-        return (new \Helldar\DigitText\DigitText())
+        return (new DigitText)
             ->get($digit, $lang, $is_currency);
     }
 }
