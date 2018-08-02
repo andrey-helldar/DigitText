@@ -46,34 +46,13 @@ class DigitText
     private $digit = null;
 
     /**
-     * Set lang.
-     *
-     * @param string $lang
-     */
-    private function setLang(string $lang = 'en')
-    {
-        $filename   = sprintf('%s/lang/%s.php', __DIR__, trim($lang));
-        $this->lang = (file_exists($filename) ? trim($lang) : $this->lang_fallback);
-    }
-
-    /**
-     * Set currency.
-     *
-     * @param bool $is_currency
-     */
-    private function setCurrency(bool $is_currency = false)
-    {
-        $this->is_currency = (bool) $is_currency;
-    }
-
-    /**
      * Showing a fractional number in a text equivalent.
      *
      * TODO: Incorrect translation into German when specifying a fractional number.
      *
      * @param float|string $digit
-     * @param string       $lang
-     * @param bool         $is_currency
+     * @param string $lang
+     * @param bool $is_currency
      *
      * @return null|string
      */
@@ -94,6 +73,27 @@ class DigitText
         }
 
         return $this->getResult();
+    }
+
+    /**
+     * Set lang.
+     *
+     * @param string $lang
+     */
+    private function setLang(string $lang = 'en')
+    {
+        $filename   = sprintf('%s/lang/%s.php', __DIR__, trim($lang));
+        $this->lang = file_exists($filename) ? trim($lang) : $this->lang_fallback;
+    }
+
+    /**
+     * Set currency.
+     *
+     * @param bool $is_currency
+     */
+    private function setCurrency(bool $is_currency = false)
+    {
+        $this->is_currency = (bool) $is_currency;
     }
 
     /**
@@ -217,7 +217,7 @@ class DigitText
      * The conversion of numbers in text.
      *
      * @param float $digit
-     * @param int   $id
+     * @param int $id
      *
      * @return string
      */
@@ -234,7 +234,7 @@ class DigitText
      * The compact digits to text.
      *
      * @param float $digit
-     * @param int   $id
+     * @param int $id
      *
      * @return string
      */
@@ -263,7 +263,7 @@ class DigitText
     /**
      * Declination of discharges.
      *
-     * @param int   $group
+     * @param int $group
      * @param float $digit
      *
      * @return string

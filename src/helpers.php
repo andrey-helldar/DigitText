@@ -4,9 +4,9 @@ if (!function_exists('digit_text')) {
     /**
      * A Helper for showing a fractional number in a text equivalent from a static method.
      *
-     * @param float  $digit
+     * @param float $digit
      * @param string $lang
-     * @param bool   $is_currency
+     * @param bool $is_currency
      *
      * @return string
      */
