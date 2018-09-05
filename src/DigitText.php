@@ -124,9 +124,9 @@ class DigitText
 
         $groups = str_split($this->digitReverse((int) $this->digit), 3);
         $result = [];
-        $count = count($groups);
+        $count  = count($groups);
         for ($i = $count - 1; $i >= 0; $i--) {
-            if ($i === $count - 1 || (int)$groups[$i] > 0) {
+            if ($i === $count - 1 || (int) $groups[$i] > 0) {
                 array_push($result, $this->digits($groups[$i], $i));
             }
         }
@@ -270,9 +270,9 @@ class DigitText
      */
     private function decline($group = 0, $digit = 0.0)
     {
-        $text = (string)((int)$digit);
-        $text = (int)$text[strlen($digit) - 1];
-        $result = '';
+        $text    = (string) ((int) $digit);
+        $text    = (int) $text[strlen($digit) - 1];
+        $result  = '';
         $divider = ($this->lang == 'de' ? '' : ' ');
 
         switch ($group) {
@@ -331,7 +331,7 @@ class DigitText
 
             $result .= implode(' ', [
                 '',
-                str_pad((string)$this->surplus, $this->texts['currency']['precision'], '0', STR_PAD_RIGHT),
+                str_pad((string) $this->surplus, $this->texts['currency']['precision'], '0', STR_PAD_RIGHT),
                 $this->texts['currency']['fraction'],
             ]);
         }
