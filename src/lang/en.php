@@ -100,6 +100,7 @@ return [
         'int'      => 'dollars',
         'fraction' => 'cents',
         'position' => 'after',
+        'precision'=> 2,
     ],
 
     'zero' => 'zero',
