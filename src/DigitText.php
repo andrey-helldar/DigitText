@@ -56,7 +56,7 @@ class DigitText
      *
      * @return null|string
      */
-    public function get($digit = 0.0, string $lang = 'en', bool $is_currency = false)
+    public function get($digit = 0.0, string $lang = 'en', bool $is_currency = false): ?string
     {
         $this->setLang($lang);
         $this->setCurrency($is_currency);
@@ -99,7 +99,7 @@ class DigitText
     /**
      * @return string
      */
-    private function getResult()
+    private function getResult(): string
     {
         $result  = $this->getFractional();
         $divider = $this->lang === 'de' ? 'und' : ' ';
@@ -118,7 +118,7 @@ class DigitText
      *
      * @return array
      */
-    private function getFractional()
+    private function getFractional(): array
     {
         $this->fraction();
 
@@ -164,7 +164,7 @@ class DigitText
      *
      * @return null|string
      */
-    private function intl()
+    private function intl(): ?string
     {
         if ($this->is_currency && extension_loaded('php_intl')) {
             return (new \MessageFormatter($this->lang, '{n, spellout}'))
@@ -208,7 +208,7 @@ class DigitText
      *
      * @return string
      */
-    private function digitReverse($digit = '0')
+    private function digitReverse($digit = '0'): string
     {
         return strrev((string) $digit);
     }
@@ -221,7 +221,7 @@ class DigitText
      *
      * @return string
      */
-    private function digits($digit = 0.0, $id = 0)
+    private function digits($digit = 0.0, $id = 0): string
     {
         if ($digit == 0) {
             return $this->texts['zero'];
@@ -238,7 +238,7 @@ class DigitText
      *
      * @return string
      */
-    private function compactDigits($digit = 0.0, $id = 0)
+    private function compactDigits($digit = 0.0, $id = 0): string
     {
         $array  = str_split((string) $digit, 1);
         $result = [];
@@ -268,7 +268,7 @@ class DigitText
      *
      * @return string
      */
-    private function decline($group = 0, $digit = 0.0)
+    private function decline($group = 0, $digit = 0.0): string
     {
         $text    = (string) ((int) $digit);
         $text    = (int) $text[strlen($digit) - 1];
@@ -308,9 +308,9 @@ class DigitText
      *
      * @return string
      */
-    private function getCurrency(string $content = null)
+    private function getCurrency(string $content = null): string
     {
-        if (empty($content)) {
+        if (!$content) {
             return '---';
         }
 
@@ -327,10 +327,6 @@ class DigitText
             $result = implode(' ', [
                 trim($content),
                 $this->texts['currency']['int'],
-            ]);
-
-            $result .= implode(' ', [
-                '',
                 str_pad((string) $this->surplus, $this->texts['currency']['precision'], '0', STR_PAD_RIGHT),
                 $this->texts['currency']['fraction'],
             ]);

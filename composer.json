@@ -21,7 +21,7 @@
         "source": "https://github.com/andrey-helldar/DigitText"
     },
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "ext-intl": "*",
         "illuminate/http": "^5.5",
         "illuminate/pipeline": "^5.5",

@@ -14,7 +14,7 @@ class DigitTextTest extends TestCase
 
     public function __construct()
     {
-        $this->service = (new DigitText());
+        $this->service = new DigitText;
 
         parent::__construct();
     }
