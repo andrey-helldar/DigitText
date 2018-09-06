@@ -97,10 +97,10 @@ return [
     ],
 
     'currency' => [
-        'int'      => 'грн',
-        'fraction' => 'коп',
-        'position' => 'after',
-        'precision'=> 2,
+        'int'       => 'грн',
+        'fraction'  => 'коп',
+        'position'  => 'after',
+        'precision' => 2,
     ],
 
     'zero' => 'нуль',
