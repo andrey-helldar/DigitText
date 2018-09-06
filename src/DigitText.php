@@ -82,7 +82,7 @@ class DigitText
      */
     private function setLang(string $lang = 'en')
     {
-        $filename   = sprintf('%s/lang/%s.php', __DIR__, $lang);
+        $filename   = $this->getLangFile($lang);
         $this->lang = file_exists($filename) ? $lang : $this->lang_fallback;
     }
 
@@ -179,8 +179,7 @@ class DigitText
      */
     private function loadTexts()
     {
-        $filename    = sprintf('%s/lang/%s.php', __DIR__, $this->lang);
-        $this->texts = require $filename;
+        $this->texts = require $this->getLangFile();
     }
 
     /**
@@ -333,5 +332,10 @@ class DigitText
         }
 
         return $result;
+    }
+
+    private function getLangFile(string $lang = null): string
+    {
+        return sprintf('%s/lang/%s.php', __DIR__, $lang ?: $this->lang);
     }
 }
