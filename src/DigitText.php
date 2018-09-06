@@ -35,6 +35,8 @@ class DigitText
      */
     private $surplus = 0;
 
+    private $precision = 2;
+
     /**
      * @var bool
      */
@@ -326,7 +328,7 @@ class DigitText
             $result = implode(' ', [
                 trim($content),
                 $this->texts['currency']['int'],
-                str_pad((string) $this->surplus, $this->texts['currency']['precision'], '0', STR_PAD_RIGHT),
+                str_pad((string) $this->surplus, $this->precision, '0', STR_PAD_RIGHT),
                 $this->texts['currency']['fraction'],
             ]);
         }
