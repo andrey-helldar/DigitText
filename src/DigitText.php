@@ -68,7 +68,7 @@ class DigitText
 
         $this->loadTexts();
 
-        if ($this->digit == 0) {
+        if ($this->digit == 0 && !$is_currency) {
             return $this->texts['zero'];
         }
 
@@ -124,9 +124,9 @@ class DigitText
 
         $groups = str_split($this->digitReverse((int) $this->digit), 3);
         $result = [];
-
-        for ($i = sizeof($groups) - 1; $i >= 0; $i--) {
-            if ((int) $groups[$i] > 0) {
+        $count  = count($groups);
+        for ($i = $count - 1; $i >= 0; $i--) {
+            if ($i === $count - 1 || (int) $groups[$i] > 0) {
                 array_push($result, $this->digits($groups[$i], $i));
             }
         }
@@ -156,7 +156,7 @@ class DigitText
         }
 
         $digit       = explode('.', $digit);
-        $this->digit = (double) sprintf('%s.%s', intval($digit[0]), intval($digit[1]));
+        $this->digit = (double) sprintf('%s.%s', intval($digit[0]), $digit[1]);
     }
 
     /**
@@ -329,18 +329,11 @@ class DigitText
                 $this->texts['currency']['int'],
             ]);
 
-            if ($this->surplus > 0) {
-                $result .= implode(' ', [
-                    '',
-                    $this->surplus,
-                    $this->texts['currency']['fraction'],
-                ]);
-            } else {
-                $result .= implode(' ', [
-                    ' 00',
-                    $this->texts['currency']['fraction'],
-                ]);
-            }
+            $result .= implode(' ', [
+                '',
+                str_pad((string) $this->surplus, $this->texts['currency']['precision'], '0', STR_PAD_RIGHT),
+                $this->texts['currency']['fraction'],
+            ]);
         }
 
         return $result;

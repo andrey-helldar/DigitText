@@ -100,6 +100,7 @@ return [
         'int'      => 'руб',
         'fraction' => 'коп',
         'position' => 'after',
+        'precision'=> 1,
     ],
 
     'zero' => 'ноль',
