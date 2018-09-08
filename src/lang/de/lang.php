@@ -115,4 +115,8 @@ return [
         1 => 'million',
         2 => 'million',
     ],
+
+    'settings' => [
+        'is_reverse' => true,
+    ],
 ];

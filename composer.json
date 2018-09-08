@@ -23,11 +23,7 @@
     "require": {
         "php": ">=7.1",
         "ext-intl": "*",
-        "illuminate/http": "^5.5",
-        "illuminate/pipeline": "^5.5",
-        "illuminate/routing": "^5.5",
-        "illuminate/session": "^5.5",
-        "illuminate/support": "^5.5"
+        "illuminate/translation": "^5.5"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.2",
@@ -58,10 +54,7 @@
         "laravel": {
             "providers": [
                 "Helldar\\DigitText\\ServiceProvider"
-            ],
-            "aliases": {
-                "DigitText": "Helldar\\DigitText\\Facade"
-            }
+            ]
         }
     }
 }

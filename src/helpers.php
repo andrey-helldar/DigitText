@@ -1,20 +1,17 @@
 <?php
 
-use Helldar\DigitText\DigitText;
-
 if (!function_exists('digit_text')) {
     /**
      * A Helper for showing a fractional number in a text equivalent from a static method.
      *
-     * @param float $digit
-     * @param string $lang
+     * @param float $number
+     * @param null|string $locale If set to `NULL`, the global value will be taken.
      * @param bool $is_currency
      *
      * @return string
      */
-    function digit_text($digit = 0.0, string $lang = 'en', bool $is_currency = false)
+    function digit_text(float $number = 0.0, string $locale = null, bool $is_currency = false): string
     {
-        return (new DigitText)
-            ->get($digit, $lang, $is_currency);
+        return app('digit_text')->get($number, $locale, $is_currency);
     }
 }

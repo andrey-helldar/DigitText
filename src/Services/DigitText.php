@@ -2,120 +2,136 @@
 
 namespace Helldar\DigitText\Services;
 
-class DigitText
+use Helldar\DigitText\Contracts\Translator;
+use Helldar\DigitText\Traits\Initialize;
+use Helldar\DigitText\Variables\DigitTextConstants;
+
+class DigitText extends Translator
 {
-    private $lang = [];
+    use Initialize;
 
-    public function get($digit = 0.0, string $lang = 'en', bool $is_currency = false): string
+    private $is_currency = false;
+
+    public function get(float $number = 0.0, string $locale = null, bool $is_currency = false): string
     {
-        $this->setLang($lang);
+        $this->locale      = $locale;
+        $this->is_currency = $is_currency;
 
-        $digit   = $this->reverseString((string) $digit);
-        $grouped = $this->groupDigits($digit);
-        $result  = [];
-
-        for ($i = 0; $i < sizeof($grouped); $i++) {
-            $text = $this->toText($grouped[$i], $i);
-
-            array_push($result, $text);
+        if (!$number) {
+            return $this->getNull();
         }
 
-        die(json_encode($result));
+        return $this->getNumber($number);
     }
 
-    private function groupDigits(string $digit): array
+    private function getNull(): string
     {
-        $digit = str_split((string) $digit, 3);
-        $digit = $this->reverseArray($digit);
+        if ($this->is_currency) {
+            $text   = $this->trans('lang.digits.zero');
+            $suffix = '00 ' . $this->trans('lang.currency.floor');
 
-        return array_map(function ($value) {
-            return $this->reverseString((string) $value);
-        }, $digit);
-    }
-
-    private function reverseArray(array $array = [], $force_reverse = false): array
-    {
-        if ($force_reverse) {
-            return array_reverse($array);
+            return $this->currencyBeforeOrAfter($text, $suffix);
         }
 
-        return $array;
+        return $this->trans('lang.digits.zero');
     }
 
-    private function reverseString(string $string): string
+    private function getNumber(float $number = 0.0): string
     {
-        return strrev($string);
-    }
+        $integer = (int) $number;
+        $floor   = floor($number);
 
-    private function toText(string $digit, int $index = 0): string
-    {
-        $array  = str_split((string) $digit);
-        $array  = $this->reverseArray($array, true);
-        $result = [];
-
-        for ($i = 0; $i < sizeof($array); $i++) {
-            $number = $array[$i];
-            $text   = $this->lang[$i][$number];
-
-            array_push($result, trim($text));
+        if ($result = $this->getNumberSimple($integer, $floor)) {
+            return $result;
         }
 
-        $result = $this->reverseArray($result, true);
+        $group = $this->getFixedGroup($integer);
 
-        array_push($result, $this->getSuffix($index, (int) $digit));
+        for ($g = 0; $g < sizeof($group); $g++) {
+            $sub_group  = str_split((string) $group[$g]);
+            $sub_result = [];
+
+            for ($i = 0; $i < sizeof($sub_group); $i++) {
+                $text = $this->trans("lang.digits.{$g}.{$i}");
+
+                array_unshift($sub_result, $text);
+            }
+
+            $group_suffix = $this->transChoice('lang.categories.' . $g, (int) $group[$g]);
+            array_push($sub_result, $group_suffix);
+        }
+
+        $result = implode(' ', $sub_result);
+
+        if ($this->is_currency) {
+            $suffix = implode(' ', [
+                $this->fixFloor($floor),
+                $this->trans('lang.currency.floor'),
+            ]);
+
+            return $this->currencyBeforeOrAfter($result, $suffix);
+        }
+
+        return $result;
+    }
+
+    private function getNumberSimple(int $integer = 0, int $floor = 0): ?string
+    {
+        if ($integer >= 1 && $integer <= 19) {
+            $text = $this->trans('lang.digits.0.' . $integer);
+
+            if ($this->is_currency) {
+                $suffix = implode(' ', [
+                    $this->fixFloor($floor),
+                    $this->trans('lang.currency.floor'),
+                ]);
+
+                return $this->currencyBeforeOrAfter($text, $suffix);
+            }
+
+            return $text;
+        }
+
+        return null;
+    }
+
+    private function reverse(int $number = 0, bool $is_force = false): string
+    {
+        if ($is_force || $this->trans('lang.settings.is_reverse')) {
+            return strrev((string) $number);
+        }
+
+        return (string) $number;
+    }
+
+    private function group(string $number): array
+    {
+        return str_split($number, 3);
+    }
+
+    private function getFixedGroup(int $integer = 0): array
+    {
+        $reversed = $this->reverse($integer, true);
+        $grouped  = $this->group($reversed);
+
+        return array_map(function ($group) {
+            return $this->reverse((int) $group, true);
+        }, $grouped);
+    }
+
+    private function currencyBeforeOrAfter(string $text, string $suffix = null): string
+    {
+        if ($this->trans('lang.currency.position') === 'after') {
+            $result = [$text, $this->trans('lang.currency.integer'), $suffix];
+        } else {
+            $result = [$this->trans('lang.currency.integer'), $text, $suffix];
+        }
 
         return implode(' ', array_filter($result));
     }
 
-    private function getSuffix(int $index = 0, int $number = 0): ?string
+    private function fixFloor(int $floor = 0): string
     {
-        $decline = $this->decline($number);
-
-        switch ($index) {
-            case 1:
-                return $this->lang['thousands'][$decline] ?? null;
-
-            case 2:
-                return $this->lang['millions'][$decline] ?? null;
-
-            case 3:
-                return $this->lang['billions'][$decline] ?? null;
-
-            default:
-                return null;
-        }
-    }
-
-    private function decline(int $number = 0): int
-    {
-        $last_number = (int) ($number % 10);
-
-        if (($number > 4 && $number < 21) || ($last_number >= 5 && $last_number <= 9)) {
-            return 2;
-        }
-
-        if ($last_number >= 2 && $last_number <= 4) {
-            return 1;
-        }
-
-        return 0;
-    }
-
-    private function setLang(string $lang = 'en')
-    {
-        $filename = $this->getLangFilename($lang);
-
-        $this->lang = require $filename;
-    }
-
-    private function getLangFilename(string $lang = 'en'): string
-    {
-        $filename = sprintf('%s/../lang/%s.php', __DIR__, $lang);
-
-        if (!file_exists($filename)) {
-            return $this->getLangFilename();
-        }
-
-        return $filename;
+        return str_pad((string) $floor, DigitTextConstants::PRECISION, '0', STR_PAD_RIGHT);
     }
 }
