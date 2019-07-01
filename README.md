@@ -12,6 +12,10 @@ The module allows to translate numbers into a text equivalent. This is important
     <a href="LICENSE"><img src="https://poser.pugx.org/andrey-helldar/DigitText/license?format=flat-square" alt="License" /></a>
 </p>
 
+## Attention!
+
+This package is **abandoned** and no longer maintained. The author suggests using the [kwn/number-to-words](https://github.com/kwn/number-to-words) package instead.
+
 
 ## Installation
 
